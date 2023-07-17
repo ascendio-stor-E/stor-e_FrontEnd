@@ -1,10 +1,9 @@
 const Gallery = () => {
   return (
     <>
-      <section className="gallery">
-        <img className="gallery__logo" src="./src/assets/Ascendio Logo.png" alt="Dummy Ascendio Logo" />
-      </section>
-      <button>Get Started</button>
+    <section className="gallery"></section>
+      <h1>Gallery</h1>
+      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci, consequatur aut voluptates eaque sequi sapiente itaque suscipit maxime tempora eveniet, labore aliquid dolore numquam commodi corrupti placeat! Nisi, eaque numquam!</p>
     </>
   );
 };
