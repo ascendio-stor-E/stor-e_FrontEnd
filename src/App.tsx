@@ -4,7 +4,7 @@ import Navbar from './comps/Navbar.tsx';
 import Home from './comps/Home.tsx';
 import About from './comps/About.tsx';
 import Favourites from './comps/Favourites';
-import Gallery from './comps/Gallery.tsx';
+import Create from './comps/Create.tsx';
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route path="/favourites" element={<Favourites />}></Route>
-        <Route path="/create" element={<Gallery />}/>
+        <Route path="/create" element={<Create />}/>
       </Routes>
     </>
   );

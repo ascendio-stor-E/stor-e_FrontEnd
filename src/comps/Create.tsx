@@ -3,7 +3,7 @@ const Gallery = () => {
     <>
       <section className="create">
         <img className="create__image" src="./src/assets/Ascendio Logo.png" alt="Dummy Ascendio Logo" />
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci, consequatur aut voluptates eaque sequi.</p>
+        <p className="create__intro-text">Welcome to Stor-E, your very own unique adventure generator. Choose the option that you want to explore and we can begin!</p>
         <form>
           <label>
             What is the name of our hero or heroine? <br />
@@ -11,9 +11,18 @@ const Gallery = () => {
           </label>
           <br />
           <ul className="create__options-list">
-            <li>Option 1</li>
-            <li>Option 2</li>
-            <li>Option 3</li>
+            <li>
+              <input type="radio" name="option" value="Option 1" id="option1" />
+              <label htmlFor="option1"> Option 1</label>
+            </li>
+            <li>
+              <input type="radio" name="option" value="Option 2" id="option2" />
+              <label htmlFor="option2">Option 2</label>
+            </li>
+            <li>
+              <input type="radio" name="option" value="Option 3" id="option3" />
+              <label htmlFor="option3"> Option 3</label>
+            </li>
           </ul>
         </form>
         <button className="create__button">Random</button>

@@ -19,10 +19,30 @@
 /* HOME */
 .home__logo {
   height: 300px;
-  margin: 80px auto;
+  margin: 40px auto;
 }
 
 .home__create-button {
   font-weight: 800;
   font-size: 1.7em;;
+}
+
+
+/* CREATE */
+.create__image {
+  height: 300px;
+  margin: 40px auto;
+}
+
+.create__name-input {
+  margin: 5px auto 10px auto;
+  text-align: center;
+}
+
+.create__options-list {
+  list-style-type: none;
+}
+
+.create__button {
+  margin: 10px 20px;
 }
