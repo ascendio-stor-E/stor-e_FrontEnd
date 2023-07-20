@@ -16,7 +16,7 @@ export default function StoryPage(props: StoryPageProps) {
   const nextPage = () => {
     axios
       .post<StoryContinueResponse>(
-        `http://localhost:8080/api/story/continueStory?optionChoice=${selectedOption}&conversationId=${props.currentStoryBook?.conversationId}&storyBookId=${props.currentStoryBook?.storyBookId}&pageNumber=${newPageNumber}`
+        `https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story/continueStory?optionChoice=${selectedOption}&conversationId=${props.currentStoryBook?.conversationId}&storyBookId=${props.currentStoryBook?.storyBookId}&pageNumber=${newPageNumber}`
       )
       .then((response) => {
         console.log("Got response", response.data);
@@ -44,7 +44,7 @@ export default function StoryPage(props: StoryPageProps) {
       <section className="create">
         <img
           className="create__image"
-          src={`http://localhost:8080/api/story/image/${currentPage?.image}`}
+          src={`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story/image/${currentPage?.image}`}
           alt="Dummy Ascendio Logo"
         />
         <p className="create__intro-text">{currentPage?.story}</p>
