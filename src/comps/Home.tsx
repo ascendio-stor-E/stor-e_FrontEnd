@@ -1,7 +1,7 @@
 import axios from "axios";
 import { StoryStartResponse } from "../StoryStartResponse";
 import { useNavigate } from "react-router-dom";
-import { StoryBook } from "../StoryBook";
+import { StoryBook } from "../types/StoryBook";
 
 type HomeProps = {
   setCurrentStoryBook: (book: StoryBook) => void
