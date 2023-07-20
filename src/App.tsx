@@ -3,8 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import Navbar from './comps/Navbar.tsx';
 import Home from './comps/Home.tsx';
 import About from './comps/About.tsx';
-import Favourites from './comps/Favourites';
 import Create from './comps/Create.tsx';
+import Gallery from './comps/galleryComps/Gallery.tsx';
 
 function App() {
   return (
@@ -13,8 +13,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/about" element={<About />}></Route>
-        <Route path="/favourites" element={<Favourites />}></Route>
-        <Route path="/create" element={<Create />}/>
+        <Route path="/create" element={<Create />}></Route>
+        <Route path="/gallery" element={<Gallery />}></Route>
       </Routes>
     </>
   );
