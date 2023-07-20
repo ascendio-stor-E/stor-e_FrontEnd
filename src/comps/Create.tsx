@@ -1,8 +1,8 @@
 import axios from "axios";
-import { StoryContinueResponse } from "../StoryContinueResponse";
+import { StoryContinueResponse } from "../types/StoryContinueResponse";
 import { useNavigate } from "react-router-dom";
 import { StoryBook } from "../types/StoryBook";
-import { StoryPageType } from "../StoryPageType";
+import { StoryPageType } from "../types/StoryPageType";
 
 type CreateProps = {
   currentStoryBook: StoryBook | undefined;
@@ -16,7 +16,7 @@ const Create = (props: CreateProps) => {
   const createStory = () => {
     
     axios
-      .post<StoryContinueResponse>(`http://localhost:8080/api/story/continueStory?optionChoice=${selectedOption}&conversationId=${props.currentStoryBook?.conversationId}&storyBookId=${props.currentStoryBook?.storyBookId}&pageNumber=1`)
+      .post<StoryContinueResponse>(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story/continueStory?optionChoice=${selectedOption}&conversationId=${props.currentStoryBook?.conversationId}&storyBookId=${props.currentStoryBook?.storyBookId}&pageNumber=1`)
       .then(response => {
         console.log('Got response', response.data);
         const storyPage :StoryPageType = {    

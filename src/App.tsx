@@ -5,7 +5,6 @@ import Home from './comps/Home.tsx';
 import About from './comps/About.tsx';
 import Create from './comps/Create.tsx';
 import { useState } from 'react';
-import { StoryStartResponse } from './StoryStartResponse.tsx';
 import Gallery from './comps/galleryComps/Gallery.tsx';
 import StoryPage from './comps/StoryPage.tsx';
 import { StoryBook } from './types/StoryBook.tsx';

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { StoryStartResponse } from "../StoryStartResponse";
+import { StoryStartResponse } from "../types/StoryStartResponse";
 import { useNavigate } from "react-router-dom";
 import { StoryBook } from "../types/StoryBook";
 
@@ -12,7 +12,7 @@ const Home = (props: HomeProps) => {
   
   const getStarted = () => {
     axios
-      .post<StoryStartResponse>('http://localhost:8080/api/story')
+      .post<StoryStartResponse>('https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story')
       .then(response => {
         console.log('Got response', response.data);
         

@@ -19,7 +19,7 @@ const Gallery = () => {
   let userId = "bc644717-5970-4e0b-88a7-35d5f0931be1";
  
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/storybook?userId=${userId}`)
+    axios.get(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/storybook?userId=${userId}`)
       .then(response => response.data)
       .then(data => {
         const storyBooksList = (data.filter((storyBook: any) => storyBook.status == 1));
