@@ -1,9 +1,8 @@
-import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { StoryBook } from "../StoryBook";
-import { StoryPageType } from "../StoryPageType";
+import { StoryBook } from "../types/StoryBook";
+import { StoryPageType } from "../types/StoryPageType";
 import axios from "axios";
-import { StoryContinueResponse } from "../StoryContinueResponse";
+import { StoryContinueResponse } from "../types/StoryContinueResponse";
 
 type StoryPageProps = {
   currentStoryBook: StoryBook | undefined;
@@ -52,9 +51,9 @@ export default function StoryPage(props: StoryPageProps) {
         <form>
           <ul className="create__options-list" onChange={optionSelected}>
             {(currentPage?.options || []).map((option, index) => (
-              <li key={"option" + index}>
-                <input type="radio" name="option" value={index+1} id={"option" + index} defaultChecked={false}/>
-                <label htmlFor={"option" + index}> {option}</label>
+              <li key={`option${index}`}>
+                <input type="radio" name="option" value={index+1} id={`option${index}`} defaultChecked={false}/>
+                <label htmlFor={`option${index}`}> {option}</label>
               </li>
             ))}
           </ul>

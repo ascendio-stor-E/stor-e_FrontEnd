@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { StoryStartResponse } from './StoryStartResponse.tsx';
 import Gallery from './comps/galleryComps/Gallery.tsx';
 import StoryPage from './comps/StoryPage.tsx';
-import { StoryBook } from './StoryBook.tsx';
+import { StoryBook } from './types/StoryBook.tsx';
 import Review from './comps/Review.tsx';
 
 function App() {

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { StoryContinueResponse } from "../StoryContinueResponse";
 import { useNavigate } from "react-router-dom";
-import { StoryBook } from "../StoryBook";
+import { StoryBook } from "../types/StoryBook";
 import { StoryPageType } from "../StoryPageType";
 
 type CreateProps = {
@@ -56,14 +56,14 @@ const Create = (props: CreateProps) => {
           <ul className="create__options-list" onChange={optionSelected}>
             {(props.currentStoryBook?.options || []).map(
               (option, index) => (
-                <li key={'option' + index}>
+                <li key={`option${index}`}>
                   <input
                     type="radio"
                     name="option"
                     value={index+1}
-                    id={'option' + index}
+                    id={`option${index}`}
                   />
-                  <label htmlFor={"option" + index}> {option}</label>
+                  <label htmlFor={`option${index}`}> {option}</label>
                 </li>
               )
             )}
