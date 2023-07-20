@@ -5,7 +5,7 @@ const Navbar = () => {
       <nav className='navbar'>
         <Link className="navbar__item col-sm" to="/"> Home </Link>
         |
-        <Link className="navbar__item col-sm" to="/favourites"> Favourites </Link>
+        <Link className="navbar__item col-sm" to="/gallery"> My Stories </Link>
         |
         <Link className="navbar__item col-sm" to="/about"> About </Link>
       </nav>
