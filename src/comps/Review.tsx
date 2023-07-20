@@ -4,7 +4,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 const Review = () => {
   return (
     <div>
-      
+      Review
     </div>
   )
 }

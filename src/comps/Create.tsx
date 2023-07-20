@@ -1,19 +1,32 @@
 import axios from "axios";
-import { StoryStartResponse } from "../StoryStartResponse";
 import { StoryContinueResponse } from "../StoryContinueResponse";
+import { useNavigate } from "react-router-dom";
+import { StoryBook } from "../StoryBook";
+import { StoryPageType } from "../StoryPageType";
 
 type CreateProps = {
-  initialStoryOptions: StoryStartResponse | undefined;
+  currentStoryBook: StoryBook | undefined;
 };
+
 
 const Create = (props: CreateProps) => {
   let selectedOption = -1;
-
+  const navigate = useNavigate();
+  
   const createStory = () => {
+    
     axios
-      .post<StoryContinueResponse>(`http://localhost:8080/api/story/continueStory?optionchoice=${selectedOption}&conversationId=${props.initialStoryOptions?.conversationId}&storyBookId=${props.initialStoryOptions?.storyBookId}&pageNumber=1`)
+      .post<StoryContinueResponse>(`http://localhost:8080/api/story/continueStory?optionChoice=${selectedOption}&conversationId=${props.currentStoryBook?.conversationId}&storyBookId=${props.currentStoryBook?.storyBookId}&pageNumber=1`)
       .then(response => {
         console.log('Got response', response.data);
+        const storyPage :StoryPageType = {    
+            part: response.data.part,
+            story: response.data.story,
+            options: response.data.options,
+            image: response.data.imageName,
+        }
+        props.currentStoryBook?.pages.push(storyPage) 
+        navigate('/storypage/1');
       })
       .catch(err => console.error('Cannot create story', err));
   };
@@ -41,13 +54,13 @@ const Create = (props: CreateProps) => {
           </label>
           <br />
           <ul className="create__options-list" onChange={optionSelected}>
-            {(props.initialStoryOptions?.options || ["option1", "option2", "option3"]).map(
+            {(props.currentStoryBook?.options || []).map(
               (option, index) => (
                 <li key={'option' + index}>
                   <input
                     type="radio"
                     name="option"
-                    value={index}
+                    value={index+1}
                     id={'option' + index}
                   />
                   <label htmlFor={"option" + index}> {option}</label>

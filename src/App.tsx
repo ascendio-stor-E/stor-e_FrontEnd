@@ -7,18 +7,23 @@ import Create from './comps/Create.tsx';
 import { useState } from 'react';
 import { StoryStartResponse } from './StoryStartResponse.tsx';
 import Gallery from './comps/galleryComps/Gallery.tsx';
+import StoryPage from './comps/StoryPage.tsx';
+import { StoryBook } from './StoryBook.tsx';
+import Review from './comps/Review.tsx';
 
 function App() {
-  const [initialStoryOptions, setInitialStoryOptions] = useState<StoryStartResponse>()
+  const [currentStoryBook, setCurrentStoryBook] = useState<StoryBook>()
 
   return (
     <>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home setInitialStoryOptions={setInitialStoryOptions}/>}></Route>
+        <Route path="/" element={<Home setCurrentStoryBook={setCurrentStoryBook}/>}></Route>
         <Route path="/about" element={<About />}></Route>
-        <Route path="/create" element={<Create initialStoryOptions={initialStoryOptions}/>}></Route>
+        <Route path="/create" element={<Create currentStoryBook={currentStoryBook}/>}></Route>
         <Route path="/gallery" element={<Gallery />}></Route>
+        <Route path="/storypage/:pageNumber" element={<StoryPage currentStoryBook={currentStoryBook}/>}></Route>
+        <Route path="/review" element={<Review />}></Route>
       </Routes>
     </>
   );
