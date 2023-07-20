@@ -12,7 +12,6 @@ type StoryBookProps = {
 
 const Review = (props: StoryBookProps) => {
   const { storyBookId } = useParams<{ storyBookId: string }>();
-  const [storyData, setStoryData] = useState<StoryBook[]>([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,49 +20,44 @@ const Review = (props: StoryBookProps) => {
         .get(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story/${storyBookId}`)
         .then((response) => {
           console.log('Got response', response.data);
-          setStoryData(response.data);
-          console.log(storyData);
         })
         .catch((err) => console.error('Cannot review story', err));
     };
     getData();
-    }, [storyBookId]);
-
+  }, [storyBookId]);
 
   const handleDeleteClick = () => {
-    axios
-      .delete(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/storybook/${storyBookId}`)
-      .catch((err) => console.error('Cannot delete story', err));
+    axios.delete(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/storybook/${storyBookId}`).catch((err) => console.error('Cannot delete story', err));
 
     navigate(`/`);
   };
 
   const handleSaveClick = () => {
     navigate('/gallery');
-  }
+  };
 
   return (
     <section>
       <Carousel interval={null}>
         <Carousel.Item>
-          <img className="home__logo" src="./src/assets/Ascendio Logo.png" alt="Dummy Ascendio Logo" />
-          <p className="review__storyText">text</p>
+          <img className="home__logo" src="../src/assets/Ascendio Logo.png" alt="Dummy Ascendio Logo" />
+          <p className="review__storyText">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa alias ex adipisci esse sapiente ad commodi quis doloribus officiis repudiandae.</p>
         </Carousel.Item>
         <Carousel.Item>
-          <img className="home__logo" src="./src/assets/Ascendio Logo.png" alt="Dummy Ascendio Logo" />
-          <p className="review__storyText">text</p>
+          <img className="home__logo" src="../src/assets/Ascendio Logo.png" alt="Dummy Ascendio Logo" />
+          <p className="review__storyText">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa alias ex adipisci esse sapiente ad commodi quis doloribus officiis repudiandae.</p>
         </Carousel.Item>
         <Carousel.Item>
-          <img className="home__logo" src="./src/assets/Ascendio Logo.png" alt="Dummy Ascendio Logo" />
-          <p className="review__storyText">text</p>
+          <img className="home__logo" src="../src/assets/Ascendio Logo.png" alt="Dummy Ascendio Logo" />
+          <p className="review__storyText">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa alias ex adipisci esse sapiente ad commodi quis doloribus officiis repudiandae.</p>
         </Carousel.Item>
         <Carousel.Item>
-          <img className="home__logo" src="./src/assets/Ascendio Logo.png" alt="Dummy Ascendio Logo" />
-          <p className="review__storyText">text</p>
+          <img className="home__logo" src="../src/assets/Ascendio Logo.png" alt="Dummy Ascendio Logo" />
+          <p className="review__storyText">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa alias ex adipisci esse sapiente ad commodi quis doloribus officiis repudiandae.</p>
         </Carousel.Item>
         <Carousel.Item>
-          <img className="home__logo" src="./src/assets/Ascendio Logo.png" alt="Dummy Ascendio Logo" />
-          <p className="review__storyText">text</p>
+          <img className="home__logo" src="../src/assets/Ascendio Logo.png" alt="Dummy Ascendio Logo" />
+          <p className="review__storyText">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa alias ex adipisci esse sapiente ad commodi quis doloribus officiis repudiandae.</p>
         </Carousel.Item>
       </Carousel>
       <button onClick={handleDeleteClick}>Delete</button>
