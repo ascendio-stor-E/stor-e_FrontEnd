@@ -42,8 +42,19 @@
 
 .create__options-list {
   list-style-type: none;
+  text-align: left;
+  display: inline-block;
 }
 
 .create__button {
   margin: 10px 20px;
+}
+
+.create__options-list > li >label {
+  margin-left: 10px;
+}
+
+.create__intro-text{
+  margin-left: 100px;
+  margin-right: 100px;
 }
