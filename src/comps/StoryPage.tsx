@@ -39,6 +39,12 @@ export default function StoryPage(props: StoryPageProps) {
 
   const currentPage = props.currentStoryBook?.pages[props.currentStoryBook?.pages.length - 1];
 
+  const handleReviewClick = () => {
+    if (props.currentStoryBook?.storyBookId) {
+      navigate (`/review/${props.currentStoryBook?.storyBookId}`);
+    }
+  }
+
   return (
     <>
       <section className="create">
@@ -70,7 +76,7 @@ export default function StoryPage(props: StoryPageProps) {
           <button className="create__button" onClick={() => navigate("/")}>
           Start Again
         </button>
-          <button className="create__button" onClick={() => navigate("/review")}>
+          <button className="create__button" onClick={handleReviewClick}>
           Review
         </button>
         </>
