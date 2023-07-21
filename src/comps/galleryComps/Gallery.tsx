@@ -25,6 +25,9 @@ const Gallery = () => {
         const storyBooksList = (data.filter((storyBook: any) => storyBook.status == 1));
         setStoryBooksList(storyBooksList)
       });
+      if(false) {
+        setCount(1);
+      }
   }, [count]);
 
     const onRemoveStory = (storyBookId: string) => {

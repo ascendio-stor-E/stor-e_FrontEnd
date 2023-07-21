@@ -22,7 +22,7 @@ function App() {
         <Route path="/create" element={<Create currentStoryBook={currentStoryBook}/>}></Route>
         <Route path="/gallery" element={<Gallery />}></Route>
         <Route path="/storypage/:pageNumber" element={<StoryPage currentStoryBook={currentStoryBook}/>}></Route>
-        <Route path="/review/:id" element={<Review />}></Route>
+        <Route path="/review" element={<Review />}></Route>
       </Routes>
     </>
   );
