@@ -51,7 +51,7 @@ export default function StoryPage(props: StoryPageProps) {
         <img
           className="create__image"
           src={`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story/image/${currentPage?.image}`}
-          alt="Dummy Ascendio Logo"
+          alt="Stor-E Image "
         />
         <p className="create__intro-text">{currentPage?.story}</p>
         <form>

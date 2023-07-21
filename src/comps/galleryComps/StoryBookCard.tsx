@@ -43,7 +43,7 @@ const StoryBookCard = (props: StoryBookCardProps) => {
 
         <a href={`/review/${props.storyBook.id}`}>
         <div className=' selected-card position-absolute'> 
-          {mouseOver && <img src={eyeImg} className='img-eye'/>}
+          {mouseOver && <img src={eyeImg} className='storybookcard__img-eye'/>}
         </div>
         </a>
 
