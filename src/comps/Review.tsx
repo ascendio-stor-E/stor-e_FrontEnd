@@ -25,7 +25,8 @@ const Review = (props: StoryBookProps) => {
         .get(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story/all/${storyBookId}`)
         .then((response) => {
           console.log('Got response', response.data);
-          setStoryPages(response.data);
+          const sortedPages = response.data.sort((a: { pageNumber: number; }, b: { pageNumber: number; }) => a.pageNumber - b.pageNumber);
+          setStoryPages(sortedPages);
         })
         .catch((err) => console.error('Cannot review story', err));
     };
