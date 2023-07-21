@@ -17,7 +17,6 @@ const Review = (props: StoryBookProps) => {
   const { storyBookId } = useParams<{ storyBookId: string }>();
   const navigate = useNavigate();
   const [storyPages, setStoryPages] = useState<StoryPageData[]>([]);
-  const [imageData, setImageData] = useState<{ [key: string]: string }>({});
   console.log(storyBookId);
 
   useEffect(() => {
@@ -49,13 +48,13 @@ const Review = (props: StoryBookProps) => {
       <Carousel interval={null}>
         {storyPages.map((page) => (
           <Carousel.Item key={page.id}>
-            <img className="home__logo" src={`../src/assets/Ascendio Logo.png`} alt="Dummy Ascendio Logo" />
+            <img className="home__logo" src={`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story/image/${page.image}`} alt="Dummy Ascendio Logo" />
             <p className="review__storyText">{page.textContent}</p>
           </Carousel.Item>
         ))}
       </Carousel>
       <button onClick={handleDeleteClick}>Delete</button>
-      <button onClick={handleSaveClick}>Save</button>
+      <button onClick={handleSaveClick}>Confirm</button>
     </section>
   );
 };
