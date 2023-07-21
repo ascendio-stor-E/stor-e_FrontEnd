@@ -6,6 +6,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 type StoryBookProps = {
   storyBooks: StoryBookInfoType[];
+  onStoryBookRemove: (storyBookId: string) => void;
 };
 
 const Favourites = (props: StoryBookProps) => {
@@ -18,7 +19,7 @@ const Favourites = (props: StoryBookProps) => {
           {props.storyBooks && props.storyBooks.map((storyBook) => (
               
             <Col key={storyBook.id}>
-              <StoryBookCard storyBook={storyBook} />
+              <StoryBookCard storyBook={storyBook} onStoryBookRemove={props.onStoryBookRemove}  />
             </Col>
           ))}
         </Row>
