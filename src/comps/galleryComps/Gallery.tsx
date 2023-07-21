@@ -25,12 +25,19 @@ const Gallery = () => {
         const storyBooksList = (data.filter((storyBook: any) => storyBook.status == 1));
         setStoryBooksList(storyBooksList)
       });
+      if(false) {
+        setCount(1);
+      }
   }, [count]);
+
+    const onRemoveStory = (storyBookId: string) => {
+      setStoryBooksList(prevList => prevList.filter(book => book.id !== storyBookId));      
+    }
 
   return (
     <section className="gallery">
     
-      {storyBooksList && <Favourites storyBooks={storyBooksList}/> }
+      {storyBooksList && <Favourites storyBooks={storyBooksList}  onStoryBookRemove={onRemoveStory} /> }
 
     </section>
   );

@@ -49,7 +49,7 @@ const Create = (props: CreateProps) => {
           });
         }
         console.log(props.currentStoryBook)
-        navigate("/review")
+        navigate(`/review/${props.currentStoryBook?.storyBookId}`)
       })
       .catch((err) => console.error("Cannot create story", err));
   };
