@@ -25,7 +25,8 @@ const Review = (props: StoryBookProps) => {
         .get(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story/all/${storyBookId}`)
         .then((response) => {
           console.log('Got response', response.data);
-          setStoryPages(response.data);
+          const sortedPages = response.data.sort((a: { pageNumber: number; }, b: { pageNumber: number; }) => a.pageNumber - b.pageNumber);
+          setStoryPages(sortedPages);
         })
         .catch((err) => console.error('Cannot review story', err));
     };
@@ -48,7 +49,7 @@ const Review = (props: StoryBookProps) => {
       <Carousel interval={null}>
         {storyPages.map((page) => (
           <Carousel.Item key={page.id}>
-            <img className="home__logo" src={`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story/image/${page.image}`} alt="Dummy Ascendio Logo" />
+            <img className="home__logo" src={`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story/image/${page.image}`} alt="Story Image" />
             <p className="review__storyText">{page.textContent}</p>
           </Carousel.Item>
         ))}

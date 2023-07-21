@@ -63,8 +63,8 @@ const Create = (props: CreateProps) => {
       <section className="create">
         <img
           className="create__image"
-          src="./src/assets/Ascendio Logo.png"
-          alt="Dummy Ascendio Logo"
+          src="./src/assets/Store-E Logo V2.png"
+          alt="Stor-E Logo"
         />
         <p className="create__intro-text">
           Welcome to Stor-E, your very own unique adventure generator. Choose the option that you
