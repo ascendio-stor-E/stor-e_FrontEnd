@@ -58,3 +58,8 @@
   margin-left: 100px;
   margin-right: 100px;
 }
+
+/* REVIEW */
+.review__storyText {
+  padding: 15px 15px 30px 15px;
+}
