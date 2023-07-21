@@ -34,7 +34,7 @@ const Create = (props: CreateProps) => {
 
   const createRandomStory = () => {
     axios
-      .post<StoryRandomResponse>(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story/randomStory?storyBookId=${props.currentStoryBook?.storyBookId}&option=${props.currentStoryBook?.options[selectedOption]}`)
+      .post<StoryRandomResponse>(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story/randomStory?storyBookId=${props.currentStoryBook?.storyBookId}&option=${props.currentStoryBook?.options[selectedOption - 1]}`)
       .then((response) => {
         console.log("Got response", response.data);
         if (props.currentStoryBook) {

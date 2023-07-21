@@ -65,7 +65,7 @@ export default function StoryPage(props: StoryPageProps) {
           </ul>
         </form>
         {
-        (currentPage && currentPage.options.length !== 0) ? (
+        (currentPage && currentPage.options?.length !== 0) ? (
         
         <button className="create__button" onClick={nextPage}>
           Next Page

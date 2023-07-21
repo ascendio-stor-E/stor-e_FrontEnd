@@ -6,14 +6,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { StoryPageData } from '../types/StoryPageData';
 
-type StoryPageData = {
-  id: string;
-  textContent: string;
-  pageNumber: number;
-  image: string;
-};
-
-const Review = (props: StoryBookProps) => {
+const Review = () => {
   const { storyBookId } = useParams<{ storyBookId: string }>();
   const navigate = useNavigate();
   const [storyPages, setStoryPages] = useState<StoryPageData[]>([]);

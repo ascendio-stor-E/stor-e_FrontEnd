@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import { StoryBookInfoType } from './Gallery';
 import './gallery.css'
 import eyeImg from '../../assets/view-eye-white.png'
