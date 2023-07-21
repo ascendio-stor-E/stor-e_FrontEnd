@@ -70,7 +70,7 @@ export default function StoryPage(props: StoryPageProps) {
           <button className="create__button" onClick={() => navigate("/")}>
           Start Again
         </button>
-          <button className="create__button" onClick={() => navigate("/review")}>
+        <button className="create__button" onClick={() => navigate(`/review/${props.currentStoryBook?.storyBookId}`)}>
           Review
         </button>
         </>

@@ -27,9 +27,13 @@ const StoryBookCard = (props: StoryBookCardProps) => {
       
       <div className="gallery-item card" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} >
         <div className="card-img-top position-relative" >
+
+        <a href={`/review/${props.storyBook.id}`}>
         <div className=' selected-card position-absolute'> 
           {mouseOver && <img src={eyeImg} className='img-eye'/>}
         </div>
+        </a>
+
         <img src={`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story/image/${props.storyBook.coverImage}`} className="card-img-top" alt=".aa.."/>
   </div>
         <div className="card-body">
