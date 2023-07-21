@@ -1,25 +1,31 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import Carousel from 'react-bootstrap/Carousel';
-import { StoryBook } from '../types/StoryBook';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import axios from 'axios';
+import { StoryPageType } from '../types/StoryPageType';
 
 type StoryBookProps = {
-  currentStoryBook: StoryBook | undefined;
+  currentStoryBook: StoryPageType | undefined;
 };
 
 const Review = (props: StoryBookProps) => {
   const { storyBookId } = useParams<{ storyBookId: string }>();
   const navigate = useNavigate();
+  console.log(storyBookId);
 
   useEffect(() => {
     const getData = () => {
       axios
-        .get(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story/${storyBookId}`)
+        .get(`http://localhost:8080/api/story/all/${storyBookId}`)
         .then((response) => {
           console.log('Got response', response.data);
+          // const storyData: StoryPageType = {
+          //   part: response.data.pageNumber;
+          //   story: response.data.textContext;
+          //   image: response.data.image;
+          // }
         })
         .catch((err) => console.error('Cannot review story', err));
     };
@@ -27,8 +33,9 @@ const Review = (props: StoryBookProps) => {
   }, [storyBookId]);
 
   const handleDeleteClick = () => {
-    axios.delete(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/storybook/${storyBookId}`).catch((err) => console.error('Cannot delete story', err));
-
+    axios
+    .delete(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/storybook/${storyBookId}`)
+    .catch((err) => console.error('Cannot delete story', err));
     navigate(`/`);
   };
 
