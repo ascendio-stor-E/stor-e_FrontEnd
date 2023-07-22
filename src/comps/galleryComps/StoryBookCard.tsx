@@ -4,6 +4,7 @@ import './gallery.css'
 import eyeImg from '../../assets/view-eye-white.png'
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 type StoryBookCardProps = {
@@ -15,6 +16,7 @@ const StoryBookCard = (props: StoryBookCardProps) => {
    console.log(props);
 
   const [mouseOver, setMouseOver] = useState(false); 
+  const [isFavClicked, setIsFavClicked] = useState(false); 
 
   const onMouseEnter = () => {
     setMouseOver(true);
@@ -35,6 +37,10 @@ const StoryBookCard = (props: StoryBookCardProps) => {
     });
   };
 
+  const handleFavouriteClick = () => {
+    setIsFavClicked(isFavClicked => !isFavClicked);
+  };
+
   return (
     <div className="col ">
       
@@ -42,7 +48,7 @@ const StoryBookCard = (props: StoryBookCardProps) => {
         <div className="card-img-top position-relative" >
 
         <a href={`/review/${props.storyBook.id}`}>
-        <div className=' selected-card position-absolute'> 
+        <div className='selected-card position-absolute'> 
           {mouseOver && <img src={eyeImg} className='storybookcard__img-eye'/>}
         </div>
         </a>
@@ -52,11 +58,19 @@ const StoryBookCard = (props: StoryBookCardProps) => {
         <div className="card-body">
           <h4 className={`card-title ${mouseOver && "card-title-mouseover"}`}>{props.storyBook.title || 'Untitled'}</h4>
         
-          <div className="card-body card-body-buttons">
-            <button className='btn btn-info'>Print</button>
-            <button className='btn btn-danger' onClick={() => handleDeleteStoryBook(props.storyBook.id)}>
-              Delete
-            </button>
+          <div className="card-body card-body_buttons">
+
+            <i className={`bi bi-heart${isFavClicked ? '-fill' : ''} bi-2x`} 
+                title={`${isFavClicked ? 'Remove from favourites' : 'Add to favourites'}`} 
+                onClick={handleFavouriteClick}></i>
+
+            <div className='card-body_button-pane'>
+              <button className='btn btn-info'>Print</button>
+              <button className='btn btn-danger' onClick={() => handleDeleteStoryBook(props.storyBook.id)}>
+                Delete
+              </button>
+
+            </div>
           </div>
         </div>
       </div>

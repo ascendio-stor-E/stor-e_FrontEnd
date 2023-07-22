@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 type StoryBookProps = {
-  storyBooks: StoryBookInfoType[];
+  favouriteStoryBooks: StoryBookInfoType[];
   onStoryBookRemove: (storyBookId: string) => void;
 };
 
@@ -13,13 +13,13 @@ const Favourites = (props: StoryBookProps) => {
 
   return (
     <section className="favourites">
-      <h3>My Stories</h3>
+      <h3>Favourite Story Books</h3>
       <Container>
         <Row xs={1} sm={2} md={3} lg={4}>
-          {props.storyBooks && props.storyBooks.map((storyBook) => (
+          {props.favouriteStoryBooks && props.favouriteStoryBooks.map((favouriteStoryBook) => (
               
-            <Col key={storyBook.id}>
-              <StoryBookCard storyBook={storyBook} onStoryBookRemove={props.onStoryBookRemove}  />
+            <Col key={favouriteStoryBook.id}>
+              <StoryBookCard storyBook={favouriteStoryBook} onStoryBookRemove={props.onStoryBookRemove}  />
             </Col>
           ))}
         </Row>
