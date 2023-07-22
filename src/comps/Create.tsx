@@ -1,6 +1,8 @@
 import axios from "axios";
-import { StoryContinueResponse } from "../types/StoryContinueResponse";
+import Loading from './Loading';
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { StoryContinueResponse } from "../types/StoryContinueResponse";
 import { StoryBook } from "../types/StoryBook";
 import { StoryPageType } from "../types/StoryPageType";
 import { StoryRandomResponse } from "../types/StoryRandomResponse";
@@ -11,14 +13,19 @@ type CreateProps = {
 
 const Create = (props: CreateProps) => {
   let selectedOption = -1;
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const createStory = () => {
+    setIsLoading(true);
+
     axios
       .post<StoryContinueResponse>(
         `https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story/continueStory?optionChoice=${selectedOption}&conversationId=${props.currentStoryBook?.conversationId}&storyBookId=${props.currentStoryBook?.storyBookId}&pageNumber=1`
       )
       .then((response) => {
+        setIsLoading(false);
+
         console.log("Got response", response.data);
         const storyPage: StoryPageType = {
           part: response.data.part,
@@ -29,13 +36,19 @@ const Create = (props: CreateProps) => {
         props.currentStoryBook?.pages.push(storyPage);
         navigate("/storypage/1");
       })
-      .catch((err) => console.error("Cannot create story", err));
+      .catch((err) => {
+        console.error("Cannot create story.", err);
+        setIsLoading(false);
+      });
   };
 
   const createRandomStory = () => {
+    setIsLoading(true);
+
     axios
       .post<StoryRandomResponse>(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story/randomStory?storyBookId=${props.currentStoryBook?.storyBookId}&option=${props.currentStoryBook?.options[selectedOption - 1]}`)
       .then((response) => {
+        setIsLoading(false);
         console.log("Got response", response.data);
         if (props.currentStoryBook) {
           props.currentStoryBook.pages = response.data.stories.map((singleStory) => {
@@ -51,8 +64,10 @@ const Create = (props: CreateProps) => {
         console.log(props.currentStoryBook)
         navigate(`/review/${props.currentStoryBook?.storyBookId}`)
       })
-      .catch((err) => console.error("Cannot create story", err));
-  };
+      .catch((err) => {
+        console.error("Cannot create story", err);
+        setIsLoading(false);
+      });};
 
   const optionSelected = (event: any) => {
     selectedOption = event.target.value;
@@ -92,8 +107,10 @@ const Create = (props: CreateProps) => {
           Create
         </button>
       </section>
+      {isLoading && <Loading />}
     </>
   );
 };
 
 export default Create;
+

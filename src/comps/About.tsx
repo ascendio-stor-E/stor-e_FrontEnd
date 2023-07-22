@@ -1,3 +1,5 @@
+import Loading from "./Loading";
+
 const About = () => {
     return (
       <section className="about">
