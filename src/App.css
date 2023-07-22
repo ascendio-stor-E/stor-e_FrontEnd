@@ -14,6 +14,7 @@ p, label, button {
   font-size: 1.5em;
 }
 
+
 /* NAVBAR */
 .navbar__item {
   font-size: 1.4em;
@@ -69,7 +70,20 @@ p, label, button {
   margin-right: 100px;
 }
 
+
 /* REVIEW */
 .review__storyText {
   padding: 15px 15px 30px 15px;
+}
+
+
+/* LOADING */
+.loading__container {
+  padding: 15px;
+}
+
+.loading__icon {
+  margin: 20px;
+  height: 3vh;
+  width: 3vw;
 }

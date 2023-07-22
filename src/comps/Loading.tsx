@@ -53,19 +53,19 @@ const Loading = () => {
 
   useEffect(() => {
     const loadingInterval = setInterval(() => {
-      setLoadingIndex((prevIndex) => (prevIndex + 1) % loadingText.length);
-    }, 3500);
+      setLoadingIndex((prevIndex) => Math.floor(Math.random() * loadingText.length));
+    }, 2000);
     return () => {
       clearInterval(loadingInterval);
     };
-  });
+  }, [loadingText.length]);
 
   return (
-      <section>
-        <img className="loading__icon" src="src/assets/Spinner.gif" alt="Pages Turning Animation" />
-        <div className="loading__text">{loadingText[loadingIndex]}</div>
-      </section>
-    )
+    <section className="loading__container">
+      <img className="loading__icon" src="src/assets/Spinner.gif" alt="Pages Turning Animation" />
+      <div className="loading__text">{loadingText[loadingIndex]}</div>
+    </section>
+  );
 };
 
 export default Loading;
