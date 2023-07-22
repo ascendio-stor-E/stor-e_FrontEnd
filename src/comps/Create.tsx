@@ -30,6 +30,7 @@ const Create = (props: CreateProps) => {
           story: response.data.story,
           options: response.data.options,
           image: response.data.imageName,
+          storyId: response.data.storyId
         };
         props.currentStoryBook?.pages.push(storyPage);
         navigate('/storypage/1');
