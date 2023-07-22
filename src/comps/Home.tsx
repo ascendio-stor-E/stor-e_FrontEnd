@@ -1,7 +1,9 @@
 import axios from 'axios';
+import Loading from './loadingComp/Loading';
 import { StoryStartResponse } from '../types/StoryStartResponse';
 import { useNavigate } from 'react-router-dom';
 import { StoryBook } from '../types/StoryBook';
+import { useState } from 'react';
 
 type HomeProps = {
   setCurrentStoryBook: (book: StoryBook) => void;
@@ -9,13 +11,18 @@ type HomeProps = {
 
 const Home = (props: HomeProps) => {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+
 
   const getStarted = () => {
+    setIsLoading(true);
+
     axios
       .post<StoryStartResponse>('https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story')
       .then((response) => {
-        console.log('Got response', response.data);
+        setIsLoading(false);
 
+        console.log('Got response', response.data);
         const storyBook: StoryBook = {
           storyBookId: response.data.storyBookId,
           conversationId: response.data.conversationId,
@@ -28,8 +35,10 @@ const Home = (props: HomeProps) => {
 
         navigate('/create');
       })
-      .catch((err) => console.error('Cannot get started', err));
-  };
+      .catch((err) => {
+        console.error("Cannot start story.", err);
+        setIsLoading(false);
+      });};
 
   return (
     <>
@@ -40,6 +49,7 @@ const Home = (props: HomeProps) => {
           Get Started
         </button>
       </section>
+      {isLoading && <Loading />}
     </>
   );
 };

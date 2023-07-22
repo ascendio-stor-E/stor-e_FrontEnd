@@ -7,6 +7,7 @@ import Create from './comps/Create.tsx';
 import { useState } from 'react';
 import Gallery from './comps/galleryComps/Gallery.tsx';
 import StoryPage from './comps/StoryPage.tsx';
+import Loading from './comps/loadingComp/Loading.tsx';
 import { StoryBook } from './types/StoryBook.tsx';
 import Review from './comps/Review.tsx';
 
