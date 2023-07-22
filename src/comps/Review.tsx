@@ -15,7 +15,7 @@ const Review = () => {
   useEffect(() => {
     const getData = () => {
       axios
-        .get(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story/all/${storyBookId}`)
+        .get(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/storybook/${storyBookId}/stories`)
         .then((response) => {
           console.log('Got response', response.data);
           const sortedPages = response.data.sort((a: { pageNumber: number; }, b: { pageNumber: number; }) => a.pageNumber - b.pageNumber);

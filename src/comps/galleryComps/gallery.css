@@ -40,3 +40,12 @@
   .card {
     margin-top: 20px;
   }
+
+  .bi {
+    color: hotpink;
+    float: left;
+  }
+
+  .card-body_button-pane {
+    float: right;
+  }
