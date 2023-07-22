@@ -1,7 +1,5 @@
-import { useEffect, useState } from 'react';
-
-const Loading = () => {
-  const loadingText = [
+export const loadingText = [
+    'Creating Your Unique Story',
     'Slaying Dragons...',
     'Planting Magical Forests...',
     "Building the King's Castle...",
@@ -49,23 +47,3 @@ const Loading = () => {
     'Uniting Magical Beings for a Grand Feast...',
     'Collecting Moonbeams in Crystal Jars...',
   ];
-  const [loadingIndex, setLoadingIndex] = useState(0);
-
-  useEffect(() => {
-    const loadingInterval = setInterval(() => {
-      setLoadingIndex((prevIndex) => Math.floor(Math.random() * loadingText.length));
-    }, 2000);
-    return () => {
-      clearInterval(loadingInterval);
-    };
-  }, [loadingText.length]);
-
-  return (
-    <section className="loading__container">
-      <img className="loading__icon" src="src/assets/Spinner.gif" alt="Pages Turning Animation" />
-      <div className="loading__text">{loadingText[loadingIndex]}</div>
-    </section>
-  );
-};
-
-export default Loading;

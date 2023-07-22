@@ -2,7 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { StoryBook } from '../types/StoryBook';
 import { StoryPageType } from '../types/StoryPageType';
 import axios from 'axios';
-import Loading from './Loading';
+import Loading from './loadingComp/Loading';
 import { StoryContinueResponse } from '../types/StoryContinueResponse';
 import { useState } from 'react';
 
@@ -69,6 +69,7 @@ export default function StoryPage(props: StoryPageProps) {
             ))}
           </ul>
         </form>
+        {isLoading && <Loading />}
         {currentPage && currentPage.options?.length !== 0 ? (
           <button className="create__button" onClick={nextPage}>
             Next Page
@@ -84,7 +85,6 @@ export default function StoryPage(props: StoryPageProps) {
           </>
         )}
       </section>
-      {isLoading && <Loading />}
     </>
   );
 }
