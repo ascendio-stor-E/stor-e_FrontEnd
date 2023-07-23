@@ -1,5 +1,5 @@
 import axios from 'axios';
-import Loading from './loadingComp/Loading';
+import Loading from './loadingComps/Loading';
 import { StoryStartResponse } from '../types/StoryStartResponse';
 import { useNavigate } from 'react-router-dom';
 import { StoryBook } from '../types/StoryBook';

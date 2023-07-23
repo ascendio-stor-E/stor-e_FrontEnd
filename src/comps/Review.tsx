@@ -8,9 +8,9 @@ import { StoryPageData } from '../types/StoryPageData';
 
 const Review = () => {
   const { storyBookId } = useParams<{ storyBookId: string }>();
-  const [ storyPages, setStoryPages ] = useState<StoryPageData[]>([]);
-  const [ storyTitle, setStoryTitle ] = useState<string>("");
-  const [ pageNumber, setPageNumber ] = useState<number>(1);
+  const [storyPages, setStoryPages] = useState<StoryPageData[]>([]);
+  const [storyTitle, setStoryTitle] = useState<string>('');
+  const [pageNumber, setPageNumber] = useState<number>(1);
   const navigate = useNavigate();
   // console.log(storyBookId);
 
@@ -30,15 +30,14 @@ const Review = () => {
 
     const getTitle = () => {
       axios
-      .get(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/storybook/${storyBookId}`)
-      .then((response) => {
-        setStoryTitle(response.data.title)
-      })
-      .catch((err) => console.error('Cannot review story', err));
-  };
-  getTitle();
-
-    }, [storyBookId]);
+        .get(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/storybook/${storyBookId}`)
+        .then((response) => {
+          setStoryTitle(response.data.title);
+        })
+        .catch((err) => console.error('Cannot review story', err));
+    };
+    getTitle();
+  }, [storyBookId]);
 
   const handleDeleteClick = () => {
     axios.delete(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/storybook/${storyBookId}`).catch((err) => console.error('Cannot delete story', err));
@@ -60,13 +59,14 @@ const Review = () => {
         onSelect={(selectedIndex) => {
           setPageNumber(storyPages[selectedIndex]?.pageNumber || 1);
         }}
-        
-     >
+      >
         {storyPages.map((page) => (
           <Carousel.Item key={page.id}>
             <img className="home__logo" src={`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story/image/${page.image}`} alt="Story Image" />
-            <p className="review__storyText">{page.textContent}
-              <br /><span className='review__storyText--pageNumber'>Page {pageNumber}</span>
+            <p className="review__storyText">
+              {page.textContent}
+              <br />
+              <span className="review__storyText--pageNumber">Page {pageNumber}</span>
             </p>
           </Carousel.Item>
         ))}
