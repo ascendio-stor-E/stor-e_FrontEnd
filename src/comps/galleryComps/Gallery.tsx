@@ -27,7 +27,7 @@ const Gallery = () => {
   let userId = "bc644717-5970-4e0b-88a7-35d5f0931be1";
  
   useEffect(() => {
-    axios.get(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/storybook?userId=${userId}`)
+    axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/storybook?userId=${userId}`)
       .then(response => response.data)
       .then(data => {
         const favouriteStoryBooksList = (data.filter((storyBook: any) => storyBook.status === 'FAVOURITE'));
@@ -63,7 +63,6 @@ const Gallery = () => {
 
   return (
     <section className="gallery">
-
     <ul className="nav nav-tabs">
 
     <li className="nav-item">
