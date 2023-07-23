@@ -92,6 +92,20 @@ button {
   overflow: auto;
 }
 
+.review__carousel--arrow {
+  height: 40px;
+}
+
+@supports (transition: all 0.2s ease-in-out) and (transform: scale(1.02)) {
+  .review__carousel--arrow {
+    transition: all 0.2s ease-in-out;
+  }
+
+  .review__carousel--arrow:hover {
+    transform: scale(1.05);
+  }
+}
+
 /* LOADING */
 .loading__container {
   padding: 15px;

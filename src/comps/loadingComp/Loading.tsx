@@ -15,7 +15,7 @@ const Loading = () => {
 
   return (
     <section className="loading__container">
-      <img className="loading__icon" src="src/assets/Spinner.gif" alt="Pages Turning Animation" />
+      <img className="loading__icon" src="src/assets/Spinner.gif" alt="Loading" />
       <div className="loading__text">{loadingText[loadingIndex]}</div>
     </section>
   );

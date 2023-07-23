@@ -18,7 +18,7 @@ const Review = () => {
         .get(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/storybook/${storyBookId}/stories`)
         .then((response) => {
           console.log('Got response', response.data);
-          const sortedPages = response.data.sort((a: { pageNumber: number; }, b: { pageNumber: number; }) => a.pageNumber - b.pageNumber);
+          const sortedPages = response.data.sort((a: { pageNumber: number }, b: { pageNumber: number }) => a.pageNumber - b.pageNumber);
           setStoryPages(sortedPages);
         })
         .catch((err) => console.error('Cannot review story', err));
@@ -27,9 +27,7 @@ const Review = () => {
   }, [storyBookId]);
 
   const handleDeleteClick = () => {
-    axios
-    .delete(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/storybook/${storyBookId}`)
-    .catch((err) => console.error('Cannot delete story', err));
+    axios.delete(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/storybook/${storyBookId}`).catch((err) => console.error('Cannot delete story', err));
     navigate(`/`);
   };
 
@@ -39,7 +37,12 @@ const Review = () => {
 
   return (
     <section>
-      <Carousel interval={null}>
+      <Carousel
+        interval={null}
+        indicators={false}
+        prevIcon={<img className="review__carousel--arrow" src="../src/assets/arrowLeft.png" alt="Prev" />} // Use your local custom prev arrow image
+        nextIcon={<img className="review__carousel--arrow" src="../src/assets/arrowRight.png" alt="Next" />} // Use your local custom next arrow image
+      >
         {storyPages.map((page) => (
           <Carousel.Item key={page.id}>
             <img className="home__logo" src={`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story/image/${page.image}`} alt="Story Image" />
