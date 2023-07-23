@@ -5,12 +5,15 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import { errorAlert } from '../../common/helpers/errorHandler';
+import { errorMessages } from '../../common/constants/constants';
 
 export type StoryBookInfoType = {
   id: string;
   title: string;
   coverImage: string;
-  status: boolean;
+  numberOfPages: number;
+  status: string;
 }
 
 const Gallery = () => {
@@ -24,17 +27,17 @@ const Gallery = () => {
   let userId = "bc644717-5970-4e0b-88a7-35d5f0931be1";
  
   useEffect(() => {
-    axios.get(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/storybook?userId=${userId}`)
+    axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/storybook?userId=${userId}`)
       .then(response => response.data)
       .then(data => {
-        console.log("data :" + JSON.stringify(data))
         const favouriteStoryBooksList = (data.filter((storyBook: any) => storyBook.status === 'FAVOURITE'));
-        const storyBooksList = (data.filter((storyBook: any) => storyBook.status === 'COMPLETE'));
+        const storyBooksList = (data.filter((storyBook: any) => storyBook.status === 'COMPLETE' || storyBook.status === 'FAVOURITE'));
         const draftStoryBooksList = (data.filter((storyBook: any) => storyBook.status === 'DRAFT'));
         setFavouriteStoryBooksList(favouriteStoryBooksList)
         setStoryBooksList(storyBooksList)
         setDraftStoryBooksList(draftStoryBooksList)
-      });
+      })
+      .catch(err => errorAlert(errorMessages.serverError, 'Cannot get story books of user ' + userId, err));
       if(false) {
         setCount(1);
       }
@@ -44,13 +47,22 @@ const Gallery = () => {
     setShowBooks(tabClicked);
   }
 
-  const onRemoveStory = (storyBookId: string) => {
+  const onStoryRemoved = (storyBookId: string) => {
     setStoryBooksList(prevList => prevList.filter(book => book.id !== storyBookId));      
+  }
+
+  const onStoryFavourited = (storyBookId: string, status: string) => {
+    setStoryBooksList(prevList => prevList.map(book => {
+      if (book.id === storyBookId) {
+        book.status = status;
+      }
+      return book;
+    }));
+    setFavouriteStoryBooksList(storyBooksList.filter(storyBook => storyBook.status === 'FAVOURITE'));
   }
 
   return (
     <section className="gallery">
-
     <ul className="nav nav-tabs">
 
     <li className="nav-item">
@@ -71,9 +83,9 @@ const Gallery = () => {
 
     </ul>
     
-      {showBooks == 2 && favouriteStoryBooksList && <Favourites favouriteStoryBooks={favouriteStoryBooksList}  onStoryBookRemove={onRemoveStory} /> }
-      {showBooks == 1 && storyBooksList && <StoryBooks storyBooks={storyBooksList}  onStoryBookRemove={onRemoveStory} /> }
-      {showBooks == 0 && draftStoryBooksList && <Drafts draftStoryBooks={draftStoryBooksList} onStoryBookRemove={onRemoveStory}/>}
+      {showBooks == 2 && favouriteStoryBooksList && <Favourites favouriteStoryBooks={favouriteStoryBooksList}  onStoryBookRemove={onStoryRemoved} onStoryBookFavorited={onStoryFavourited}/> }
+      {showBooks == 1 && storyBooksList && <StoryBooks storyBooks={storyBooksList}  onStoryBookRemove={onStoryRemoved} onStoryBookFavorited={onStoryFavourited} /> }
+      {showBooks == 0 && draftStoryBooksList && <Drafts draftStoryBooks={draftStoryBooksList} onStoryBookRemove={onStoryRemoved}/>}
 
 
     </section>

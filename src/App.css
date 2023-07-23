@@ -78,6 +78,7 @@ button {
   text-align: left;
   height: 30vh;
   overflow: auto;
+  font-size: 1.5em;
 }
 
 .Typewriter__cursor {

@@ -4,6 +4,8 @@ import { StoryStartResponse } from '../types/StoryStartResponse';
 import { useNavigate } from 'react-router-dom';
 import { StoryBook } from '../types/StoryBook';
 import { useState } from 'react';
+import { errorAlert } from '../common/helpers/errorHandler';
+import { errorMessages } from '../common/constants/constants';
 
 type HomeProps = {
   setCurrentStoryBook: (book: StoryBook) => void;
@@ -18,11 +20,10 @@ const Home = (props: HomeProps) => {
     setIsLoading(true);
 
     axios
-      .post<StoryStartResponse>('https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story')
+      .post<StoryStartResponse>(`${import.meta.env.VITE_BACKEND_URL}/api/story`)
       .then((response) => {
         setIsLoading(false);
 
-        console.log('Got response', response.data);
         const storyBook: StoryBook = {
           storyBookId: response.data.storyBookId,
           conversationId: response.data.conversationId,
@@ -36,7 +37,7 @@ const Home = (props: HomeProps) => {
         navigate('/create');
       })
       .catch((err) => {
-        console.error("Cannot start story.", err);
+        errorAlert(errorMessages.serverError, 'Cannot create initial story', err);
         setIsLoading(false);
       });};
 

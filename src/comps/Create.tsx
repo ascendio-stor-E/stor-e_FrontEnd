@@ -6,6 +6,8 @@ import { StoryContinueResponse } from '../types/StoryContinueResponse';
 import { StoryBook } from '../types/StoryBook';
 import { StoryPageType } from '../types/StoryPageType';
 import { StoryRandomResponse } from '../types/StoryRandomResponse';
+import { errorAlert } from '../common/helpers/errorHandler';
+import { errorMessages } from '../common/constants/constants';
 
 type CreateProps = {
   currentStoryBook: StoryBook | undefined;
@@ -18,13 +20,11 @@ const Create = (props: CreateProps) => {
 
   const createStory = () => {
     setIsLoading(true);
-
     axios
-      .post<StoryContinueResponse>(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story/continueStory?optionChoice=${selectedOption}&conversationId=${props.currentStoryBook?.conversationId}&storyBookId=${props.currentStoryBook?.storyBookId}&pageNumber=1`)
+      .post<StoryContinueResponse>(`${import.meta.env.VITE_BACKEND_URL}/api/story/continueStory?optionChoice=${selectedOption}&conversationId=${props.currentStoryBook?.conversationId}&storyBookId=${props.currentStoryBook?.storyBookId}&pageNumber=1`)
       .then((response) => {
         setIsLoading(false);
 
-        console.log('Got response', response.data);
         const storyPage: StoryPageType = {
           part: response.data.part,
           story: response.data.story,
@@ -36,7 +36,7 @@ const Create = (props: CreateProps) => {
         navigate('/storypage/1');
       })
       .catch((err) => {
-        console.error('Cannot create story.', err);
+        errorAlert(errorMessages.serverError, 'Cannot create story', err);
         setIsLoading(false);
       });
   };
@@ -45,10 +45,10 @@ const Create = (props: CreateProps) => {
     setIsLoading(true);
 
     axios
-      .post<StoryRandomResponse>(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story/randomStory?storyBookId=${props.currentStoryBook?.storyBookId}&option=${props.currentStoryBook?.options[selectedOption - 1]}`)
+    .post<StoryRandomResponse>(`${import.meta.env.VITE_BACKEND_URL}/api/story/randomStory?storyBookId=${props.currentStoryBook?.storyBookId}&option=${props.currentStoryBook?.options[selectedOption - 1]}`)
       .then((response) => {
         setIsLoading(false);
-        console.log('Got response', response.data);
+        
         if (props.currentStoryBook) {
           props.currentStoryBook.pages = response.data.stories.map((singleStory) => {
             const page = {
@@ -56,15 +56,15 @@ const Create = (props: CreateProps) => {
               story: singleStory.story,
               options: singleStory.options,
               image: singleStory.imageName,
+              storyId: singleStory.storyId
             };
             return page;
           });
         }
-        console.log(props.currentStoryBook);
         navigate(`/review/${props.currentStoryBook?.storyBookId}`);
       })
       .catch((err) => {
-        console.error('Cannot create story', err);
+        errorAlert(errorMessages.serverError, 'Cannot create random story', err);
         setIsLoading(false);
       });
   };

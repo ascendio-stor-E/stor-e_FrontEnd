@@ -33,19 +33,47 @@
     opacity: .85;
   }
 
-  .btn-danger {
-    margin-left: 10px;
-  }
-
   .card {
     margin-top: 20px;
   }
-
+  
   .bi {
-    color: hotpink;
-    float: left;
+    color: hotpink;    
   }
 
   .card-body_button-pane {
-    float: right;
+    display: flex;
+    justify-content: space-between;
   }
+
+ .card-btn {
+  display: box;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, .3);
+    border-radius: 50%;
+    line-height: 10px;
+    text-align: left;
+    text-decoration: none;
+    color: white;
+    padding: 0em 0em;
+    font-size: 24px;
+    text-align: center;
+ } 
+
+  .card-btn-fav {
+    background: linear-gradient(to bottom, #ffd1dc  0%, #fff8fa 80%);  
+  }
+
+ .card-btn-download {
+    background: linear-gradient(to bottom, #87C7F1 0%, #AAE9E5 80%);  
+  }
+
+  .card-btn-edit {
+    background: linear-gradient(to bottom, #87C7F1 0%, #AAE9E5 80%); 
+  }
+
+  .card-btn-delete {
+    background: linear-gradient(to bottom, #ff9eb5 0%,  #FEB7D3 80%);
+  } 

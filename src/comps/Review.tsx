@@ -5,6 +5,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { StoryPageData } from '../types/StoryPageData';
+import { errorAlert } from '../common/helpers/errorHandler';
+import { errorMessages } from '../common/constants/constants';
 
 const Review = () => {
   const { storyBookId } = useParams<{ storyBookId: string }>();
@@ -14,23 +16,25 @@ const Review = () => {
   const navigate = useNavigate();
   // console.log(storyBookId);
 
+
   useEffect(() => {
     const getData = () => {
       axios
-        .get(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/storybook/${storyBookId}/stories`)
+        .get(`${import.meta.env.VITE_BACKEND_URL}/api/storybook/${storyBookId}/stories`)
         .then((response) => {
           console.log('Got response', response.data);
           const sortedPages = response.data.sort((a: { pageNumber: number }, b: { pageNumber: number }) => a.pageNumber - b.pageNumber);
+
           setStoryPages(sortedPages);
           setPageNumber(sortedPages[0]?.pageNumber || 1);
         })
-        .catch((err) => console.error('Cannot review story', err));
+        .catch((err) => errorAlert(errorMessages.serverError, 'Cannot get stories for ' + storyBookId, err));
     };
     getData();
 
     const getTitle = () => {
       axios
-        .get(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/storybook/${storyBookId}`)
+        .get(`${import.meta.env.VITE_BACKEND_URL}/api/storybook/${storyBookId})
         .then((response) => {
           setStoryTitle(response.data.title);
         })
@@ -40,7 +44,9 @@ const Review = () => {
   }, [storyBookId]);
 
   const handleDeleteClick = () => {
-    axios.delete(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/storybook/${storyBookId}`).catch((err) => console.error('Cannot delete story', err));
+    axios
+    .delete(`${import.meta.env.VITE_BACKEND_URL}/api/storybook/${storyBookId}`)
+    .catch((err) => errorAlert(errorMessages.cannotDelete, 'Cannot delete story book ' + storyBookId, err));
     navigate(`/`);
   };
 
@@ -62,12 +68,11 @@ const Review = () => {
       >
         {storyPages.map((page) => (
           <Carousel.Item key={page.id}>
-            <img className="home__logo" src={`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story/image/${page.image}`} alt="Story Image" />
-            <p className="review__storyText">
-              {page.textContent}
-              <br />
-              <span className="review__storyText--pageNumber">Page {pageNumber}</span>
-            </p>
+
+            <img className="home__logo" src={`${import.meta.env.VITE_BACKEND_URL}/api/story/image/${page.image}`} alt="Story Image" />
+            <p className="review__storyText">{page.textContent}
+            <br />
+            <span className="review__storyText--pageNumber">Page {pageNumber}</span></p>
           </Carousel.Item>
         ))}
       </Carousel>
