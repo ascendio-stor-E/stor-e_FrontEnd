@@ -60,6 +60,7 @@ const Review = () => {
       <Carousel
         interval={null}
         indicators={false}
+        wrap={false}
         prevIcon={pageNumber === 1 ? null : <img className="review__carousel--arrow" src="../src/assets/arrowLeft.png" alt="Prev" />}
         nextIcon={pageNumber === storyPages.length ? null : <img className="review__carousel--arrow" src="../src/assets/arrowRight.png" alt="Next" />}
         onSelect={(selectedIndex) => {
