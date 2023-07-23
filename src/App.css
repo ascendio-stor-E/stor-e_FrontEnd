@@ -2,7 +2,7 @@
 
 #root {
   min-width: 100vw;
-  font-family: "Cormorant Garamond", serif;
+  font-family: 'Cormorant Garamond', serif;
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
@@ -10,10 +10,17 @@
   background-color: whitesmoke;
 }
 
-p, label, button {
-  font-size: 1.5em;
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
+p,
+label,
+button {
+  font-size: 1.5em;
+}
 
 /* NAVBAR */
 .navbar__item {
@@ -21,24 +28,24 @@ p, label, button {
   padding: 10px 15px;
 }
 
-
 /* HOME */
 .home__logo {
-  height: 300px;
+  width: 85vw;
+  max-width: 350px;
   margin: 80px auto;
   scale: 1.3;
+  place-items: center;
 }
 
 .home__create-button {
   font-weight: 800;
-  font-size: 1.7em;;
+  font-size: 1.7em;
 }
 
 .home__create-button:hover {
-  opacity: .9;
+  opacity: 0.9;
   border: 1px solid grey;
 }
-
 
 /* CREATE */
 .create__image {
@@ -61,13 +68,16 @@ p, label, button {
   margin: 10px 20px;
 }
 
-.create__options-list > li >label {
+.create__options-list > li > label {
   margin-left: 10px;
 }
 
-.create__intro-text{
-  margin-left: 100px;
-  margin-right: 100px;
+.create__intro-text {
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: left;
+  height: 30vh;
+  overflow: auto;
 }
 
 .Typewriter__cursor {
@@ -77,8 +87,10 @@ p, label, button {
 /* REVIEW */
 .review__storyText {
   padding: 15px 15px 30px 15px;
+  text-align: left;
+  height: 30vh;
+  overflow: auto;
 }
-
 
 /* LOADING */
 .loading__container {

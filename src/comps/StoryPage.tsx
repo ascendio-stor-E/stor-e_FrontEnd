@@ -68,7 +68,7 @@ export default function StoryPage(props: StoryPageProps) {
       return;
     }
 
-    axios
+    void axios
       .get<StoryPageData>(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story/${currentPage?.storyId}`)
       .then((response) => {
         if (!response.data.image) {
@@ -92,7 +92,7 @@ export default function StoryPage(props: StoryPageProps) {
             strings: currentPage?.story,
             autoStart: true,
             loop: false,
-            delay: 100
+            delay: 50
           }}
         />
         </p>
