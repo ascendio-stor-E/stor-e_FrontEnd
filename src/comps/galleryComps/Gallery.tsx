@@ -12,7 +12,8 @@ export type StoryBookInfoType = {
   id: string;
   title: string;
   coverImage: string;
-  status: boolean;
+  numberOfPages: number;
+  status: string;
 }
 
 const Gallery = () => {
@@ -30,7 +31,7 @@ const Gallery = () => {
       .then(response => response.data)
       .then(data => {
         const favouriteStoryBooksList = (data.filter((storyBook: any) => storyBook.status === 'FAVOURITE'));
-        const storyBooksList = (data.filter((storyBook: any) => storyBook.status === 'COMPLETE'));
+        const storyBooksList = (data.filter((storyBook: any) => storyBook.status === 'COMPLETE' || storyBook.status === 'FAVOURITE'));
         const draftStoryBooksList = (data.filter((storyBook: any) => storyBook.status === 'DRAFT'));
         setFavouriteStoryBooksList(favouriteStoryBooksList)
         setStoryBooksList(storyBooksList)
@@ -46,8 +47,18 @@ const Gallery = () => {
     setShowBooks(tabClicked);
   }
 
-  const onRemoveStory = (storyBookId: string) => {
+  const onStoryRemoved = (storyBookId: string) => {
     setStoryBooksList(prevList => prevList.filter(book => book.id !== storyBookId));      
+  }
+
+  const onStoryFavourited = (storyBookId: string, status: string) => {
+    setStoryBooksList(prevList => prevList.map(book => {
+      if (book.id === storyBookId) {
+        book.status = status;
+      }
+      return book;
+    }));
+    setFavouriteStoryBooksList(storyBooksList.filter(storyBook => storyBook.status === 'FAVOURITE'));
   }
 
   return (
@@ -73,9 +84,9 @@ const Gallery = () => {
 
     </ul>
     
-      {showBooks == 2 && favouriteStoryBooksList && <Favourites favouriteStoryBooks={favouriteStoryBooksList}  onStoryBookRemove={onRemoveStory} /> }
-      {showBooks == 1 && storyBooksList && <StoryBooks storyBooks={storyBooksList}  onStoryBookRemove={onRemoveStory} /> }
-      {showBooks == 0 && draftStoryBooksList && <Drafts draftStoryBooks={draftStoryBooksList} onStoryBookRemove={onRemoveStory}/>}
+      {showBooks == 2 && favouriteStoryBooksList && <Favourites favouriteStoryBooks={favouriteStoryBooksList}  onStoryBookRemove={onStoryRemoved} onStoryBookFavorited={onStoryFavourited}/> }
+      {showBooks == 1 && storyBooksList && <StoryBooks storyBooks={storyBooksList}  onStoryBookRemove={onStoryRemoved} onStoryBookFavorited={onStoryFavourited} /> }
+      {showBooks == 0 && draftStoryBooksList && <Drafts draftStoryBooks={draftStoryBooksList} onStoryBookRemove={onStoryRemoved}/>}
 
 
     </section>
