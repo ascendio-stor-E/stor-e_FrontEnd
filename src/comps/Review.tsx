@@ -34,7 +34,7 @@ const Review = () => {
 
     const getTitle = () => {
       axios
-        .get(`${import.meta.env.VITE_BACKEND_URL}/api/storybook/${storyBookId})
+        .get(`${import.meta.env.VITE_BACKEND_URL}/api/storybook/${storyBookId}`)
         .then((response) => {
           setStoryTitle(response.data.title);
         })
