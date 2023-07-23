@@ -8,6 +8,8 @@ import { StoryContinueResponse } from "../types/StoryContinueResponse";
 import { useEffect, useState } from "react";
 import { StoryPageData } from "../types/StoryPageData";
 import Typewriter from "typewriter-effect";
+import { errorAlert } from "../common/helpers/errorHandler";
+import { errorMessages } from "../common/constants/constants";
 
 type StoryPageProps = {
   currentStoryBook: StoryBook | undefined;
@@ -32,7 +34,6 @@ export default function StoryPage(props: StoryPageProps) {
         setIsLoading(false);
         setStoryImage(spinner);
 
-        console.log("Got response", response.data);
         const storyPage: StoryPageType = {
           part: response.data.part,
           story: response.data.story,
@@ -46,7 +47,7 @@ export default function StoryPage(props: StoryPageProps) {
       })
       .catch((err) => {
         setIsLoading(false);
-        console.error("Cannot create story", err);
+        errorAlert(errorMessages.serverError, 'Cannot create story', err);
       });
   };
 
@@ -77,7 +78,8 @@ export default function StoryPage(props: StoryPageProps) {
           currentPage.image = response.data.image;
           setStoryImage(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story/image/${currentPage.image}`);
         }
-      });
+      })
+      .catch(err => errorAlert(errorMessages.serverError, 'Cannot load image of story ' + currentPage?.storyId, err));
   };
 
   useEffect(() => getStoryImage(10, 2000), [currentPage]);
@@ -86,16 +88,15 @@ export default function StoryPage(props: StoryPageProps) {
     <>
       <section className="create">
         <img className="create__image" src={storyImage} alt="Stor-E Image " />
-        <p className="create__intro-text">
         <Typewriter
           options={{
             strings: currentPage?.story,
+            wrapperClassName: 'create__intro-text',
             autoStart: true,
             loop: false,
-            delay: 100
+            delay: 50
           }}
         />
-        </p>
         <form>
           <ul className="create__options-list" onChange={optionSelected}>
             {(currentPage?.options || []).map((option, index) => (

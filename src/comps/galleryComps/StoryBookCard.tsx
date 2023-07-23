@@ -6,6 +6,8 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import { errorAlert } from '../../common/helpers/errorHandler';
+import { errorMessages } from '../../common/constants/constants';
 
 type StoryBookCardProps = {
   storyBook: StoryBookInfoType;
@@ -13,8 +15,6 @@ type StoryBookCardProps = {
 };
 
 const StoryBookCard = (props: StoryBookCardProps) => {
-   console.log(props);
-
   const [mouseOver, setMouseOver] = useState(false); 
   const [isFavClicked, setIsFavClicked] = useState(false); 
 
@@ -29,12 +29,9 @@ const StoryBookCard = (props: StoryBookCardProps) => {
   const handleDeleteStoryBook = (id: string) => {
     axios.delete(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/storybook/${id}`)
     .then(response => {
-      console.log(response.data);
       props.onStoryBookRemove(id);
     })
-    .catch(error => {
-      console.error('Error deleting record:', error);
-    });
+    .catch(err => errorAlert(errorMessages.cannotDelete, 'Cannot delete story book' + id, err));
   };
 
   const handleFavouriteClick = () => {
