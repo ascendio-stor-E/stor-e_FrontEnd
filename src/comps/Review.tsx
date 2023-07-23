@@ -16,7 +16,7 @@ const Review = () => {
   useEffect(() => {
     const getData = () => {
       axios
-        .get(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/storybook/${storyBookId}/stories`)
+        .get(`${import.meta.env.VITE_BACKEND_URL}/api/storybook/${storyBookId}/stories`)
         .then((response) => {
           const sortedPages = response.data.sort((a: { pageNumber: number; }, b: { pageNumber: number; }) => a.pageNumber - b.pageNumber);
           setStoryPages(sortedPages);
@@ -28,7 +28,7 @@ const Review = () => {
 
   const handleDeleteClick = () => {
     axios
-    .delete(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/storybook/${storyBookId}`)
+    .delete(`${import.meta.env.VITE_BACKEND_URL}/api/storybook/${storyBookId}`)
     .catch((err) => errorAlert(errorMessages.cannotDelete, 'Cannot delete story book ' + storyBookId, err));
     navigate(`/`);
   };
@@ -42,7 +42,7 @@ const Review = () => {
       <Carousel interval={null}>
         {storyPages.map((page) => (
           <Carousel.Item key={page.id}>
-            <img className="home__logo" src={`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story/image/${page.image}`} alt="Story Image" />
+            <img className="home__logo" src={`${import.meta.env.VITE_BACKEND_URL}/api/story/image/${page.image}`} alt="Story Image" />
             <p className="review__storyText">{page.textContent}</p>
           </Carousel.Item>
         ))}

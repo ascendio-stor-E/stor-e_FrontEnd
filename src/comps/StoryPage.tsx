@@ -28,7 +28,7 @@ export default function StoryPage(props: StoryPageProps) {
 
     axios
       .post<StoryContinueResponse>(
-        `https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story/continueStory?optionChoice=${selectedOption}&conversationId=${props.currentStoryBook?.conversationId}&storyBookId=${props.currentStoryBook?.storyBookId}&pageNumber=${newPageNumber}`
+        `${import.meta.env.VITE_BACKEND_URL}/api/story/continueStory?optionChoice=${selectedOption}&conversationId=${props.currentStoryBook?.conversationId}&storyBookId=${props.currentStoryBook?.storyBookId}&pageNumber=${newPageNumber}`
       )
       .then((response) => {
         setIsLoading(false);
@@ -65,18 +65,18 @@ export default function StoryPage(props: StoryPageProps) {
 
   const getStoryImage = (retry: number, sleepMs: number) => {
     if (currentPage?.image || retry === 0) {
-      setStoryImage(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story/image/${currentPage?.image}`);
+      setStoryImage(`${import.meta.env.VITE_BACKEND_URL}/api/story/image/${currentPage?.image}`);
       return;
     }
 
     axios
-      .get<StoryPageData>(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story/${currentPage?.storyId}`)
+      .get<StoryPageData>(`${import.meta.env.VITE_BACKEND_URL}/api/story/${currentPage?.storyId}`)
       .then((response) => {
         if (!response.data.image) {
           setTimeout(() => getStoryImage(retry - 1, sleepMs), sleepMs);
         } else if (currentPage) {
           currentPage.image = response.data.image;
-          setStoryImage(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story/image/${currentPage.image}`);
+          setStoryImage(`${import.meta.env.VITE_BACKEND_URL}/api/story/image/${currentPage.image}`);
         }
       })
       .catch(err => errorAlert(errorMessages.serverError, 'Cannot load image of story ' + currentPage?.storyId, err));

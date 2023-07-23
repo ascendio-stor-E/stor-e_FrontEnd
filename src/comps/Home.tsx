@@ -20,7 +20,7 @@ const Home = (props: HomeProps) => {
     setIsLoading(true);
 
     axios
-      .post<StoryStartResponse>('https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story')
+      .post<StoryStartResponse>(`${import.meta.env.VITE_BACKEND_URL}/api/story`)
       .then((response) => {
         setIsLoading(false);
 

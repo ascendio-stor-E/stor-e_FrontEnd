@@ -31,7 +31,7 @@ const StoryBookCard = (props: StoryBookCardProps) => {
   }
 
   const handleDeleteStoryBook = (id: string) => {
-    axios.delete(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/storybook/${id}`)
+    axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/storybook/${id}`)
     .then(response => {
       props.onStoryBookRemove(id);
     })
@@ -39,7 +39,7 @@ const StoryBookCard = (props: StoryBookCardProps) => {
   };
 
   const handleFavouriteClick = (id: string, status: string) => {
-    axios.patch(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/storybook/${id}/favourite`)
+    axios.patch(`${import.meta.env.VITE_BACKEND_URL}/api/storybook/${id}/favourite`)
     .then(response => {
       console.log(response.data);
       if (props.onStoryBookFavorited) {
@@ -84,7 +84,7 @@ const StoryBookCard = (props: StoryBookCardProps) => {
         </div>
         </a>
 
-        <img src={`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story/image/${props.storyBook.coverImage}`} className="card-img-top" alt=".aa.."/>
+        <img src={`${import.meta.env.VITE_BACKEND_URL}/api/story/image/${props.storyBook.coverImage}`} className="card-img-top" alt=".aa.."/>
   </div>
         <div className="card-body">
           <h4 className={`card-title ${mouseOver && "card-title-mouseover"}`}>{props.storyBook.title || 'Untitled'}</h4>
