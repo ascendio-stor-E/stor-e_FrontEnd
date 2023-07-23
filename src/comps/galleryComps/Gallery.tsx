@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import { errorAlert } from '../../common/helpers/errorHandler';
+import { errorMessages } from '../../common/constants/constants';
 
 export type StoryBookInfoType = {
   id: string;
@@ -27,14 +29,14 @@ const Gallery = () => {
     axios.get(`https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/storybook?userId=${userId}`)
       .then(response => response.data)
       .then(data => {
-        console.log("data :" + JSON.stringify(data))
         const favouriteStoryBooksList = (data.filter((storyBook: any) => storyBook.status === 'FAVOURITE'));
         const storyBooksList = (data.filter((storyBook: any) => storyBook.status === 'COMPLETE'));
         const draftStoryBooksList = (data.filter((storyBook: any) => storyBook.status === 'DRAFT'));
         setFavouriteStoryBooksList(favouriteStoryBooksList)
         setStoryBooksList(storyBooksList)
         setDraftStoryBooksList(draftStoryBooksList)
-      });
+      })
+      .catch(err => errorAlert(errorMessages.serverError, 'Cannot get story books of user ' + userId, err));
       if(false) {
         setCount(1);
       }
