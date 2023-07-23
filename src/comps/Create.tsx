@@ -1,5 +1,5 @@
 import axios from 'axios';
-import Loading from './loadingComp/Loading';
+import Loading from './loadingComps/Loading';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { StoryContinueResponse } from '../types/StoryContinueResponse';

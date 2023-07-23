@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { loadingText } from './loadingTextData';
+import { LoadingIcon } from './LoadingIcon';
 
 const Loading = () => {
   const [loadingIndex, setLoadingIndex] = useState(0);
@@ -15,7 +16,7 @@ const Loading = () => {
 
   return (
     <section className="loading__container">
-      <img className="loading__icon" src="src/assets/Spinner.gif" alt="Pages Turning Animation" />
+      <LoadingIcon />
       <div className="loading__text">{loadingText[loadingIndex]}</div>
     </section>
   );

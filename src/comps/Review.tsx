@@ -10,20 +10,37 @@ import { errorMessages } from '../common/constants/constants';
 
 const Review = () => {
   const { storyBookId } = useParams<{ storyBookId: string }>();
-  const navigate = useNavigate();
   const [storyPages, setStoryPages] = useState<StoryPageData[]>([]);
+  const [storyTitle, setStoryTitle] = useState<string>('');
+  const [pageNumber, setPageNumber] = useState<number>(1);
+  const navigate = useNavigate();
+  // console.log(storyBookId);
+
 
   useEffect(() => {
     const getData = () => {
       axios
         .get(`${import.meta.env.VITE_BACKEND_URL}/api/storybook/${storyBookId}/stories`)
         .then((response) => {
-          const sortedPages = response.data.sort((a: { pageNumber: number; }, b: { pageNumber: number; }) => a.pageNumber - b.pageNumber);
+          console.log('Got response', response.data);
+          const sortedPages = response.data.sort((a: { pageNumber: number }, b: { pageNumber: number }) => a.pageNumber - b.pageNumber);
+
           setStoryPages(sortedPages);
+          setPageNumber(sortedPages[0]?.pageNumber || 1);
         })
         .catch((err) => errorAlert(errorMessages.serverError, 'Cannot get stories for ' + storyBookId, err));
     };
     getData();
+
+    const getTitle = () => {
+      axios
+        .get(`${import.meta.env.VITE_BACKEND_URL}/api/storybook/${storyBookId})
+        .then((response) => {
+          setStoryTitle(response.data.title);
+        })
+        .catch((err) => console.error('Cannot review story', err));
+    };
+    getTitle();
   }, [storyBookId]);
 
   const handleDeleteClick = () => {
@@ -39,11 +56,24 @@ const Review = () => {
 
   return (
     <section>
-      <Carousel interval={null}>
+      <h3>{storyTitle}</h3>
+      <Carousel
+        interval={null}
+        indicators={false}
+        wrap={false}
+        prevIcon={pageNumber === 1 ? null : <img className="review__carousel--arrow" src="../src/assets/arrowLeft.png" alt="Prev" />}
+        nextIcon={pageNumber === storyPages.length ? null : <img className="review__carousel--arrow" src="../src/assets/arrowRight.png" alt="Next" />}
+        onSelect={(selectedIndex) => {
+          setPageNumber(storyPages[selectedIndex]?.pageNumber || 1);
+        }}
+      >
         {storyPages.map((page) => (
           <Carousel.Item key={page.id}>
+
             <img className="home__logo" src={`${import.meta.env.VITE_BACKEND_URL}/api/story/image/${page.image}`} alt="Story Image" />
-            <p className="review__storyText">{page.textContent}</p>
+            <p className="review__storyText">{page.textContent}
+            <br />
+            <span className="review__storyText--pageNumber">Page {pageNumber}</span></p>
           </Carousel.Item>
         ))}
       </Carousel>

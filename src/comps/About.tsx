@@ -1,3 +1,5 @@
+import Loading from "./loadingComps/Loading";
+
 const About = () => {
     return (
       <section className="about">

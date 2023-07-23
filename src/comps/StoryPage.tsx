@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { StoryBook } from "../types/StoryBook";
 import { StoryPageType } from "../types/StoryPageType";
 import axios from "axios";
-import Loading from "./loadingComp/Loading";
+import Loading from "./loadingComps/Loading";
 import spinner from "../assets/Spinner.gif";
 import { StoryContinueResponse } from "../types/StoryContinueResponse";
 import { useEffect, useState } from "react";
@@ -68,6 +68,7 @@ export default function StoryPage(props: StoryPageProps) {
       setStoryImage(`${import.meta.env.VITE_BACKEND_URL}/api/story/image/${currentPage?.image}`);
       return;
     }
+
 
     axios
       .get<StoryPageData>(`${import.meta.env.VITE_BACKEND_URL}/api/story/${currentPage?.storyId}`)
