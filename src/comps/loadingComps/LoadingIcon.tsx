@@ -1,4 +1,4 @@
-import icon from './Spinner.gif'
+import icon from '../../assets/Spinner.gif'
 
 export const LoadingIcon = () => {
     return (
