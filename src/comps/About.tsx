@@ -1,4 +1,4 @@
-import Loading from "./loadingComps/Loading";
+import Loading from "./Loading";
 
 const About = () => {
     return (
