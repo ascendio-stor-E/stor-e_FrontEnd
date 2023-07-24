@@ -1,7 +1,7 @@
 import Carousel from 'react-bootstrap/Carousel';
 import { StoryViewerProps } from '../types/StoryViewer';
-import arrowLeft from '../../assets/arrowLeft.png'
-import arrowRight from '../../assets/arrowRight.png'
+import arrowLeft from './../assets/arrowLeft.png'
+import arrowRight from './../assets/arrowRight.png'
 import { useState } from 'react';
 
 const StoryViewer = (props: StoryViewerProps) => {

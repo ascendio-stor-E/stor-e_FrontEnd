@@ -6,7 +6,7 @@ import { StoryBook } from '../types/StoryBook';
 import { useState } from 'react';
 import { errorAlert } from '../common/helpers/errorHandler';
 import { errorMessages } from '../common/constants/constants';
-import logo from '../../assets/Store-E Logo V2.png'
+import logo from './../assets/Store-E Logo V2.png'
 
 
 type HomeProps = {

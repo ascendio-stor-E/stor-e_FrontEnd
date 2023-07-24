@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { loadingText } from '../data/loadingTextData';
-import icon from '../../assets/Spinner.gif'
+import icon from './../assets/Spinner.gif'
 
 const Loading = () => {
   const [loadingIndex, setLoadingIndex] = useState(0);
