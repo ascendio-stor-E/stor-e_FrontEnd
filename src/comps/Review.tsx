@@ -46,7 +46,7 @@ const Review = () => {
   };
 
   const handleSaveClick = () => {
-    navigate('/gallery');
+    navigate('/');
   };
 
   return (
