@@ -98,7 +98,7 @@ export default function StoryPage(props: StoryPageProps) {
         <Typewriter
           options={{
             strings: currentPage?.story,
-            wrapperClassName: 'create__intro-text',
+            wrapperClassName: 'story_text',
             autoStart: true,
             loop: false,
             delay: 50

@@ -48,7 +48,7 @@ const Create = (props: CreateProps) => {
 
   const createRandomStory = () => {
     if (selectedOption === null) {
-      setSelectedOption(Math.floor(Math.random() * 3));
+      setSelectedOption(Math.ceil(Math.random() * 3));
       return;
     }
 
