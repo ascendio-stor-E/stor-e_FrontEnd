@@ -71,6 +71,9 @@ button {
 .create__options-list > li > label {
   margin-left: 10px;
 }
+.create__options-list {
+  padding-left: 0;;
+}
 
 .create__intro-text {
   margin-left: 10px;
@@ -81,16 +84,35 @@ button {
   font-size: 1.5em;
 }
 
+.Typewriter {
+  text-align: left;
+}
+
 .Typewriter__cursor {
   display: none;
 }
 
 /* REVIEW */
+
+.review__story-title {
+  font-size: 2em;
+}
+
 .review__storyText {
   padding: 15px 15px 30px 15px;
+  margin-top: 15px;
+  margin-bottom: 10px;
   text-align: left;
   height: 30vh;
   overflow: auto;
+}
+
+.review__storyImage {
+  width: 85vw;
+  max-width: 350px;
+  margin-top: 25px;
+  /* scale: 1; */
+  place-items: center;
 }
 
 .review__carousel--arrow {
@@ -116,4 +138,21 @@ button {
   margin: 20px;
   height: 25px;
   width: 25px;
+}
+
+/* Tablet View */
+
+@media only screen and (min-width: 480px) {
+  
+  
+}
+
+/* Desktop View */
+
+@media only screen and (min-width: 1000px) {
+  .create__intro-text {
+    margin-left: 125px;
+    margin-right: 125px;
+    text-align: left;
+  }
 }
