@@ -6,7 +6,7 @@ import axios from 'axios';
 import { StoryPageData } from '../types/StoryPageData';
 import { errorAlert } from '../common/helpers/errorHandler';
 import { errorMessages } from '../common/constants/constants';
-import StoryBook from './StoryBook';
+import StoryViewer from './StoryBook';
 
 const Review = () => {
   const { storyBookId } = useParams<{ storyBookId: string }>();
@@ -51,11 +51,12 @@ const Review = () => {
 
   return (
     <section>
-      <StoryBook
+      <StoryViewer
         storyTitle={storyTitle}
         storyPages={storyPages}
         pageNumber={pageNumber}
       />
+      <br />
       <button onClick={handleDeleteClick}>Delete</button>
       <button onClick={handleSaveClick}>Confirm</button>
     </section>
