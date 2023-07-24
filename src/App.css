@@ -47,10 +47,17 @@ button {
   border: 1px solid grey;
 }
 
+
 /* CREATE */
+
 .create__image {
   height: 300px;
   margin: 40px auto;
+}
+
+.story__image {
+  border: 1px solid gray;
+  border-radius: 15px;
 }
 
 .create__name-input {
@@ -84,11 +91,7 @@ button {
 }
 
 .story_text {
-  height: 30vh;
-  margin-left: 10px;
-  margin-right: 10px;
-  text-align: left;
-  overflow: auto;
+  font-size: 1.3em;;
 }
 
 .create__option-button {
@@ -113,6 +116,10 @@ button {
 
 .Typewriter {
   text-align: left;
+  height: 30vh;
+  overflow: auto;
+  margin: 15px 15px 30px 15px;
+  
 }
 
 .Typewriter__cursor {
@@ -162,9 +169,9 @@ button {
 }
 
 .loading__icon {
-  margin: 20px;
-  height: 25px;
-  width: 25px;
+  margin: 10px;
+  height: 80px;
+  width: 80px;
 }
 
 /* Tablet View */
