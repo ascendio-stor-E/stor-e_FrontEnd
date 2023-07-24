@@ -1,7 +1,7 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './comps/Navbar.tsx';
-import Home from './comps/Home.tsx';
+import Home from './comps/homeComps/Home.tsx';
 import About from './comps/About.tsx';
 import Create from './comps/Create.tsx';
 import { useState } from 'react';

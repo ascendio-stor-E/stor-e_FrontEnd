@@ -51,11 +51,7 @@ const Review = () => {
 
   return (
     <section>
-      <StoryViewer
-        storyTitle={storyTitle}
-        storyPages={storyPages}
-        pageNumber={pageNumber}
-      />
+      <StoryViewer storyTitle={storyTitle} storyPages={storyPages} pageNumber={pageNumber} />
       <br />
       <button onClick={handleDeleteClick}>Delete</button>
       <button onClick={handleSaveClick}>Confirm</button>

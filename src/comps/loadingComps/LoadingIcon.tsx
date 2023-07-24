@@ -2,6 +2,6 @@ import icon from '../../assets/Spinner.gif'
 
 export const LoadingIcon = () => {
     return (
-        <img className="loading__icon" src={icon} alt="Loading" />
+        <img className="home__logo" src={icon} alt="Loading" />
     )
 }
