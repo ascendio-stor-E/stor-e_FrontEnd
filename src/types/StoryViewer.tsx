@@ -1,6 +1,6 @@
 import { StoryPageData } from '../types/StoryPageData';
 
-export type StoryViewer = {
+export type StoryViewerProps = {
     storyTitle: string;
     storyPages: StoryPageData[];
     pageNumber: number;

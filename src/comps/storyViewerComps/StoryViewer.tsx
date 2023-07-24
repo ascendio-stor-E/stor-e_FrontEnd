@@ -1,8 +1,8 @@
 import Carousel from 'react-bootstrap/Carousel';
-import { StoryViewer } from '../types/StoryViewer';
+import { StoryViewerProps } from '../../types/StoryViewer';
 import { useState } from 'react';
 
-const StoryBook = (props: StoryViewer) => {
+const StoryViewer = (props: StoryViewerProps) => {
   const [pageNumber, setPageNumber] = useState<number>(props.pageNumber);
 
   const handlePrevClick = () => {
@@ -37,4 +37,4 @@ const StoryBook = (props: StoryViewer) => {
   );
 };
 
-export default StoryBook;
+export default StoryViewer;
