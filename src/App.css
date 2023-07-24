@@ -76,7 +76,7 @@ button {
   padding-left: 0;;
 }
 
-.create__intro-text, .story_text {
+.create__intro-text {
   margin-left: 10px;
   margin-right: 10px;
   text-align: left;
@@ -85,6 +85,10 @@ button {
 
 .story_text {
   height: 30vh;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: left;
+  overflow: auto;
 }
 
 .create__option-button {
