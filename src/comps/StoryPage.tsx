@@ -19,13 +19,18 @@ export default function StoryPage(props: StoryPageProps) {
   const { pageNumber } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [storyImage, setStoryImage] = useState<string>(spinner);
+  const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const navigate = useNavigate();
-  let selectedOption = -1;
+
   const newPageNumber: number = Number(pageNumber) + 1;
 
   const nextPage = () => {
-    setIsLoading(true);
+    if (selectedOption === null) {
+      alert('Please select an option.');
+      return;
+    }
 
+    setIsLoading(true);
     axios
       .post<StoryContinueResponse>(
         `${import.meta.env.VITE_BACKEND_URL}/api/story/continueStory?optionChoice=${selectedOption}&conversationId=${props.currentStoryBook?.conversationId}&storyBookId=${props.currentStoryBook?.storyBookId}&pageNumber=${newPageNumber}`
@@ -51,11 +56,13 @@ export default function StoryPage(props: StoryPageProps) {
       });
   };
 
-  const optionSelected = (event: any) => {
-    selectedOption = event.target.value;
+  const handleOptionClick = (index: number) => (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setSelectedOption(index + 1);
   };
 
   const currentPage = props.currentStoryBook?.pages[props.currentStoryBook?.pages.length - 1];
+
 
   const handleReviewClick = () => {
     if (props.currentStoryBook?.storyBookId) {
@@ -68,7 +75,6 @@ export default function StoryPage(props: StoryPageProps) {
       setStoryImage(`${import.meta.env.VITE_BACKEND_URL}/api/story/image/${currentPage?.image}`);
       return;
     }
-
 
     axios
       .get<StoryPageData>(`${import.meta.env.VITE_BACKEND_URL}/api/story/${currentPage?.storyId}`)
@@ -99,18 +105,13 @@ export default function StoryPage(props: StoryPageProps) {
           }}
         />
         <form>
-          <ul className="create__options-list" onChange={optionSelected}>
+          <ul className="create__options-list">
             {(currentPage?.options || []).map((option, index) => (
               <li key={`option${index}`}>
-                <input
-                  type="radio"
-                  name="option"
-                  value={index + 1}
-                  id={`option${index}`}
-                  defaultChecked={false}
-                />
-                <label htmlFor={`option${index}`}> {option}</label>
-              </li>
+              <button className={`create__option-button${selectedOption === index + 1 ? ' create__option-button-selected' : ''}`} onClick={handleOptionClick(index)}>
+                {option}
+              </button>
+            </li>
             ))}
           </ul>
         </form>

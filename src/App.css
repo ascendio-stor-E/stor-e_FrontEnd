@@ -81,7 +81,7 @@ button {
   text-align: left;
   height: 30vh;
   overflow: auto;
-  font-size: 1.5em;
+  /* font-size: 1.5em; */
 }
 
 .Typewriter {
@@ -90,6 +90,23 @@ button {
 
 .Typewriter__cursor {
   display: none;
+}
+
+.create__option-button {
+  min-width: 300px;
+  margin: 5px auto;
+}
+
+.create__option-button:hover {
+  min-width: 300px;
+  margin: 5px auto;
+  background-color: lightgray;
+}
+
+.create__option-button-selected {
+  opacity: 0.9;
+  border: 1px solid grey;
+  background-color: lightgray;
 }
 
 /* REVIEW */
