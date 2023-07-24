@@ -56,7 +56,7 @@ const Review = () => {
 
   return (
     <section>
-      <h3>{storyTitle}</h3>
+      <h3 className='review__story-title'><strong>{storyTitle}</strong></h3>
       <Carousel
         interval={null}
         indicators={false}
@@ -69,11 +69,9 @@ const Review = () => {
       >
         {storyPages.map((page) => (
           <Carousel.Item key={page.id}>
-
-            <img className="home__logo" src={`${import.meta.env.VITE_BACKEND_URL}/api/story/image/${page.image}`} alt="Story Image" />
-            <p className="review__storyText">{page.textContent}
-            <br />
-            <span className="review__storyText--pageNumber">Page {pageNumber}</span></p>
+            <img className="review__storyImage" src={`${import.meta.env.VITE_BACKEND_URL}/api/story/image/${page.image}`} alt="Story Image" />
+            <p className="review__storyText">{page.textContent}</p>
+            <span className="review__storyText--pageNumber">Page {pageNumber}</span>
           </Carousel.Item>
         ))}
       </Carousel>
