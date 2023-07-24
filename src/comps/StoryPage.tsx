@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { StoryBook } from "../types/StoryBook";
 import { StoryPageType } from "../types/StoryPageType";
 import axios from "axios";
-import Loading from "./loadingComps/Loading";
+import Loading from "./Loading";
 import spinner from "../assets/Spinner.gif";
 import { StoryContinueResponse } from "../types/StoryContinueResponse";
 import { useEffect, useState } from "react";

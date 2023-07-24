@@ -1,12 +1,13 @@
 import axios from 'axios';
-import Loading from '../loadingComps/Loading';
-import { StoryStartResponse } from '../../types/StoryStartResponse';
+import Loading from './Loading';
+import { StoryStartResponse } from '../types/StoryStartResponse';
 import { useNavigate } from 'react-router-dom';
-import { StoryBook } from '../../types/StoryBook';
+import { StoryBook } from '../types/StoryBook';
 import { useState } from 'react';
-import { errorAlert } from '../../common/helpers/errorHandler';
-import { errorMessages } from '../../common/constants/constants';
-import { HomeLogo } from './homeLogo';
+import { errorAlert } from '../common/helpers/errorHandler';
+import { errorMessages } from '../common/constants/constants';
+import logo from '../../assets/Store-E Logo V2.png'
+
 
 type HomeProps = {
   setCurrentStoryBook: (book: StoryBook) => void;
@@ -45,7 +46,7 @@ const Home = (props: HomeProps) => {
   return (
     <>
       <section className="home">
-        <HomeLogo />
+      <img className="home__logo" src={logo} alt="Stor-E Logo" />
         <br />
         <button className="home__create-button" onClick={getStarted}>
           Get Started

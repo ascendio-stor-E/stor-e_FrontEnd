@@ -1,5 +1,7 @@
 import Carousel from 'react-bootstrap/Carousel';
-import { StoryViewerProps } from '../../types/StoryViewer';
+import { StoryViewerProps } from '../types/StoryViewer';
+import arrowLeft from '../../assets/arrowLeft.png'
+import arrowRight from '../../assets/arrowRight.png'
 import { useState } from 'react';
 
 const StoryViewer = (props: StoryViewerProps) => {
@@ -22,8 +24,8 @@ const StoryViewer = (props: StoryViewerProps) => {
         interval={null}
         indicators={false}
         wrap={false}
-        prevIcon={pageNumber === 1 ? null : <img className="review__carousel--arrow" src="../src/assets/arrowLeft.png" alt="Prev" onClick={handlePrevClick} />}
-        nextIcon={pageNumber === 5 ? null : <img className="review__carousel--arrow" src="../src/assets/arrowRight.png" alt="Next" onClick={handleNextClick} />}
+        prevIcon={pageNumber === 1 ? null : <img className="review__carousel--arrow" src={arrowLeft} alt="Prev" onClick={handlePrevClick} />}
+        nextIcon={pageNumber === 5 ? null : <img className="review__carousel--arrow" src={arrowRight} alt="Next" onClick={handleNextClick} />}
       >
         {props.storyPages.map((page) => (
           <Carousel.Item key={page.id}>

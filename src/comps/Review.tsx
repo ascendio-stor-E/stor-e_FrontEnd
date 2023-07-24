@@ -6,7 +6,7 @@ import axios from 'axios';
 import { StoryPageData } from '../types/StoryPageData';
 import { errorAlert } from '../common/helpers/errorHandler';
 import { errorMessages } from '../common/constants/constants';
-import StoryViewer from './storyViewerComps/StoryViewer';
+import StoryViewer from './StoryViewer';
 
 const Review = () => {
   const { storyBookId } = useParams<{ storyBookId: string }>();
