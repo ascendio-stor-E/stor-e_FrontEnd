@@ -1,12 +1,12 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import Carousel from 'react-bootstrap/Carousel';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { StoryPageData } from '../types/StoryPageData';
 import { errorAlert } from '../common/helpers/errorHandler';
 import { errorMessages } from '../common/constants/constants';
+import StoryBook from './StoryBook';
 
 const Review = () => {
   const { storyBookId } = useParams<{ storyBookId: string }>();
@@ -14,15 +14,12 @@ const Review = () => {
   const [storyTitle, setStoryTitle] = useState<string>('');
   const [pageNumber, setPageNumber] = useState<number>(1);
   const navigate = useNavigate();
-  // console.log(storyBookId);
-
 
   useEffect(() => {
     const getData = () => {
       axios
         .get(`${import.meta.env.VITE_BACKEND_URL}/api/storybook/${storyBookId}/stories`)
         .then((response) => {
-          console.log('Got response', response.data);
           const sortedPages = response.data.sort((a: { pageNumber: number }, b: { pageNumber: number }) => a.pageNumber - b.pageNumber);
 
           setStoryPages(sortedPages);
@@ -44,10 +41,8 @@ const Review = () => {
   }, [storyBookId]);
 
   const handleDeleteClick = () => {
-    axios
-    .delete(`${import.meta.env.VITE_BACKEND_URL}/api/storybook/${storyBookId}`)
-    .catch((err) => errorAlert(errorMessages.cannotDelete, 'Cannot delete story book ' + storyBookId, err));
-    navigate(`/`);
+    axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/storybook/${storyBookId}`).catch((err) => errorAlert(errorMessages.cannotDelete, 'Cannot delete story book ' + storyBookId, err));
+    navigate(`/gallery`);
   };
 
   const handleSaveClick = () => {
@@ -56,25 +51,11 @@ const Review = () => {
 
   return (
     <section>
-      <h3 className='review__story-title'><strong>{storyTitle}</strong></h3>
-      <Carousel
-        interval={null}
-        indicators={false}
-        wrap={false}
-        prevIcon={pageNumber === 1 ? null : <img className="review__carousel--arrow" src="../src/assets/arrowLeft.png" alt="Prev" />}
-        nextIcon={pageNumber === storyPages.length ? null : <img className="review__carousel--arrow" src="../src/assets/arrowRight.png" alt="Next" />}
-        onSelect={(selectedIndex) => {
-          setPageNumber(storyPages[selectedIndex]?.pageNumber || 1);
-        }}
-      >
-        {storyPages.map((page) => (
-          <Carousel.Item key={page.id}>
-            <img className="review__storyImage" src={`${import.meta.env.VITE_BACKEND_URL}/api/story/image/${page.image}`} alt="Story Image" />
-            <p className="review__storyText">{page.textContent}</p>
-            <span className="review__storyText--pageNumber">Page {pageNumber}</span>
-          </Carousel.Item>
-        ))}
-      </Carousel>
+      <StoryBook
+        storyTitle={storyTitle}
+        storyPages={storyPages}
+        pageNumber={pageNumber}
+      />
       <button onClick={handleDeleteClick}>Delete</button>
       <button onClick={handleSaveClick}>Confirm</button>
     </section>
