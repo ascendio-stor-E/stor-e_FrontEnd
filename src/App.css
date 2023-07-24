@@ -71,6 +71,7 @@ button {
 .create__options-list > li > label {
   margin-left: 10px;
 }
+
 .create__options-list {
   padding-left: 0;;
 }
@@ -79,10 +80,36 @@ button {
   margin-left: 10px;
   margin-right: 10px;
   text-align: left;
-  height: 30vh;
   overflow: auto;
-  font-size: 1.5em;
 }
+
+.story_text {
+  height: 30vh;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: left;
+  overflow: auto;
+}
+
+.create__option-button {
+  min-width: 300px;
+  margin: 5px auto;
+}
+
+.create__option-button:hover {
+  min-width: 300px;
+  margin: 5px auto;
+  background-color: lightgray;
+}
+
+.create__option-button-selected {
+  opacity: 0.9;
+  border: 1px solid grey;
+  background-color: lightgray;
+}
+
+
+/* TYPEWRITER */
 
 .Typewriter {
   text-align: left;
@@ -91,6 +118,7 @@ button {
 .Typewriter__cursor {
   display: none;
 }
+
 
 /* REVIEW */
 

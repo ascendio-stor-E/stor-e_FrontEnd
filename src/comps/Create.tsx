@@ -14,11 +14,16 @@ type CreateProps = {
 };
 
 const Create = (props: CreateProps) => {
-  let selectedOption = -1;
+  const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const createStory = () => {
+    if (selectedOption === null) {
+      alert('Please select an option.');
+      return;
+    }
+
     setIsLoading(true);
     axios
       .post<StoryContinueResponse>(`${import.meta.env.VITE_BACKEND_URL}/api/story/continueStory?optionChoice=${selectedOption}&conversationId=${props.currentStoryBook?.conversationId}&storyBookId=${props.currentStoryBook?.storyBookId}&pageNumber=1`)
@@ -30,7 +35,7 @@ const Create = (props: CreateProps) => {
           story: response.data.story,
           options: response.data.options,
           image: response.data.imageName,
-          storyId: response.data.storyId
+          storyId: response.data.storyId,
         };
         props.currentStoryBook?.pages.push(storyPage);
         navigate('/storypage/1');
@@ -42,13 +47,18 @@ const Create = (props: CreateProps) => {
   };
 
   const createRandomStory = () => {
+    if (selectedOption === null) {
+      setSelectedOption(Math.ceil(Math.random() * 3));
+      return;
+    }
+
     setIsLoading(true);
 
     axios
-    .post<StoryRandomResponse>(`${import.meta.env.VITE_BACKEND_URL}/api/story/randomStory?storyBookId=${props.currentStoryBook?.storyBookId}&option=${props.currentStoryBook?.options[selectedOption - 1]}`)
+      .post<StoryRandomResponse>(`${import.meta.env.VITE_BACKEND_URL}/api/story/randomStory?storyBookId=${props.currentStoryBook?.storyBookId}&option=${props.currentStoryBook?.options[selectedOption - 1]}`)
       .then((response) => {
         setIsLoading(false);
-        
+
         if (props.currentStoryBook) {
           props.currentStoryBook.pages = response.data.stories.map((singleStory) => {
             const page = {
@@ -56,7 +66,7 @@ const Create = (props: CreateProps) => {
               story: singleStory.story,
               options: singleStory.options,
               image: singleStory.imageName,
-              storyId: singleStory.storyId
+              storyId: singleStory.storyId,
             };
             return page;
           });
@@ -69,8 +79,9 @@ const Create = (props: CreateProps) => {
       });
   };
 
-  const optionSelected = (event: any) => {
-    selectedOption = event.target.value;
+  const handleOptionClick = (index: number) => (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setSelectedOption(index + 1);
   };
 
   return (
@@ -79,16 +90,12 @@ const Create = (props: CreateProps) => {
         <img className="create__image" src="./src/assets/Store-E Logo V2.png" alt="Stor-E Logo" />
         <p className="create__intro-text">Welcome to Stor-E, your very own unique adventure generator. Choose the option that you want to explore and we can begin!</p>
         <form>
-          <label>
-            What is the name of our hero or heroine? <br />
-            <input className="create__name-input" type="text" name="name" />
-          </label>
-          <br />
-          <ul className="create__options-list" onChange={optionSelected}>
+          <ul className="create__options-list">
             {(props.currentStoryBook?.options || []).map((option, index) => (
               <li key={`option${index}`}>
-                <input type="radio" name="option" value={index + 1} id={`option${index}`} />
-                <label htmlFor={`option${index}`}> {option}</label>
+                <button className={`create__option-button${selectedOption === index + 1 ? ' create__option-button-selected' : ''}`} onClick={handleOptionClick(index)}>
+                  {option}
+                </button>
               </li>
             ))}
           </ul>
