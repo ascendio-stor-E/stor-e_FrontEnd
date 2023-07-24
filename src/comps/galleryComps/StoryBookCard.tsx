@@ -52,6 +52,10 @@ const StoryBookCard = (props: StoryBookCardProps) => {
     setIsFavClicked(isFavClicked => !isFavClicked);
   };
 
+  const downloadStoryBook = () => {
+    window.open(`${import.meta.env.VITE_BACKEND_URL}/api/storybook/${props.storyBook.id}/download`, "_blank", "noreferrer");
+  }
+
   const addFavouriteTooltip = (props:any) => (
     <Tooltip {...props}>Add to favourite</Tooltip>
   );
@@ -118,7 +122,7 @@ const StoryBookCard = (props: StoryBookCardProps) => {
 
               {props.storyBook.status != 'DRAFT' && 
               <OverlayTrigger placement='bottom' overlay={downloadStorybookTooltip}>
-              <button className="card-btn card-btn-download">
+              <button className="card-btn card-btn-download" onClick={downloadStoryBook}>
                 <i className='bi-cloud-download-fill'></i>
                 </button>
                 </OverlayTrigger>
