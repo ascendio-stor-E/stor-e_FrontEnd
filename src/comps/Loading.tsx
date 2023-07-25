@@ -7,7 +7,7 @@ const Loading = () => {
 
   useEffect(() => {
     const loadingInterval = setInterval(() => {
-      setLoadingIndex((prevIndex) => Math.floor(Math.random() * loadingText.length));
+      setLoadingIndex(_ => Math.floor(Math.random() * loadingText.length));
     }, 3500);
     return () => {
       clearInterval(loadingInterval);

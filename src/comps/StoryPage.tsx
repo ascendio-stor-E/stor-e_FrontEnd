@@ -11,7 +11,7 @@ import { StoryPageData } from '../types/StoryPageData';
 import Typewriter from 'typewriter-effect';
 import { errorAlert } from '../common/helpers/errorHandler';
 import { errorMessages } from '../common/constants/constants';
-import { Col, Container, OverlayTrigger, Row, Tooltip } from 'react-bootstrap';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import narrateStory from '../common/helpers/VoiceNarrator';
 
 type StoryPageProps = {
