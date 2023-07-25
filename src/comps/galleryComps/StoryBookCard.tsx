@@ -3,6 +3,7 @@ import { StoryBookInfoType } from './Gallery';
 import './gallery.css'
 import eyeImg from '../../assets/view-eye-white.png'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Tooltip from "react-bootstrap/Tooltip";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -11,16 +12,19 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import { OverlayTrigger } from 'react-bootstrap';
 import { errorAlert } from '../../common/helpers/errorHandler';
 import { errorMessages } from '../../common/constants/constants';
+import { StoryBook } from '../../types/StoryBook';
 
 type StoryBookCardProps = {
   storyBook: StoryBookInfoType;
   onStoryBookRemove: (storyBookId: string) => void;
   onStoryBookFavorited?: (storyBookId: string, status: string) => void;
+  setCurrentStoryBook?: (book: StoryBook) => void;
 };
 
 const StoryBookCard = (props: StoryBookCardProps) => {
   const [mouseOver, setMouseOver] = useState(false); 
   const [isFavClicked, setIsFavClicked] = useState(props.storyBook.status === 'FAVOURITE'); 
+  const navigate = useNavigate();
 
   const onMouseEnter = () => {
     setMouseOver(true);
@@ -56,6 +60,20 @@ const StoryBookCard = (props: StoryBookCardProps) => {
     window.open(`${import.meta.env.VITE_BACKEND_URL}/api/storybook/${props.storyBook.id}/download`, "_blank", "noreferrer");
   }
 
+  const editDraftStoryBook = (lastPageCreated: number) => {
+    axios
+      .get<StoryBook>(`${import.meta.env.VITE_BACKEND_URL}/api/storybook/${props.storyBook.id}/continueDraft`)
+      .then((response) => {
+          if(props.setCurrentStoryBook) {
+            props.setCurrentStoryBook(response.data);
+            navigate(`/storypage/${lastPageCreated}`);
+          }
+          
+      })
+      .catch(err => errorAlert(errorMessages.serverError, `Cannot load draft ${props.storyBook.id}` , err));
+    
+  }
+
   const addFavouriteTooltip = (props:any) => (
     <Tooltip {...props}>Add to favourite</Tooltip>
   );
@@ -82,11 +100,11 @@ const StoryBookCard = (props: StoryBookCardProps) => {
       <div className="gallery-item card" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} >
         <div className="card-img-top position-relative" >
 
-        <a href={`/review/${props.storyBook.id}`}>
+        {( props.storyBook.status !== 'DRAFT' && <a href={`/review/${props.storyBook.id}?source=gallery`}>
         <div className='selected-card position-absolute'> 
           {mouseOver && <img src={eyeImg} className='storybookcard__img-eye'/>}
         </div>
-        </a>
+        </a>)}
 
         <img src={`${import.meta.env.VITE_BACKEND_URL}/api/story/image/${props.storyBook.coverImage}`} className="card-img-top" alt=".aa.."/>
   </div>
@@ -94,7 +112,7 @@ const StoryBookCard = (props: StoryBookCardProps) => {
           <h4 className={`card-title ${mouseOver && "card-title-mouseover"}`}>{props.storyBook.title || 'Untitled'}</h4>
         
           {props.storyBook.status == 'DRAFT' && 
-          <ProgressBar now={(props.storyBook.numberOfPages/5)*100} label={`${props.storyBook.numberOfPages} of 5`} />
+          <ProgressBar variant='info' striped now={(props.storyBook.numberOfPages/5)*100} label={`${props.storyBook.numberOfPages} of 5`} />
           }
 
           <div className="card-body card-body_buttons">
@@ -114,7 +132,7 @@ const StoryBookCard = (props: StoryBookCardProps) => {
             
               {props.storyBook.status === 'DRAFT' && 
               <OverlayTrigger placement='bottom' overlay={editDraftTooltip}>
-              <button className="card-btn card-btn-edit" >
+              <button className="card-btn card-btn-edit" onClick={() => editDraftStoryBook(props.storyBook.numberOfPages)}>
                 <i className='bi-pencil-square'></i>
                 </button>
                 </OverlayTrigger>

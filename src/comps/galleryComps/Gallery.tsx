@@ -7,16 +7,21 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import { errorAlert } from '../../common/helpers/errorHandler';
 import { errorMessages } from '../../common/constants/constants';
+import { StoryBook } from '../../types/StoryBook';
 
 export type StoryBookInfoType = {
   id: string;
   title: string;
   coverImage: string;
   numberOfPages: number;
-  status: string;
+  status: string;  
 }
 
-const Gallery = () => {
+type GalleryProps = {
+  setCurrentStoryBook: (book: StoryBook) => void;
+}
+
+const Gallery = (props: GalleryProps) => {
 
   const [favouriteStoryBooksList, setFavouriteStoryBooksList] = useState<StoryBookInfoType[]>([]);
   const [storyBooksList, setStoryBooksList] = useState<StoryBookInfoType[]>([]);
@@ -85,7 +90,7 @@ const Gallery = () => {
     
       {showBooks == 2 && favouriteStoryBooksList && <Favourites favouriteStoryBooks={favouriteStoryBooksList}  onStoryBookRemove={onStoryRemoved} onStoryBookFavorited={onStoryFavourited}/> }
       {showBooks == 1 && storyBooksList && <StoryBooks storyBooks={storyBooksList}  onStoryBookRemove={onStoryRemoved} onStoryBookFavorited={onStoryFavourited} /> }
-      {showBooks == 0 && draftStoryBooksList && <Drafts draftStoryBooks={draftStoryBooksList} onStoryBookRemove={onStoryRemoved}/>}
+      {showBooks == 0 && draftStoryBooksList && <Drafts draftStoryBooks={draftStoryBooksList} onStoryBookRemove={onStoryRemoved} setCurrentStoryBook={props.setCurrentStoryBook} />}
 
 
     </section>

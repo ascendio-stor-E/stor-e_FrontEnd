@@ -66,7 +66,7 @@ export default function StoryPage(props: StoryPageProps) {
 
   const handleReviewClick = () => {
     if (props.currentStoryBook?.storyBookId) {
-      navigate(`/review/${props.currentStoryBook?.storyBookId}`);
+      navigate(`/review/${props.currentStoryBook?.storyBookId}?source=create`);
     }
   };
 

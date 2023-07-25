@@ -71,7 +71,7 @@ const Create = (props: CreateProps) => {
             return page;
           });
         }
-        navigate(`/review/${props.currentStoryBook?.storyBookId}`);
+        navigate(`/review/${props.currentStoryBook?.storyBookId}?source=create`);
       })
       .catch((err) => {
         errorAlert(errorMessages.serverError, 'Cannot create random story', err);

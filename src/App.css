@@ -167,6 +167,11 @@ button {
   width: 25px;
 }
 
+.review_button-pane{
+  display: flex;
+  justify-content: space-around;
+}
+
 /* Tablet View */
 
 @media only screen and (min-width: 480px) {
