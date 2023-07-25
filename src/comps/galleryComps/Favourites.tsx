@@ -14,7 +14,6 @@ const Favourites = (props: StoryBookProps) => {
 
   return (
     <section className="favourites">
-      <h3>Favourite Story Books</h3>
       <Container>
         <Row xs={1} sm={2} md={3} lg={4}>
           {props.favouriteStoryBooks && props.favouriteStoryBooks.map((favouriteStoryBook) => (

@@ -14,7 +14,6 @@ const StoryBooks = (props: StoryBookProps) => {
 
     return (
       <section className="story-books">
-        <h3>All Story Books</h3>
         <Container>
           <Row xs={1} sm={2} md={3} lg={4}>
             {props.storyBooks && props.storyBooks.map((storyBook) => (
