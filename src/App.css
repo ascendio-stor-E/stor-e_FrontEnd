@@ -5,7 +5,7 @@
   font-family: 'Cormorant Garamond', serif;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
   text-align: center;
   background-color: whitesmoke;
 }
@@ -19,7 +19,8 @@ body {
 p,
 label,
 button {
-  font-size: 1.5em;
+  font-size: 1.3em;
+  margin: 8px;
 }
 
 /* NAVBAR */
@@ -51,8 +52,8 @@ button {
 /* CREATE */
 
 .create__image {
-  height: 300px;
-  margin: 40px auto;
+  height: 350px;
+  margin-top: 40px;
 }
 
 .story__image {
@@ -104,6 +105,7 @@ button {
   min-width: 70vw;
   max-width: 70vw;
   margin: 5px auto;
+  font-size: 1.2em;
 
 }
 
@@ -121,13 +123,7 @@ button {
 .image__story{
   display: flex;
   justify-content:center;
-  
-}
-
-.col{
-  display: flex;
-  justify-content: center;
-  margin: 0px;
+  flex-direction: column;
 }
 
 
@@ -135,12 +131,11 @@ button {
 
 .Typewriter {
   text-align: left;
-  height: 30vh;
-  min-height: 300px;
+  height: 10vh;
+  min-height: 250px;
   overflow: auto;
-  max-width: 300px;
+  max-width: 400px;
   margin-top: 40px;
-  justify-content: center;
 }
 
 .Typewriter__cursor {
@@ -212,7 +207,16 @@ button {
 /* Tablet View */
 
 @media only screen and (min-width: 480px) {
-  
+  .image__story{
+    display: flex;
+    justify-content:center;
+    flex-direction: row;
+  }
+
+  .Typewriter {
+    margin-left: 50px;
+    min-width: 300px;
+  }
   
 }
 
@@ -222,14 +226,27 @@ button {
   .create__intro-text {
     margin-left: 125px;
     margin-right: 125px;
-    text-align: left;
+    text-align: center;
   }
   .create__option-button {
-    min-width: 60vw;
-    max-width: 60vw;
+    min-width: 50vw;
+    max-width: 50vw;
   }
-  .col{
-    min-width: 300px;
-    max-width: 300px;
+
+  .image__story{
+    display: flex;
+    justify-content:center;
+    flex-direction: row;
+  }
+
+  .Typewriter {
+    margin-left: 80px;
+    min-width: 400px;
+    height: 50vh;
+  }
+
+  .create__image {
+    height: 400px;
+    margin-top: 40px;
   }
 }
