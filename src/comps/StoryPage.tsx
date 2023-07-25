@@ -3,7 +3,7 @@ import { StoryBook } from "../types/StoryBook";
 import { StoryPageType } from "../types/StoryPageType";
 import axios from "axios";
 import Loading from "./Loading";
-import spinner from "../assets/Spinner.gif";
+import painting from "../assets/Painting.gif";
 import { StoryContinueResponse } from "../types/StoryContinueResponse";
 import { useEffect, useState } from "react";
 import { StoryPageData } from "../types/StoryPageData";
@@ -18,7 +18,7 @@ type StoryPageProps = {
 export default function StoryPage(props: StoryPageProps) {
   const { pageNumber } = useParams();
   const [isLoading, setIsLoading] = useState(false);
-  const [storyImage, setStoryImage] = useState<string>(spinner);
+  const [storyImage, setStoryImage] = useState<string>(painting);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const navigate = useNavigate();
 
@@ -37,7 +37,7 @@ export default function StoryPage(props: StoryPageProps) {
       )
       .then((response) => {
         setIsLoading(false);
-        setStoryImage(spinner);
+        setStoryImage(painting);
 
         const storyPage: StoryPageType = {
           part: response.data.part,
@@ -94,7 +94,7 @@ export default function StoryPage(props: StoryPageProps) {
   return (
     <>
       <section className="create">
-        <img className="create__image" src={storyImage} alt="Stor-E Image " />
+        <img className="create__image story__image" src={storyImage} alt="Stor-E Image " />
         <Typewriter
           options={{
             strings: currentPage?.story,
