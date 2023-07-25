@@ -1,45 +1,102 @@
-import axios from 'axios';
-import { StoryStartResponse } from '../types/StoryStartResponse';
-import { useNavigate } from 'react-router-dom';
-import { StoryBook } from '../types/StoryBook';
+import axios from "axios";
+import Loading from "./Loading";
+import NameInputModal from "./modals/NameInputModal";
+import { StoryStartResponse } from "../types/StoryStartResponse";
+import { useNavigate } from "react-router-dom";
+import { StoryBook } from "../types/StoryBook";
+import { useState } from "react";
+import { errorAlert } from "../common/helpers/errorHandler";
+import { errorMessages } from "../common/constants/constants";
+import logo from "./../assets/Store-E_Logo_V2.png";
+import { stopNarration } from "../common/helpers/VoiceNarrator";
 
 type HomeProps = {
   setCurrentStoryBook: (book: StoryBook) => void;
+  setCharacterName: (characterName: string) => void;
+  characterName: string;
 };
 
 const Home = (props: HomeProps) => {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
-  const getStarted = () => {
+  stopNarration();
+
+  const getStarted = (event: { preventDefault: () => void; }) => {
+    event.preventDefault();
+    if (!props.characterName) {
+      setShowModal(true);
+      return;
+    }
+
+    setIsLoading(true);
+
     axios
-      .post<StoryStartResponse>('https://stor-e.purplesea-320b619b.westeurope.azurecontainerapps.io/api/story')
+      .post<StoryStartResponse>(
+        `${import.meta.env.VITE_BACKEND_URL}/api/story?characterName=${props.characterName}`
+      )
       .then((response) => {
-        console.log('Got response', response.data);
+        setIsLoading(false);
 
         const storyBook: StoryBook = {
           storyBookId: response.data.storyBookId,
           conversationId: response.data.conversationId,
-          coverImage: '',
+          coverImage: "",
           options: response.data.options,
           pages: [],
         };
 
-        props.setCurrentStoryBook(storyBook);
+        props.setCurrentStoryBook(storyBook);        
 
-        navigate('/create');
+        navigate("/create");
       })
-      .catch((err) => console.error('Cannot get started', err));
+      .catch((err) => {
+        errorAlert(errorMessages.serverError, "Cannot create initial story", err);
+        setIsLoading(false);
+      });
+  };
+
+  const setCharacter = (event: { target: { value: string; }; }) => {
+    props.setCharacterName(event.target.value);
+  };
+
+  const handleModalClose = () => {
+    setShowModal(false);
   };
 
   return (
     <>
       <section className="home">
-        <img className="home__logo" src="./src/assets/Store-E Logo V2.png" alt="Stor-E Logo" />
+        <img className="home__logo" src={logo} alt="Stor-E Logo" />
         <br />
-        <button className="home__create-button" onClick={getStarted}>
-          Get Started
-        </button>
+      
       </section>
+      {isLoading ? <Loading /> : (
+        <>
+          <form>
+          <label>
+            Pick a name for your story's main character.
+            <br />
+            What about your own name, or maybe your best friend's?
+            <br />
+            <input
+              className="create__name-input"
+              type="text"
+              name="name"
+              onChange={setCharacter}
+            />
+          </label>
+          <br />
+          <button className="home__create-button" onClick={getStarted}>
+            Get Started
+          </button>
+        </form>
+        </>
+      )
+      }
+
+      <NameInputModal show={showModal} onClose={handleModalClose} />
     </>
   );
 };
