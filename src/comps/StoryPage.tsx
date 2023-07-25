@@ -10,6 +10,7 @@ import { StoryPageData } from "../types/StoryPageData";
 import Typewriter from "typewriter-effect";
 import { errorAlert } from "../common/helpers/errorHandler";
 import { errorMessages } from "../common/constants/constants";
+import { Col, Container, Row } from "react-bootstrap";
 
 type StoryPageProps = {
   currentStoryBook: StoryBook | undefined;
@@ -94,7 +95,13 @@ export default function StoryPage(props: StoryPageProps) {
   return (
     <>
       <section className="create">
-        <img className="create__image story__image" src={storyImage} alt="Stor-E Image " />
+        <Container>
+      <Row md={1} lg={4}>
+      <Col></Col>
+        <Col>
+         <img className="create__image" src={storyImage} alt="Stor-E Image " />
+         </Col>
+         <Col>
         <Typewriter
           options={{
             strings: currentPage?.story,
@@ -104,6 +111,11 @@ export default function StoryPage(props: StoryPageProps) {
             delay: 50
           }}
         />
+        </Col>
+        <Col></Col>
+         </Row>
+         </Container>
+         <br></br>
         <form>
           <ul className="create__options-list">
             {(currentPage?.options || []).map((option, index) => (
