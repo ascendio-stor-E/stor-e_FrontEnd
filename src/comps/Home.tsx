@@ -1,12 +1,12 @@
 import axios from "axios";
 import Loading from "./Loading";
+import NameInputModal from "./modals/NameInputModal";
 import { StoryStartResponse } from "../types/StoryStartResponse";
 import { useNavigate } from "react-router-dom";
 import { StoryBook } from "../types/StoryBook";
 import { useState } from "react";
 import { errorAlert } from "../common/helpers/errorHandler";
 import { errorMessages } from "../common/constants/constants";
-import { Modal, Button } from "react-bootstrap";
 import logo from "./../assets/Store-E Logo V2.png";
 
 type HomeProps = {
@@ -54,11 +54,11 @@ const Home = (props: HomeProps) => {
       });
   };
 
-  const setCharacter = (event) => {
+  const setCharacter = (event: { target: { value: string; }; }) => {
     props.setCharacterName(event.target.value);
   };
 
-  const handleClose = () => {
+  const handleModalClose = () => {
     setShowModal(false);
   };
 
@@ -88,19 +88,7 @@ const Home = (props: HomeProps) => {
       </section>
       {isLoading && <Loading />}
 
-      <Modal show={showModal} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Missing Character Name</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          For beginning the adventure, I need your character's name.
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <NameInputModal show={showModal} onClose={handleModalClose} />
     </>
   );
 };

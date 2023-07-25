@@ -3,6 +3,7 @@ import { StoryBook } from '../types/StoryBook';
 import { StoryPageType } from '../types/StoryPageType';
 import axios from 'axios';
 import Loading from './Loading';
+import OptionSelectModal from "./modals/OptionSelectModal";
 import painting from '../assets/Painting.gif';
 import { StoryContinueResponse } from '../types/StoryContinueResponse';
 import { useEffect, useState } from 'react';
@@ -10,7 +11,7 @@ import { StoryPageData } from '../types/StoryPageData';
 import Typewriter from 'typewriter-effect';
 import { errorAlert } from '../common/helpers/errorHandler';
 import { errorMessages } from '../common/constants/constants';
-import { Col, Container, OverlayTrigger, Row, Tooltip, Modal, Button } from 'react-bootstrap';
+import { Col, Container, OverlayTrigger, Row, Tooltip } from 'react-bootstrap';
 
 type StoryPageProps = {
   currentStoryBook: StoryBook | undefined;
@@ -69,7 +70,7 @@ export default function StoryPage(props: StoryPageProps) {
     }
   };
 
-  const handleClose = () => {
+  const handleModalClose = () => {
     setShowModal(false);
   };
 
@@ -151,19 +152,8 @@ export default function StoryPage(props: StoryPageProps) {
         )}
       </section>
 
-      <Modal show={showModal} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Missing Character Name</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          Your adventure awaits, please select an option!
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <OptionSelectModal show={showModal} onClose={handleModalClose} />
+
     </>
   );
 }
