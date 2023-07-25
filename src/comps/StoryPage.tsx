@@ -10,7 +10,7 @@ import { StoryPageData } from '../types/StoryPageData';
 import Typewriter from 'typewriter-effect';
 import { errorAlert } from '../common/helpers/errorHandler';
 import { errorMessages } from '../common/constants/constants';
-import { Col, Container, OverlayTrigger, Row, Tooltip } from 'react-bootstrap';
+import { Col, Container, OverlayTrigger, Row, Tooltip, Modal, Button } from 'react-bootstrap';
 
 type StoryPageProps = {
   currentStoryBook: StoryBook | undefined;
@@ -21,13 +21,14 @@ export default function StoryPage(props: StoryPageProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [storyImage, setStoryImage] = useState<string>(painting);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   const newPageNumber: number = Number(pageNumber) + 1;
 
   const nextPage = () => {
     if (selectedOption === null) {
-      alert('Please select an option.');
+      setShowModal(true);
       return;
     }
 
@@ -66,6 +67,10 @@ export default function StoryPage(props: StoryPageProps) {
     if (props.currentStoryBook?.storyBookId) {
       navigate(`/review/${props.currentStoryBook?.storyBookId}?source=create`);
     }
+  };
+
+  const handleClose = () => {
+    setShowModal(false);
   };
 
   const getStoryImage = (retry: number, sleepMs: number) => {
@@ -145,6 +150,20 @@ export default function StoryPage(props: StoryPageProps) {
           </>
         )}
       </section>
+
+      <Modal show={showModal} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Missing Character Name</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Your adventure awaits, please select an option!
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }

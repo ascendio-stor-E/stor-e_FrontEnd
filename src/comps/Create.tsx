@@ -2,6 +2,7 @@ import axios from 'axios';
 import Loading from './Loading';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Modal, Button } from "react-bootstrap";
 import { StoryContinueResponse } from '../types/StoryContinueResponse';
 import { StoryBook } from '../types/StoryBook';
 import { StoryPageType } from '../types/StoryPageType';
@@ -16,11 +17,12 @@ type CreateProps = {
 const Create = (props: CreateProps) => {
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   const createStory = () => {
     if (selectedOption === null) {
-      alert('Please select an option.');
+      setShowModal(true);
       return;
     }
 
@@ -84,6 +86,10 @@ const Create = (props: CreateProps) => {
     setSelectedOption(index + 1);
   };
 
+  const handleClose = () => {
+    setShowModal(false);
+  };
+
   return (
     <>
       <section className="create">
@@ -108,6 +114,20 @@ const Create = (props: CreateProps) => {
           Create
         </button>
       </section>
+
+      <Modal show={showModal} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Missing Character Name</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Your adventure awaits, please select an option!
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };
