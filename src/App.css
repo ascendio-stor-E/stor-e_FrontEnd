@@ -171,7 +171,12 @@ button {
 }
 
 .review__carousel--arrow {
-  height: 40px;
+  scale: 1.5;
+}
+
+.card-btn-arrow {
+  background: linear-gradient(to bottom, #ffd1dc  0%, #fff8fa 80%);  
+
 }
 
 @supports (transition: all 0.2s ease-in-out) and (transform: scale(1.02)) {

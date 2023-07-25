@@ -69,8 +69,20 @@ const Review = () => {
         interval={null}
         indicators={false}
         wrap={false}
-        prevIcon={pageNumber === 1 ? null : <img className="review__carousel--arrow" src="../src/assets/arrowLeft.png" alt="Prev" />}
-        nextIcon={pageNumber === storyPages.length ? null : <img className="review__carousel--arrow" src="../src/assets/arrowRight.png" alt="Next" />}
+        prevIcon={
+          pageNumber === 1 ? null : (
+            <button className="card-btn card-btn-arrow" onClick={() => handleBackToGallery}>
+              <i className="bi bi-caret-left-fill review__carousel--arrow"></i>
+            </button>
+          )
+        }
+        nextIcon={
+          pageNumber === storyPages.length ? null : (
+            <button className="card-btn card-btn-arrow" onClick={() => handleBackToGallery}>
+              <i className="bi bi-caret-right-fill review__carousel--arrow"></i>
+            </button>
+          )
+        }
         onSelect={(selectedIndex) => {
           setPageNumber(storyPages[selectedIndex]?.pageNumber || 1);
         }}
