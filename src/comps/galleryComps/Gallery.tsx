@@ -8,6 +8,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import { errorAlert } from '../../common/helpers/errorHandler';
 import { errorMessages } from '../../common/constants/constants';
 import { StoryBook } from '../../types/StoryBook';
+import { stopNarration } from '../../common/helpers/VoiceNarrator';
 
 export type StoryBookInfoType = {
   id: string;
@@ -30,6 +31,8 @@ const Gallery = (props: GalleryProps) => {
   const [showBooks, setShowBooks] = useState<Number>(2);
 
   let userId = "bc644717-5970-4e0b-88a7-35d5f0931be1";
+
+  stopNarration();
  
   useEffect(() => {
     axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/storybook?userId=${userId}`)

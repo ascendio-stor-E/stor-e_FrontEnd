@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Loading from './Loading';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { StoryContinueResponse } from '../types/StoryContinueResponse';
 import { StoryBook } from '../types/StoryBook';
@@ -10,7 +10,8 @@ import { errorAlert } from '../common/helpers/errorHandler';
 import { errorMessages } from '../common/constants/constants';
 import OptionSelectModal from './modals/OptionSelectModal';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
-
+import storELogo from '../assets/Store-E_Logo_V2.png';
+import narrateStory from '../common/helpers/VoiceNarrator';
 
 type CreateProps = {
   currentStoryBook: StoryBook | undefined;
@@ -21,6 +22,10 @@ const Create = (props: CreateProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
+  const [narrate, _] = useState(true);
+  const welcomeMessage: string =  'Welcome to Stor-E, your very own unique adventure generator. Choose the option that you want to explore and we can begin!';
+
+  useEffect(() => narrateStory(welcomeMessage), [ narrate ]);
 
   const createStory = () => {
     if (selectedOption === null) {
@@ -99,8 +104,8 @@ const Create = (props: CreateProps) => {
   return (
     <>
       <section className="create">
-        <img className="create__image" src="./src/assets/Store-E Logo V2.png" alt="Stor-E Logo" />
-        <p className="create__intro-text">Welcome to Stor-E, your very own unique adventure generator. Choose the option that you want to explore and we can begin!</p>
+        <img className="create__image" src={storELogo} alt="Stor-E Logo" />
+        <p className="create__intro-text">{ welcomeMessage }</p>
         <form>
           <ul className="create__options-list">
             {(props.currentStoryBook?.options || []).map((option, index) => (
