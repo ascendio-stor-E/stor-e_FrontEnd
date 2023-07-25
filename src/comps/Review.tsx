@@ -7,6 +7,7 @@ import axios from 'axios';
 import { StoryPageData } from '../types/StoryPageData';
 import { errorAlert } from '../common/helpers/errorHandler';
 import { errorMessages } from '../common/constants/constants';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 const Review = () => {
   const { storyBookId } = useParams<{ storyBookId: string }>();
@@ -45,9 +46,7 @@ const Review = () => {
   }, [storyBookId]);
 
   const handleDeleteClick = () => {
-    axios
-    .delete(`${import.meta.env.VITE_BACKEND_URL}/api/storybook/${storyBookId}`)
-    .catch((err) => errorAlert(errorMessages.cannotDelete, 'Cannot delete story book ' + storyBookId, err));
+    axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/storybook/${storyBookId}`).catch((err) => errorAlert(errorMessages.cannotDelete, 'Cannot delete story book ' + storyBookId, err));
     navigate(`/`);
   };
 
@@ -57,11 +56,15 @@ const Review = () => {
 
   const handleBackToGallery = () => {
     navigate('/gallery');
-  }
+  };
+
+  const returnToGalleryTooltip = (props: any) => <Tooltip {...props}>Return to Gallery</Tooltip>;
 
   return (
     <section>
-      <h3 className='review__story-title'><strong>{storyTitle}</strong></h3>
+      <h3 className="review__story-title">
+        <strong>{storyTitle}</strong>
+      </h3>
       <Carousel
         interval={null}
         indicators={false}
@@ -79,22 +82,22 @@ const Review = () => {
           </Carousel.Item>
         ))}
       </Carousel>
-        <span className="review__storyText--pageNumber">Page {pageNumber}</span>
-        <br />
+      <span className="review__storyText--pageNumber">Page {pageNumber}</span>
+      <br />
 
-      <div className='review_button-pane'>
+      <div className="review_button-pane">
+        {source === 'create' && <button onClick={handleDeleteClick}>Delete</button>}
 
-        {source === 'create' && ( 
-        <button onClick={handleDeleteClick}>Delete</button>)}
-
-        {source === 'create' && (
-        <button onClick={handleSaveClick}>Confirm</button>)}
+        {source === 'create' && <button onClick={handleSaveClick}>Confirm</button>}
 
         {source === 'gallery' && (
-        <button onClick={handleBackToGallery}>Back to Gallery</button>)}
-
+          <OverlayTrigger placement="bottom" overlay={returnToGalleryTooltip}>
+            <button className="card-btn card-btn-return" onClick={() => handleBackToGallery()}>
+              <i className="bi bi-arrow-return-left"></i>
+            </button>
+          </OverlayTrigger>
+        )}
       </div>
-
     </section>
   );
 };

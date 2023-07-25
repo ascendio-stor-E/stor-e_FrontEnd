@@ -184,6 +184,10 @@ button {
   }
 }
 
+.card-btn-return {
+  background: linear-gradient(to bottom, #ffd1dc  0%, #fff8fa 80%);  
+}
+
 /* LOADING */
 .loading__container {
   padding: 15px;
