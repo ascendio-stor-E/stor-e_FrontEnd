@@ -3,6 +3,7 @@ import { StoryBook } from '../types/StoryBook';
 import { StoryPageType } from '../types/StoryPageType';
 import axios from 'axios';
 import Loading from './Loading';
+import OptionSelectModal from "./modals/OptionSelectModal";
 import painting from '../assets/Painting.gif';
 import { StoryContinueResponse } from '../types/StoryContinueResponse';
 import { useEffect, useState } from 'react';
@@ -21,13 +22,14 @@ export default function StoryPage(props: StoryPageProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [storyImage, setStoryImage] = useState<string>(painting);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   const newPageNumber: number = Number(pageNumber) + 1;
 
   const nextPage = () => {
     if (selectedOption === null) {
-      alert('Please select an option.');
+      setShowModal(true);
       return;
     }
 
@@ -66,6 +68,10 @@ export default function StoryPage(props: StoryPageProps) {
     if (props.currentStoryBook?.storyBookId) {
       navigate(`/review/${props.currentStoryBook?.storyBookId}?source=create`);
     }
+  };
+
+  const handleModalClose = () => {
+    setShowModal(false);
   };
 
   const getStoryImage = (retry: number, sleepMs: number) => {
@@ -116,11 +122,12 @@ export default function StoryPage(props: StoryPageProps) {
           </Row>
         </Container>
         <br></br>
-        <label>Please select one of the following options:</label>
+        
         <form>
           <ul className="create__options-list">
             {(currentPage?.options || []).map((option, index) => (
               <li key={`option${index}`}>
+                <label>Please select one of the following options:</label>
                 <button className={`create__option-button${selectedOption === index + 1 ? ' create__option-button-selected' : ''}`} onClick={handleOptionClick(index)}>
                   {option}
                 </button>
@@ -145,6 +152,9 @@ export default function StoryPage(props: StoryPageProps) {
           </>
         )}
       </section>
+
+      <OptionSelectModal show={showModal} onClose={handleModalClose} />
+
     </>
   );
 }

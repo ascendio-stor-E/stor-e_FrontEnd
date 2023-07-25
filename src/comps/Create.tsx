@@ -8,7 +8,9 @@ import { StoryPageType } from '../types/StoryPageType';
 import { StoryRandomResponse } from '../types/StoryRandomResponse';
 import { errorAlert } from '../common/helpers/errorHandler';
 import { errorMessages } from '../common/constants/constants';
+import OptionSelectModal from './modals/OptionSelectModal';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+
 
 type CreateProps = {
   currentStoryBook: StoryBook | undefined;
@@ -17,11 +19,12 @@ type CreateProps = {
 const Create = (props: CreateProps) => {
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   const createStory = () => {
     if (selectedOption === null) {
-      alert('Please select an option.');
+      setShowModal(true);
       return;
     }
 
@@ -85,8 +88,13 @@ const Create = (props: CreateProps) => {
     setSelectedOption(index + 1);
   };
 
+  const handleModalClose = () => {
+    setShowModal(false);
+  };
+
   const createRandomStoryTooltip = (props: any) => <Tooltip {...props}>Create Random Story</Tooltip>;
   const createStoryTooltip = (props: any) => <Tooltip {...props}>Create Story</Tooltip>;
+
 
   return (
     <>
@@ -117,6 +125,9 @@ const Create = (props: CreateProps) => {
           </button>
         </OverlayTrigger>
       </section>
+
+      <OptionSelectModal show={showModal} onClose={handleModalClose} />
+
     </>
   );
 };

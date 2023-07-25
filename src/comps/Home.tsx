@@ -1,5 +1,6 @@
 import axios from "axios";
 import Loading from "./Loading";
+import NameInputModal from "./modals/NameInputModal";
 import { StoryStartResponse } from "../types/StoryStartResponse";
 import { useNavigate } from "react-router-dom";
 import { StoryBook } from "../types/StoryBook";
@@ -17,11 +18,12 @@ type HomeProps = {
 const Home = (props: HomeProps) => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
-  const getStarted = (event) => {
+  const getStarted = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     if (!props.characterName) {
-      alert("For begining the adventure. I need my character name.");
+      setShowModal(true);
       return;
     }
 
@@ -52,8 +54,12 @@ const Home = (props: HomeProps) => {
       });
   };
 
-  const setCharacter = (event) => {
+  const setCharacter = (event: { target: { value: string; }; }) => {
     props.setCharacterName(event.target.value);
+  };
+
+  const handleModalClose = () => {
+    setShowModal(false);
   };
 
   return (
@@ -81,6 +87,8 @@ const Home = (props: HomeProps) => {
         </form>
       </section>
       {isLoading && <Loading />}
+
+      <NameInputModal show={showModal} onClose={handleModalClose} />
     </>
   );
 };
