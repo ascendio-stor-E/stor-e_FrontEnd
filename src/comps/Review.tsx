@@ -7,6 +7,7 @@ import axios from 'axios';
 import { StoryPageData } from '../types/StoryPageData';
 import { errorAlert } from '../common/helpers/errorHandler';
 import { errorMessages } from '../common/constants/constants';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 const Review = () => {
   const { storyBookId } = useParams<{ storyBookId: string }>();
@@ -44,30 +45,46 @@ const Review = () => {
     getTitle();
   }, [storyBookId]);
 
-  const handleDeleteClick = () => {
-    axios
-    .delete(`${import.meta.env.VITE_BACKEND_URL}/api/storybook/${storyBookId}`)
-    .catch((err) => errorAlert(errorMessages.cannotDelete, 'Cannot delete story book ' + storyBookId, err));
-    navigate(`/`);
-  };
-
-  const handleSaveClick = () => {
+  const handleConfirmClick = () => {
     navigate('/gallery');
   };
 
   const handleBackToGallery = () => {
     navigate('/gallery');
-  }
+  };
+
+  const handleStartAgain = () => {
+    axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/storybook/${storyBookId}`).catch((err) => errorAlert(errorMessages.cannotDelete, 'Cannot delete story book ' + storyBookId, err));
+    navigate('/');
+  };
+
+  const returnToGalleryTooltip = (props: any) => <Tooltip {...props}>Return to Gallery</Tooltip>;
+  const startAgainTooltip = (props: any) => <Tooltip {...props}>Start Again</Tooltip>;
+  const confirmTooltip = (props: any) => <Tooltip {...props}>Confirm</Tooltip>;
 
   return (
     <section>
-      <h3 className='review__story-title'><strong>{storyTitle}</strong></h3>
+      <h3 className="review__story-title">
+        <strong>{storyTitle}</strong>
+      </h3>
       <Carousel
         interval={null}
         indicators={false}
         wrap={false}
-        prevIcon={pageNumber === 1 ? null : <img className="review__carousel--arrow" src="../src/assets/arrowLeft.png" alt="Prev" />}
-        nextIcon={pageNumber === storyPages.length ? null : <img className="review__carousel--arrow" src="../src/assets/arrowRight.png" alt="Next" />}
+        prevIcon={
+          pageNumber === 1 ? null : (
+            <button className="card-btn card-btn-arrow" onClick={() => handleBackToGallery}>
+              <i className="bi bi-caret-left-fill review__carousel--arrow"></i>
+            </button>
+          )
+        }
+        nextIcon={
+          pageNumber === storyPages.length ? null : (
+            <button className="card-btn card-btn-arrow" onClick={() => handleBackToGallery}>
+              <i className="bi bi-caret-right-fill review__carousel--arrow"></i>
+            </button>
+          )
+        }
         onSelect={(selectedIndex) => {
           setPageNumber(storyPages[selectedIndex]?.pageNumber || 1);
         }}
@@ -76,24 +93,37 @@ const Review = () => {
           <Carousel.Item key={page.id}>
             <img className="review__storyImage" src={`${import.meta.env.VITE_BACKEND_URL}/api/story/image/${page.image}`} alt="Story Image" />
             <p className="review__storyText">{page.textContent}</p>
-            <span className="review__storyText--pageNumber">Page {pageNumber}</span>
           </Carousel.Item>
         ))}
       </Carousel>
+      <span className="review__storyText--pageNumber">Page {pageNumber}</span>
+      <br />
 
-      <div className='review_button-pane'>
-
-        {source === 'create' && ( 
-        <button onClick={handleDeleteClick}>Delete</button>)}
+      <div className="review_button-pane">
+        {source === 'create' && (
+          <OverlayTrigger placement="bottom" overlay={startAgainTooltip}>
+            <button className="card-btn card-btn-start-again" onClick={() => handleStartAgain()}>
+              <i className="bi bi-arrow-counterclockwise"></i>
+            </button>
+          </OverlayTrigger>
+        )}
 
         {source === 'create' && (
-        <button onClick={handleSaveClick}>Confirm</button>)}
+          <OverlayTrigger placement="bottom" overlay={confirmTooltip}>
+            <button className="card-btn card-btn-save" onClick={() => handleConfirmClick()}>
+              <i className="bi bi-check2"></i>
+            </button>
+          </OverlayTrigger>
+        )}
 
         {source === 'gallery' && (
-        <button onClick={handleBackToGallery}>Back to Gallery</button>)}
-
+          <OverlayTrigger placement="bottom" overlay={returnToGalleryTooltip}>
+            <button className="card-btn card-btn-return" onClick={() => handleBackToGallery()}>
+              <i className="bi bi-arrow-return-left"></i>
+            </button>
+          </OverlayTrigger>
+        )}
       </div>
-
     </section>
   );
 };
