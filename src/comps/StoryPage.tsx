@@ -122,11 +122,12 @@ export default function StoryPage(props: StoryPageProps) {
           </Row>
         </Container>
         <br></br>
-        <label>Please select one of the following options:</label>
+        
         <form>
           <ul className="create__options-list">
             {(currentPage?.options || []).map((option, index) => (
               <li key={`option${index}`}>
+                <label>Please select one of the following options:</label>
                 <button className={`create__option-button${selectedOption === index + 1 ? ' create__option-button-selected' : ''}`} onClick={handleOptionClick(index)}>
                   {option}
                 </button>

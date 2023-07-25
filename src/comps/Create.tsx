@@ -2,13 +2,13 @@ import axios from 'axios';
 import Loading from './Loading';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Modal, Button } from "react-bootstrap";
 import { StoryContinueResponse } from '../types/StoryContinueResponse';
 import { StoryBook } from '../types/StoryBook';
 import { StoryPageType } from '../types/StoryPageType';
 import { StoryRandomResponse } from '../types/StoryRandomResponse';
 import { errorAlert } from '../common/helpers/errorHandler';
 import { errorMessages } from '../common/constants/constants';
+import OptionSelectModal from './modals/OptionSelectModal';
 
 type CreateProps = {
   currentStoryBook: StoryBook | undefined;
@@ -86,7 +86,7 @@ const Create = (props: CreateProps) => {
     setSelectedOption(index + 1);
   };
 
-  const handleClose = () => {
+  const handleModalClose = () => {
     setShowModal(false);
   };
 
@@ -115,19 +115,8 @@ const Create = (props: CreateProps) => {
         </button>
       </section>
 
-      <Modal show={showModal} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Missing Character Name</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          Your adventure awaits, please select an option!
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <OptionSelectModal show={showModal} onClose={handleModalClose} />
+
     </>
   );
 };
