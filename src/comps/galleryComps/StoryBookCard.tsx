@@ -36,7 +36,7 @@ const StoryBookCard = (props: StoryBookCardProps) => {
 
   const handleDeleteStoryBook = (id: string) => {
     axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/storybook/${id}`)
-    .then(response => {
+    .then(_ => {
       props.onStoryBookRemove(id);
     })
     .catch(err => errorAlert(errorMessages.cannotDelete, 'Cannot delete story book' + id, err));
