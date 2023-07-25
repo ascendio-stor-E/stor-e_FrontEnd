@@ -21,7 +21,7 @@ function App() {
         <Route path="/" element={<Home setCurrentStoryBook={setCurrentStoryBook} setCharacterName={setCharacterName} characterName ={characterName} />}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route path="/create" element={<Create currentStoryBook={currentStoryBook} />}></Route>
-        <Route path="/gallery" element={<Gallery />}></Route>
+        <Route path="/gallery" element={<Gallery setCurrentStoryBook={setCurrentStoryBook} />}></Route>
         <Route
           path="/storypage/:pageNumber"
           element={<StoryPage currentStoryBook={currentStoryBook} />}
