@@ -91,7 +91,7 @@ button {
 }
 
 .story_text {
-  font-size: 1.3em;;
+  font-size: 1.4em;
   height: 30vh;
   margin-left: 10px;
   margin-right: 10px;
@@ -136,6 +136,7 @@ button {
 .Typewriter {
   text-align: left;
   height: 30vh;
+  min-height: 300px;
   overflow: auto;
   max-width: 300px;
   margin-top: 40px;
