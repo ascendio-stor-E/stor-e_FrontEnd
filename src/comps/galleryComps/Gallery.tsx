@@ -9,6 +9,9 @@ import { errorAlert } from '../../common/helpers/errorHandler';
 import { errorMessages } from '../../common/constants/constants';
 import { StoryBook } from '../../types/StoryBook';
 import { stopNarration } from '../../common/helpers/VoiceNarrator';
+import bugPng from '../../assets/bug.png';
+import './gallery.css'
+
 
 export type StoryBookInfoType = {
   id: string;
@@ -73,16 +76,17 @@ const Gallery = (props: GalleryProps) => {
 
   return (
     <section className="gallery">
-    <ul className="nav nav-tabs">
+      <img src={bugPng} className='bug' />
+    <ul className="nav nav-pills nav-fill ul">
 
     <li className="nav-item">
         <a className={`nav-link ${showBooks == 2 && "active"}`} onClick={() => onTabClicked(2)}>
-          My Favourite Story Books         
+          Favourites         
         </a>
       </li>
       <li className="nav-item">
         <a className={`nav-link ${showBooks == 1 && "active"}`} onClick={() => onTabClicked(1)}>
-          All Story Books          
+          Story Books          
         </a>
       </li>
       <li className="nav-item">

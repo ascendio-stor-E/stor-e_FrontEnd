@@ -14,7 +14,6 @@ type StoryBookProps = {
 const Drafts = (props: StoryBookProps) => {
   return (
     <section className='drafts'>
-        <h3>Draft Story Books</h3>
         <Container>
         <Row xs={1} sm={2} md={3} lg={4}>
             {props.draftStoryBooks && props.draftStoryBooks.map((draftStoryBook) => (

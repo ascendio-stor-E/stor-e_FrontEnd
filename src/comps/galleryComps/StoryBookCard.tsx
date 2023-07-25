@@ -151,15 +151,11 @@ const StoryBookCard = (props: StoryBookCardProps) => {
                 <i className='bi-trash-fill'></i>
               </button>
               </OverlayTrigger>
-
             </div>
-
           </div>
         </div>
-      </div>
-      
+      </div> 
     </div>
-  
   );
 };
 

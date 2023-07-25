@@ -1,86 +1,141 @@
+.drafts {
+  margin-top: 30px;
+}
+
+.story-books {
+  margin-top: 30px;
+}
+
+.favourites {
+  margin-top: 30px;
+}
+
 .selected-card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
 
-  .selected-card:hover {
-    
-    background-color: rgba(0, 0, 0, 0.287);
-    cursor: pointer;
-    width: 100%;
-    height: 100%;
-  }
+.selected-card:hover {
+  background-color: rgba(0, 0, 0, 0.287);
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
 
-  .card-title {
-    height: 80px;
-    padding-bottom: 30px;
-  }
+.card-title {
+  height: 80px;
+  padding-bottom: 30px;
+}
 
-  .card-title-mouseover  {
-    font-weight: bolder;
-    background-image: linear-gradient(to left,  black, black,  black, black);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    cursor: pointer;
-  }
+.card-title-mouseover {
+  font-weight: bolder;
+  background-image: linear-gradient(to left, black, black, black, black);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  cursor: pointer;
+}
 
-  .storybookcard__img-eye {
-    width: 55%;
-    height: 55%;
-    opacity: .75;
-  }
+.storybookcard__img-eye {
+  width: 55%;
+  height: 55%;
+  opacity: 0.75;
+}
 
-  .card {
-    margin-top: 20px;
-  }
-  
-  .bi {
-    color: hotpink;    
-  }
+.card {
+  margin-top: 20px;
+}
 
-  .card-body_button-pane {
-    display: flex;
-    justify-content: space-between;
-  }
+.bi {
+  color: hotpink;
+}
 
- .card-btn {
+.card-body_button-pane {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-btn {
   display: box;
-    position: relative;
-    width: 50px;
-    height: 50px;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, .3);
-    border-radius: 50%;
-    line-height: 10px;
-    text-align: left;
-    text-decoration: none;
-    color: white;
-    padding: 0em 0em;
-    font-size: 24px;
-    text-align: center;
- } 
+  position: relative;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  line-height: 10px;
+  text-align: left;
+  text-decoration: none;
+  color: white;
+  padding: 0em 0em;
+  font-size: 24px;
+  text-align: center;
+}
 
-  .card-btn-fav {
-    background: linear-gradient(to bottom, #ffd1dc  0%, #fff8fa 80%);  
+.card-btn-fav {
+  background: linear-gradient(to bottom, #ffd1dc 0%, #fff8fa 80%);
+}
+
+.card-btn-download {
+  background: linear-gradient(to bottom, #87c7f1 0%, #aae9e5 80%);
+}
+
+.card-btn-edit {
+  background: linear-gradient(to bottom, #dfb6ff 0%, #eacfff 80%);
+}
+
+.card-btn-delete {
+  background: linear-gradient(to bottom, #ff9eb5 0%, #feb7d3 80%);
+}
+
+.bg-info {
+  width: 20%;
+  font-weight: bolder;
+  font-family: sans-serif;
+}
+
+.nav-item .nav-link {
+  color: black;
+}
+
+.nav-item .nav-link:hover {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+
+.nav-pills {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  font-size: large;
+}
+
+.nav-pills .nav-link.active {
+  background-color: #0dcaf0 !important;
+  font-weight: bolder;
+}
+
+.bug {
+  width: 20px;
+  height: 20px;
+  margin-bottom: 20px;
+}
+
+/* tablet */
+@media only screen and (min-width: 480px) {
+  .nav-pills {
+    display: flex;
+    flex-direction: row;
   }
+}
 
- .card-btn-download {
-    background: linear-gradient(to bottom, #87C7F1 0%, #AAE9E5 80%);  
+/* desktop */
+@media only screen and (min-width: 1000px) {
+  .nav-pills {
+    display: flex;
+    flex-direction: row;
   }
-
-  .card-btn-edit {
-    background: linear-gradient(to bottom, #dfb6ff 0%, #EACFFF 80%); 
-  }
-
-  .card-btn-delete {
-    background: linear-gradient(to bottom, #ff9eb5 0%,  #FEB7D3 80%);
-  } 
-
-  .bg-info {
-    width: 20%;
-    font-weight: bolder;
-    font-family: sans-serif;
-  }
+}
