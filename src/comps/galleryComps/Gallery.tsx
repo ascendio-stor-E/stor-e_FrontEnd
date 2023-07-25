@@ -76,17 +76,17 @@ const Gallery = (props: GalleryProps) => {
     <ul className="nav nav-tabs">
 
     <li className="nav-item">
-        <a className={`nav-link tab-text ${showBooks == 2 && "active"}`} onClick={() => onTabClicked(2)}>
+        <a className={`nav-link ${showBooks == 2 && "active"}`} onClick={() => onTabClicked(2)}>
           My Favourite Story Books         
         </a>
       </li>
       <li className="nav-item">
-        <a className={`nav-link tab-text ${showBooks == 1 && "active"}`} onClick={() => onTabClicked(1)}>
+        <a className={`nav-link ${showBooks == 1 && "active"}`} onClick={() => onTabClicked(1)}>
           All Story Books          
         </a>
       </li>
       <li className="nav-item">
-        <a className={`nav-link tab-text ${showBooks == 0 && "active"}`} onClick={() => onTabClicked(0)}>
+        <a className={`nav-link ${showBooks == 0 && "active"}`} onClick={() => onTabClicked(0)}>
           Drafts
         </a>
       </li>
