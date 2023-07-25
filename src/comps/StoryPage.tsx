@@ -68,10 +68,6 @@ export default function StoryPage(props: StoryPageProps) {
     }
   };
 
-  const handleStartAgain = () => {
-    navigate('/');
-  };
-
   const getStoryImage = (retry: number, sleepMs: number) => {
     if (currentPage?.image || retry === 0) {
       setStoryImage(`${import.meta.env.VITE_BACKEND_URL}/api/story/image/${currentPage?.image}`);
@@ -93,7 +89,6 @@ export default function StoryPage(props: StoryPageProps) {
 
   useEffect(() => getStoryImage(15, 2000), [currentPage]);
 
-  const startAgainTooltip = (props: any) => <Tooltip {...props}>Start Again</Tooltip>;
   const reviewTooltip = (props: any) => <Tooltip {...props}>Review</Tooltip>;
   const nextPageTooltip = (props: any) => <Tooltip {...props}>Next Page</Tooltip>;
 
@@ -136,17 +131,12 @@ export default function StoryPage(props: StoryPageProps) {
         {isLoading && <Loading />}
         {currentPage && currentPage.options?.length !== 0 ? (
           <OverlayTrigger placement="bottom" overlay={nextPageTooltip}>
-          <button className="card-btn card-btn-next-page" onClick={() => nextPage()}>
-            <i className="bi bi-arrow-right"></i>
-          </button>
-        </OverlayTrigger>
+            <button className="card-btn card-btn-next-page" onClick={() => nextPage()}>
+              <i className="bi bi-arrow-right"></i>
+            </button>
+          </OverlayTrigger>
         ) : (
           <>
-            <OverlayTrigger placement="bottom" overlay={startAgainTooltip}>
-              <button className="card-btn card-btn-start-again" onClick={() => handleStartAgain()}>
-                <i className="bi bi-arrow-counterclockwise"></i>
-              </button>
-            </OverlayTrigger>
             <OverlayTrigger placement="bottom" overlay={reviewTooltip}>
               <button className="card-btn card-btn-review" onClick={() => handleReviewClick()}>
                 <i className="bi bi-eye"></i>

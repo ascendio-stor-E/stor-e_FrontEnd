@@ -45,12 +45,7 @@ const Review = () => {
     getTitle();
   }, [storyBookId]);
 
-  const handleDeleteClick = () => {
-    axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/storybook/${storyBookId}`).catch((err) => errorAlert(errorMessages.cannotDelete, 'Cannot delete story book ' + storyBookId, err));
-    navigate(`/`);
-  };
-
-  const handleSaveClick = () => {
+  const handleConfirmClick = () => {
     navigate('/gallery');
   };
 
@@ -58,7 +53,14 @@ const Review = () => {
     navigate('/gallery');
   };
 
+  const handleStartAgain = () => {
+    axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/storybook/${storyBookId}`).catch((err) => errorAlert(errorMessages.cannotDelete, 'Cannot delete story book ' + storyBookId, err));
+    navigate('/');
+  };
+
   const returnToGalleryTooltip = (props: any) => <Tooltip {...props}>Return to Gallery</Tooltip>;
+  const startAgainTooltip = (props: any) => <Tooltip {...props}>Start Again</Tooltip>;
+  const confirmTooltip = (props: any) => <Tooltip {...props}>Confirm</Tooltip>;
 
   return (
     <section>
@@ -98,9 +100,21 @@ const Review = () => {
       <br />
 
       <div className="review_button-pane">
-        {source === 'create' && <button onClick={handleDeleteClick}>Delete</button>}
+        {source === 'create' && (
+          <OverlayTrigger placement="bottom" overlay={startAgainTooltip}>
+            <button className="card-btn card-btn-start-again" onClick={() => handleStartAgain()}>
+              <i className="bi bi-arrow-counterclockwise"></i>
+            </button>
+          </OverlayTrigger>
+        )}
 
-        {source === 'create' && <button onClick={handleSaveClick}>Confirm</button>}
+        {source === 'create' && (
+          <OverlayTrigger placement="bottom" overlay={confirmTooltip}>
+            <button className="card-btn card-btn-save" onClick={() => handleConfirmClick()}>
+              <i className="bi bi-check2"></i>
+            </button>
+          </OverlayTrigger>
+        )}
 
         {source === 'gallery' && (
           <OverlayTrigger placement="bottom" overlay={returnToGalleryTooltip}>
