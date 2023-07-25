@@ -91,16 +91,26 @@ button {
 }
 
 .story_text {
+<<<<<<< Updated upstream
   font-size: 1.3em;;
+=======
+  height: 30vh;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: left;
+  overflow: auto;
+
+>>>>>>> Stashed changes
 }
 
 .create__option-button {
-  min-width: 300px;
+  min-width: 70vw;
+  max-width: 70vw;
   margin: 5px auto;
+
 }
 
 .create__option-button:hover {
-  min-width: 300px;
   margin: 5px auto;
   background-color: lightgray;
 }
@@ -111,15 +121,33 @@ button {
   background-color: lightgray;
 }
 
+.image__story{
+  display: flex;
+  justify-content:center;
+  
+}
+
+.col{
+  display: flex;
+  justify-content: center;
+  margin: 0px;
+}
+
 
 /* TYPEWRITER */
 
 .Typewriter {
   text-align: left;
+<<<<<<< Updated upstream
   height: 30vh;
   overflow: auto;
   margin: 15px 15px 30px 15px;
   
+=======
+  max-width: 300px;
+  margin-top: 40px;
+  justify-content: center;
+>>>>>>> Stashed changes
 }
 
 .Typewriter__cursor {
@@ -188,5 +216,13 @@ button {
     margin-left: 125px;
     margin-right: 125px;
     text-align: left;
+  }
+  .create__option-button {
+    min-width: 60vw;
+    max-width: 60vw;
+  }
+  .col{
+    min-width: 300px;
+    max-width: 300px;
   }
 }
