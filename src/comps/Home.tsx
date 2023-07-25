@@ -6,6 +6,7 @@ import { StoryBook } from "../types/StoryBook";
 import { useState } from "react";
 import { errorAlert } from "../common/helpers/errorHandler";
 import { errorMessages } from "../common/constants/constants";
+import { Modal, Button } from "react-bootstrap";
 import logo from "./../assets/Store-E Logo V2.png";
 
 type HomeProps = {
@@ -17,11 +18,12 @@ type HomeProps = {
 const Home = (props: HomeProps) => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
-  const getStarted = (event) => {
+  const getStarted = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     if (!props.characterName) {
-      alert("For begining the adventure. I need my character name.");
+      setShowModal(true);
       return;
     }
 
@@ -56,6 +58,10 @@ const Home = (props: HomeProps) => {
     props.setCharacterName(event.target.value);
   };
 
+  const handleClose = () => {
+    setShowModal(false);
+  };
+
   return (
     <>
       <section className="home">
@@ -81,6 +87,20 @@ const Home = (props: HomeProps) => {
         </form>
       </section>
       {isLoading && <Loading />}
+
+      <Modal show={showModal} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Missing Character Name</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          For beginning the adventure, I need your character's name.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };
