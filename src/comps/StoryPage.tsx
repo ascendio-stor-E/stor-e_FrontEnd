@@ -4,7 +4,7 @@ import { StoryPageType } from "../types/StoryPageType";
 import axios from "axios";
 import Loading from "./Loading";
 import OptionSelectModal from "./modals/OptionSelectModal";
-import painting from '../assets/Painting.gif';
+import painting from '../assets/painting.gif';
 import { StoryContinueResponse } from '../types/StoryContinueResponse';
 import { useEffect, useState } from 'react';
 import { StoryPageData } from '../types/StoryPageData';
