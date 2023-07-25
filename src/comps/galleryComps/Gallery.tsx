@@ -56,7 +56,9 @@ const Gallery = (props: GalleryProps) => {
   }
 
   const onStoryRemoved = (storyBookId: string) => {
-    setStoryBooksList(prevList => prevList.filter(book => book.id !== storyBookId));      
+    setStoryBooksList(prevList => prevList.filter(book => book.id !== storyBookId)); 
+    setFavouriteStoryBooksList(prevList => prevList.filter(book => book.id !== storyBookId));  
+    setDraftStoryBooksList(prevList => prevList.filter(book => book.id !== storyBookId));      
   }
 
   const onStoryFavourited = (storyBookId: string, status: string) => {
