@@ -10,7 +10,7 @@ import { StoryPageData } from '../types/StoryPageData';
 import Typewriter from 'typewriter-effect';
 import { errorAlert } from '../common/helpers/errorHandler';
 import { errorMessages } from '../common/constants/constants';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, OverlayTrigger, Row, Tooltip } from 'react-bootstrap';
 
 type StoryPageProps = {
   currentStoryBook: StoryBook | undefined;
@@ -68,6 +68,10 @@ export default function StoryPage(props: StoryPageProps) {
     }
   };
 
+  const handleStartAgain = () => {
+    navigate('/');
+  };
+
   const getStoryImage = (retry: number, sleepMs: number) => {
     if (currentPage?.image || retry === 0) {
       setStoryImage(`${import.meta.env.VITE_BACKEND_URL}/api/story/image/${currentPage?.image}`);
@@ -87,7 +91,11 @@ export default function StoryPage(props: StoryPageProps) {
       .catch((err) => errorAlert(errorMessages.serverError, 'Cannot load image of story ' + currentPage?.storyId, err));
   };
 
-  useEffect(() => getStoryImage(10, 2000), [currentPage]);
+  useEffect(() => getStoryImage(15, 2000), [currentPage]);
+
+  const startAgainTooltip = (props: any) => <Tooltip {...props}>Start Again</Tooltip>;
+  const reviewTooltip = (props: any) => <Tooltip {...props}>Review</Tooltip>;
+  const nextPageTooltip = (props: any) => <Tooltip {...props}>Next Page</Tooltip>;
 
   return (
     <>
@@ -113,7 +121,7 @@ export default function StoryPage(props: StoryPageProps) {
           </Row>
         </Container>
         <br></br>
-          <label>Please select one of the following options:</label>
+        <label>Please select one of the following options:</label>
         <form>
           <ul className="create__options-list">
             {(currentPage?.options || []).map((option, index) => (
@@ -127,17 +135,23 @@ export default function StoryPage(props: StoryPageProps) {
         </form>
         {isLoading && <Loading />}
         {currentPage && currentPage.options?.length !== 0 ? (
-          <button className="create__button" onClick={nextPage}>
-            Next Page
+          <OverlayTrigger placement="bottom" overlay={nextPageTooltip}>
+          <button className="card-btn card-btn-next-page" onClick={() => nextPage()}>
+            <i className="bi bi-arrow-right"></i>
           </button>
+        </OverlayTrigger>
         ) : (
           <>
-            <button className="create__button" onClick={() => navigate('/')}>
-              Start Again
-            </button>
-            <button className="create__button" onClick={handleReviewClick}>
-              Review
-            </button>
+            <OverlayTrigger placement="bottom" overlay={startAgainTooltip}>
+              <button className="card-btn card-btn-start-again" onClick={() => handleStartAgain()}>
+                <i className="bi bi-arrow-counterclockwise"></i>
+              </button>
+            </OverlayTrigger>
+            <OverlayTrigger placement="bottom" overlay={reviewTooltip}>
+              <button className="card-btn card-btn-review" onClick={() => handleReviewClick()}>
+                <i className="bi bi-eye"></i>
+              </button>
+            </OverlayTrigger>
           </>
         )}
       </section>
