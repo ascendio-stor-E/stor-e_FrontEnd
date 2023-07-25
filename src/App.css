@@ -91,16 +91,13 @@ button {
 }
 
 .story_text {
-<<<<<<< Updated upstream
   font-size: 1.3em;;
-=======
   height: 30vh;
   margin-left: 10px;
   margin-right: 10px;
   text-align: left;
   overflow: auto;
 
->>>>>>> Stashed changes
 }
 
 .create__option-button {
@@ -138,16 +135,11 @@ button {
 
 .Typewriter {
   text-align: left;
-<<<<<<< Updated upstream
   height: 30vh;
   overflow: auto;
-  margin: 15px 15px 30px 15px;
-  
-=======
   max-width: 300px;
   margin-top: 40px;
   justify-content: center;
->>>>>>> Stashed changes
 }
 
 .Typewriter__cursor {
