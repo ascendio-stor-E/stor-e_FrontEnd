@@ -7,7 +7,8 @@ import { StoryBook } from "../types/StoryBook";
 import { useState } from "react";
 import { errorAlert } from "../common/helpers/errorHandler";
 import { errorMessages } from "../common/constants/constants";
-import logo from "./../assets/Store-E Logo V2.png";
+import logo from "./../assets/Store-E_Logo_V2.png";
+import { stopNarration } from "../common/helpers/VoiceNarrator";
 
 type HomeProps = {
   setCurrentStoryBook: (book: StoryBook) => void;
@@ -19,6 +20,8 @@ const Home = (props: HomeProps) => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
+
+  stopNarration();
 
   const getStarted = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
@@ -44,7 +47,7 @@ const Home = (props: HomeProps) => {
           pages: [],
         };
 
-        props.setCurrentStoryBook(storyBook);
+        props.setCurrentStoryBook(storyBook);        
 
         navigate("/create");
       })

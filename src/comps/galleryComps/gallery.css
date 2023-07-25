@@ -21,7 +21,7 @@
 
   .card-title-mouseover  {
     font-weight: bolder;
-    background-image: linear-gradient(to left,  indigo, blue,   orange, red);
+    background-image: linear-gradient(to left,  black, black,  black, black);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -29,9 +29,9 @@
   }
 
   .storybookcard__img-eye {
-    width: 60%;
-    height: 60%;
-    opacity: .85;
+    width: 55%;
+    height: 55%;
+    opacity: .75;
   }
 
   .card {
