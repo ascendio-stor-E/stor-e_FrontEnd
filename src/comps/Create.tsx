@@ -8,6 +8,7 @@ import { StoryPageType } from '../types/StoryPageType';
 import { StoryRandomResponse } from '../types/StoryRandomResponse';
 import { errorAlert } from '../common/helpers/errorHandler';
 import { errorMessages } from '../common/constants/constants';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 type CreateProps = {
   currentStoryBook: StoryBook | undefined;
@@ -84,6 +85,9 @@ const Create = (props: CreateProps) => {
     setSelectedOption(index + 1);
   };
 
+  const createRandomStoryTooltip = (props: any) => <Tooltip {...props}>Create Random Story</Tooltip>;
+  const createStoryTooltip = (props: any) => <Tooltip {...props}>Create Story</Tooltip>;
+
   return (
     <>
       <section className="create">
@@ -101,12 +105,17 @@ const Create = (props: CreateProps) => {
           </ul>
         </form>
         {isLoading && <Loading />}
-        <button className="create__button" onClick={createRandomStory}>
-          Random
-        </button>
-        <button className="create__button" onClick={createStory}>
-          Create
-        </button>
+        <OverlayTrigger placement="bottom" overlay={createRandomStoryTooltip}>
+          <button className="card-btn card-btn-random-story" onClick={() => createRandomStory()}>
+            <i className="bi bi-shuffle"></i>
+          </button>
+        </OverlayTrigger>
+
+        <OverlayTrigger placement="bottom" overlay={createStoryTooltip}>
+          <button className="card-btn card-btn-create-story" onClick={() => createStory()}>
+            <i className="bi bi-arrow-right"></i>
+          </button>
+        </OverlayTrigger>
       </section>
     </>
   );
