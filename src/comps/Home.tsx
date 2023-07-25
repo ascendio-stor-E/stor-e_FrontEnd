@@ -70,7 +70,11 @@ const Home = (props: HomeProps) => {
       <section className="home">
         <img className="home__logo" src={logo} alt="Stor-E Logo" />
         <br />
-        <form>
+      
+      </section>
+      {isLoading ? <Loading /> : (
+        <>
+          <form>
           <label>
             Pick a name for your story's main character.
             <br />
@@ -88,8 +92,9 @@ const Home = (props: HomeProps) => {
             Get Started
           </button>
         </form>
-      </section>
-      {isLoading && <Loading />}
+        </>
+      )
+      }
 
       <NameInputModal show={showModal} onClose={handleModalClose} />
     </>

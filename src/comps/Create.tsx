@@ -18,7 +18,6 @@ type CreateProps = {
 };
 
 const Create = (props: CreateProps) => {
-  const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
@@ -27,15 +26,16 @@ const Create = (props: CreateProps) => {
 
   useEffect(() => narrateStory(welcomeMessage), [ narrate ]);
 
-  const createStory = () => {
-    if (selectedOption === null) {
-      setShowModal(true);
-      return;
-    }
-
+  const createStory = (selectedOption: number) => {
     setIsLoading(true);
     axios
-      .post<StoryContinueResponse>(`${import.meta.env.VITE_BACKEND_URL}/api/story/continueStory?optionChoice=${selectedOption}&conversationId=${props.currentStoryBook?.conversationId}&storyBookId=${props.currentStoryBook?.storyBookId}&pageNumber=1`)
+      .post<StoryContinueResponse>(
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/api/story/continueStory?optionChoice=${selectedOption}&conversationId=${
+          props.currentStoryBook?.conversationId
+        }&storyBookId=${props.currentStoryBook?.storyBookId}&pageNumber=1`
+      )
       .then((response) => {
         setIsLoading(false);
 
@@ -47,24 +47,25 @@ const Create = (props: CreateProps) => {
           storyId: response.data.storyId,
         };
         props.currentStoryBook?.pages.push(storyPage);
-        navigate('/storypage/1');
+        navigate("/storypage/1");
       })
       .catch((err) => {
-        errorAlert(errorMessages.serverError, 'Cannot create story', err);
+        errorAlert(errorMessages.serverError, "Cannot create story", err);
         setIsLoading(false);
       });
   };
 
   const createRandomStory = () => {
-    if (selectedOption === null) {
-      setSelectedOption(Math.ceil(Math.random() * 3));
-      return;
-    }
+    const selectedOption = Math.ceil(Math.random() * 3);
 
     setIsLoading(true);
 
     axios
-      .post<StoryRandomResponse>(`${import.meta.env.VITE_BACKEND_URL}/api/story/randomStory?storyBookId=${props.currentStoryBook?.storyBookId}&option=${props.currentStoryBook?.options[selectedOption - 1]}`)
+      .post<StoryRandomResponse>(
+        `${import.meta.env.VITE_BACKEND_URL}/api/story/randomStory?storyBookId=${
+          props.currentStoryBook?.storyBookId
+        }&option=${props.currentStoryBook?.options[selectedOption - 1]}`
+      )
       .then((response) => {
         setIsLoading(false);
 
@@ -83,56 +84,58 @@ const Create = (props: CreateProps) => {
         navigate(`/review/${props.currentStoryBook?.storyBookId}?source=create`);
       })
       .catch((err) => {
-        errorAlert(errorMessages.serverError, 'Cannot create random story', err);
+        errorAlert(errorMessages.serverError, "Cannot create random story", err);
         setIsLoading(false);
       });
   };
 
   const handleOptionClick = (index: number) => (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    setSelectedOption(index + 1);
+    createStory(index + 1);
   };
 
   const handleModalClose = () => {
     setShowModal(false);
   };
 
-  const createRandomStoryTooltip = (props: any) => <Tooltip {...props}>Create Random Story</Tooltip>;
-  const createStoryTooltip = (props: any) => <Tooltip {...props}>Create Story</Tooltip>;
-
+  const createRandomStoryTooltip = (props: any) => (
+    <Tooltip {...props}>Create Random Story</Tooltip>
+  );
 
   return (
     <>
       <section className="create">
         <img className="create__image" src={storELogo} alt="Stor-E Logo" />
         <p className="create__intro-text">{ welcomeMessage }</p>
-        <form>
-          <ul className="create__options-list">
-            {(props.currentStoryBook?.options || []).map((option, index) => (
-              <li key={`option${index}`}>
-                <button className={`create__option-button${selectedOption === index + 1 ? ' create__option-button-selected' : ''}`} onClick={handleOptionClick(index)}>
-                  {option}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </form>
-        {isLoading && <Loading />}
-        <OverlayTrigger placement="bottom" overlay={createRandomStoryTooltip}>
-          <button className="card-btn card-btn-random-story" onClick={() => createRandomStory()}>
-            <i className="bi bi-shuffle"></i>
-          </button>
-        </OverlayTrigger>
 
-        <OverlayTrigger placement="bottom" overlay={createStoryTooltip}>
-          <button className="card-btn card-btn-create-story" onClick={() => createStory()}>
-            <i className="bi bi-arrow-right"></i>
-          </button>
-        </OverlayTrigger>
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <>
+            <form>
+              <ul className="create__options-list">
+                {(props.currentStoryBook?.options || []).map((option, index) => (
+                  <li key={`option${index}`}>
+                    <button className="create__option-button" onClick={handleOptionClick(index)}>
+                      {option}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </form>
+            <OverlayTrigger placement="bottom" overlay={createRandomStoryTooltip}>
+              <button
+                className="card-btn card-btn-random-story"
+                onClick={() => createRandomStory()}
+              >
+                <i className="bi bi-shuffle"></i>
+              </button>
+            </OverlayTrigger>
+          </>
+        )}
       </section>
 
       <OptionSelectModal show={showModal} onClose={handleModalClose} />
-
     </>
   );
 };
