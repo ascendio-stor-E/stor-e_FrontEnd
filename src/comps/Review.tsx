@@ -76,10 +76,11 @@ const Review = () => {
           <Carousel.Item key={page.id}>
             <img className="review__storyImage" src={`${import.meta.env.VITE_BACKEND_URL}/api/story/image/${page.image}`} alt="Story Image" />
             <p className="review__storyText">{page.textContent}</p>
-            <span className="review__storyText--pageNumber">Page {pageNumber}</span>
           </Carousel.Item>
         ))}
       </Carousel>
+        <span className="review__storyText--pageNumber">Page {pageNumber}</span>
+        <br />
 
       <div className='review_button-pane'>
 
