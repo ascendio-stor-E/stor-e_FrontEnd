@@ -19,7 +19,7 @@ body {
 p,
 label,
 button {
-  font-size: 1.3em;
+  font-size: 1.5em;
   margin: 8px;
 }
 
@@ -89,7 +89,7 @@ button {
 }
 
 .story_text {
-  font-size: 1.4em;
+  font-size: 1.7em;
   text-align: left;
   overflow: auto;
 }
@@ -98,7 +98,9 @@ button {
   min-width: 70vw;
   max-width: 70vw;
   margin: 5px auto;
-  font-size: 1.2em;
+  font-size: 1.7em;
+  background-color: #0DCAF0;
+  color: white;
 }
 
 .create__option-button--0 {
