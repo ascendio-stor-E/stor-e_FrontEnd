@@ -3,7 +3,7 @@ import { ModalProps } from '../../types/ModalProps';
 
 const OptionSelectModal = (props: ModalProps) => {
   return (
-    <Modal show={props.show} onHide={props.onClose}>
+    <Modal show={props.show} onHide={props.onClose} aria-labelledby="contained-modal-title-vcenter" centered>
       <Modal.Header closeButton>
         <Modal.Title>Missing Character Name</Modal.Title>
       </Modal.Header>
