@@ -108,6 +108,7 @@ button {
   font-size: 1.7em;
   text-align: left;
   overflow: auto;
+  line-height: normal;
 }
 
 .create__option-button {
@@ -452,7 +453,7 @@ button {
   }
 
   .Typewriter {
-    min-width: 400px;
+    min-width: 550px;
     height: 50vh;
     font-size: 1.3em;
   }
