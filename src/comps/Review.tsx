@@ -63,41 +63,46 @@ const Review = () => {
   const confirmTooltip = (props: any) => <Tooltip {...props}>Confirm</Tooltip>;
 
   return (
-    <section>
+    <section className="review">
       <h3 className="review__story-title">
         <strong>{storyTitle}</strong>
       </h3>
-      <Carousel
-        interval={null}
-        indicators={false}
-        wrap={false}
-        prevIcon={
-          pageNumber === 1 ? null : (
-            <button className="card-btn card-btn-arrow" onClick={() => handleBackToGallery}>
-              <i className="bi bi-caret-left-fill review__carousel--arrow"></i>
-            </button>
-          )
-        }
-        nextIcon={
-          pageNumber === storyPages.length ? null : (
-            <button className="card-btn card-btn-arrow" onClick={() => handleBackToGallery}>
-              <i className="bi bi-caret-right-fill review__carousel--arrow"></i>
-            </button>
-          )
-        }
-        onSelect={(selectedIndex) => {
-          setPageNumber(storyPages[selectedIndex]?.pageNumber || 1);
-        }}
-      >
-        {storyPages.map((page) => (
-          <Carousel.Item key={page.id}>
-            <img className="review__storyImage" src={`${import.meta.env.VITE_BACKEND_URL}/api/story/image/${page.image}`} alt="Story Image" />
-            <p className="review__storyText">{page.textContent}</p>
-          </Carousel.Item>
-        ))}
-      </Carousel>
-      <span className="review__storyText--pageNumber">Page {pageNumber}</span>
+      <section>
+        <Carousel
+          interval={null}
+          indicators={false}
+          wrap={false}
+          prevIcon={
+            pageNumber === 1 ? null : (
+              <button className="card-btn card-btn-arrow" onClick={() => handleBackToGallery}>
+                <i className="bi bi-caret-left-fill review__carousel--arrow"></i>
+              </button>
+            )
+          }
+          nextIcon={
+            pageNumber === storyPages.length ? null : (
+              <button className="card-btn card-btn-arrow" onClick={() => handleBackToGallery}>
+                <i className="bi bi-caret-right-fill review__carousel--arrow"></i>
+              </button>
+            )
+          }
+          onSelect={(selectedIndex) => {
+            setPageNumber(storyPages[selectedIndex]?.pageNumber || 1);
+          }}
+        >
+          {storyPages.map((page) => (
+            <Carousel.Item key={page.id}>
+              <div className="review__story">
+                <img className="review__image" src={`${import.meta.env.VITE_BACKEND_URL}/api/story/image/${page.image}`} alt="Story Image" />
+                <p className="review__text">{page.textContent}</p>
+              </div>
+            </Carousel.Item>
+          ))}
+        </Carousel>
+      </section>
       <br />
+      <span className="review__pageNumber">Page {pageNumber}</span>
+      <p></p>
 
       <div className="review_button-pane">
         {source === 'create' && (
