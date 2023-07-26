@@ -9,7 +9,6 @@ import Loading from './Loading';
 const About = () => {
   return (
     <>
-    <Loading />
       <img className="home__logo" src={logo} alt="Stor-E Logo" />
       <section className="about">
         <section>
