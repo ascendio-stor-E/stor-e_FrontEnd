@@ -51,15 +51,13 @@ button {
 
 /* CREATE */
 
-.create__image {
+.create__image, .review__image  {
   height: 350px;
   margin-top: 40px;
-}
-
-.story__image {
   border: 1px solid gray;
   border-radius: 15px;
 }
+
 
 .create__name-input {
   margin: 5px auto 10px auto;
@@ -161,7 +159,7 @@ button {
   font-size: 2em;
 }
 
-.review__storyText {
+.review__text {
   padding: 15px 15px 30px 15px;
   margin-top: 15px;
   margin-bottom: 10px;
@@ -170,9 +168,7 @@ button {
   overflow: auto;
 }
 
-.review__storyImage {
-  width: 85vw;
-  max-width: 350px;
+.review__image {
   margin-top: 25px;
   place-items: center;
 }
@@ -181,9 +177,12 @@ button {
   scale: 1.5;
 }
 
+.review__pageNumber {
+  margin-bottom: 25px;
+}
+
 .card-btn-arrow {
   background: linear-gradient(to bottom, #ffd1dc  0%, #fff8fa 80%);  
-
 }
 
 @supports (transition: all 0.2s ease-in-out) and (transform: scale(1.02)) {
@@ -230,6 +229,10 @@ button {
     min-width: 300px;
     min-height: 350px;;
   }
+
+  .review__text {
+    padding: 15px 115px 32px 115px;
+  }
   
 }
 
@@ -246,20 +249,27 @@ button {
     max-width: 50vw;
   }
 
-  .image__story{
+  .image__story, .review__story{
     display: flex;
     justify-content:center;
     flex-direction: row;
   }
 
   .Typewriter {
-    margin-left: 80px;
     min-width: 400px;
     height: 50vh;
+    font-size: 1.3em;
   }
 
-  .create__image {
+  .create__image, .review__image {
     height: 400px;
     margin-top: 40px;
+  }
+
+  .review__text {
+    padding: 25px 25px 30px 25px;
+    width: 400px;
+    height: 50vh;
+    margin: 10px 15px;
   }
 }

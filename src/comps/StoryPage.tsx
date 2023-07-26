@@ -11,7 +11,7 @@ import { StoryPageData } from '../types/StoryPageData';
 import Typewriter from 'typewriter-effect';
 import { errorAlert } from '../common/helpers/errorHandler';
 import { errorMessages } from '../common/constants/constants';
-import { Col, Container, OverlayTrigger, Row, Tooltip } from 'react-bootstrap';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import narrateStory from '../common/helpers/VoiceNarrator';
 
 type StoryPageProps = {
@@ -120,7 +120,7 @@ export default function StoryPage(props: StoryPageProps) {
           <Typewriter
             options={{
               strings: currentPage?.story,
-              wrapperClassName: "story_text",
+              wrapperClassName: "_",
               autoStart: true,
               loop: false,
               delay: 50,
