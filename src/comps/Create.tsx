@@ -12,6 +12,8 @@ import OptionSelectModal from './modals/OptionSelectModal';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import storELogo from '../assets/Store-E_Logo_V2.png';
 import narrateStory from '../common/helpers/VoiceNarrator';
+import NarratorButton from "../common/comps/PlayPauseNarratorButton/NarratorButton";
+import { useNarratorContext } from "../App";
 
 type CreateProps = {
   currentStoryBook: StoryBook | undefined;
@@ -22,9 +24,18 @@ const Create = (props: CreateProps) => {
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
   const [narrate, _] = useState(true);
+  const {mute} = useNarratorContext();
   const welcomeMessage: string =  'Welcome to Stor-E, your very own unique adventure generator. Choose the option that you want to explore and we can begin!';
 
-  useEffect(() => narrateStory(welcomeMessage), [ narrate ]);
+  useEffect(() => {
+     if(!mute) {
+      narrateStory(welcomeMessage) 
+    }
+  }, [ narrate ]);
+
+  const onUnMute = () => {
+    narrateStory(welcomeMessage) 
+  }
 
   const createStory = (selectedOption: number) => {
     setIsLoading(true);
@@ -96,7 +107,7 @@ const Create = (props: CreateProps) => {
 
   const handleModalClose = () => {
     setShowModal(false);
-  };
+  };  
 
   const createRandomStoryTooltip = (props: any) => (
     <Tooltip {...props}>Create Random Story</Tooltip>
@@ -105,6 +116,7 @@ const Create = (props: CreateProps) => {
   return (
     <>
       <section className="create">
+        <NarratorButton onUnMute={onUnMute} />
         <img className="create__image" src={storELogo} alt="Stor-E Logo" />
         <p className="create__intro-text">{ welcomeMessage }</p>
 
