@@ -120,7 +120,7 @@ export default function StoryPage(props: StoryPageProps) {
           <Typewriter
             options={{
               strings: currentPage?.story,
-              wrapperClassName: "story_text",
+              wrapperClassName: "_",
               autoStart: true,
               loop: false,
               delay: 50,
@@ -141,7 +141,7 @@ export default function StoryPage(props: StoryPageProps) {
                     {(currentPage?.options || []).map((option, index) => (
                       <li key={`option${index}`}>
                         <button
-                          className="create__option-button"
+                          className={`create__option-button create__option-button--${index}`}
                           onClick={handleOptionClick(index)}
                         >
                           {option}

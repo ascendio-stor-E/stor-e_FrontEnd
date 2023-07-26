@@ -116,7 +116,7 @@ const Create = (props: CreateProps) => {
               <ul className="create__options-list">
                 {(props.currentStoryBook?.options || []).map((option, index) => (
                   <li key={`option${index}`}>
-                    <button className="create__option-button" onClick={handleOptionClick(index)}>
+                    <button className={`create__option-button create__option-button--${index}`} onClick={handleOptionClick(index)}>
                       {option}
                     </button>
                   </li>
