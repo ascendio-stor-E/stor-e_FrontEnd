@@ -54,7 +54,6 @@ button {
 .review__image {
   height: 350px;
   margin-top: 40px;
-  border: 1px solid gray;
   border-radius: 15px;
 }
 
@@ -188,7 +187,11 @@ button {
 }
 
 .card-btn-arrow {
-  background: linear-gradient(to bottom, #ffd1dc 0%, #fff8fa 80%);
+  background: linear-gradient(to bottom, #e5c2ff 0%, #eacfff 80%);
+}
+
+.bi-caret-right-fill {
+  color: white;
 }
 
 @supports (transition: all 0.2s ease-in-out) and (transform: scale(1.02)) {
@@ -232,7 +235,7 @@ button {
 .about__divider {
   width: 75px;
   height: 4px;
-  background-color: #272c60;
+  background-color: #0DCAF0;
   position: relative;
   margin: 20px auto 60px;
 }

@@ -12,7 +12,7 @@ const About = () => {
       <img className="home__logo" src={logo} alt="Stor-E Logo" />
       <section className="about">
         <section>
-          <h1 className="about__title">Our Story</h1>
+          <h1 className="about__title">Our Stor-E</h1>
           <div className="about__divider"></div>
           <p>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem ex repellendus iste, nostrum quaerat ducimus id hic deleniti dolorum impedit non tempora, nemo aliquid odit ipsum aut quae molestias ipsam alias modi maxime illum asperiores totam! Totam sed cum, non, tenetur
