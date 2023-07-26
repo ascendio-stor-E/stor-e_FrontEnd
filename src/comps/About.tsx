@@ -4,11 +4,12 @@ import RobbiePhoto from '../assets/Robbie.png';
 import VijaniPhoto from '../assets/Vijani.png';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import Loading from './Loading';
+import Butterfly from './Butterfly';
 
 const About = () => {
   return (
     <>
+    <Butterfly />
       <img className="home__logo" src={logo} alt="Stor-E Logo" />
       <section className="about">
         <section>
