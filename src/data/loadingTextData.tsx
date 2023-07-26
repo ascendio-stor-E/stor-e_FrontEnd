@@ -66,5 +66,6 @@ export const loadingText = [
   'Tickling the Toes of the Giant...',
   'Polishing Genie Lamps for Wishes...',
   'Telling Stories to Friendly Sea Creatures...',
-  'Taching Robots to Love'
+  'Teaching Robots to Love...',
+  'Writing Java with Unicorns...'
 ];
