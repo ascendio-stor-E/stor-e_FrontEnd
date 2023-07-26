@@ -1,6 +1,6 @@
 .card-btn-mute {
     position: absolute;
-    top:0px;
-    right: 0px;
+    top:10px;
+    right: 20px;
     background: linear-gradient(to bottom, #87c7f1 0%, #aae9e5 80%);
 }
