@@ -8,7 +8,7 @@ const narrateStory = (story: string) =>  {
     const karenVoice = synth.getVoices().find(voice => voice.voiceURI === "Karen");
 
     speech.voice = karenVoice && synth.getVoices().find(voice => voice.voiceURI === "Karen") || synth.getVoices()[67];
-    speech.rate = 0.9 ;
+    speech.rate = 0.8;
     window.speechSynthesis.speak(speech);
   }
 
