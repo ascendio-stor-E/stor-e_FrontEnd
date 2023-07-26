@@ -1,6 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import Navbar from "./comps/Navbar.tsx";
+import StorENavbar from "./comps/StorENavbar.tsx";
 import Home from "./comps/Home.tsx";
 import About from "./comps/About.tsx";
 import Create from "./comps/Create.tsx";
@@ -25,7 +25,7 @@ function App() {
   return (
     <>
     <GlobalNarratorContext.Provider value={{mute, setMute}}>
-      <Navbar />
+      <StorENavbar />
       <Routes>
         <Route path="/" element={<Home setCurrentStoryBook={setCurrentStoryBook} setCharacterName={setCharacterName} characterName ={characterName} />}></Route>
         <Route path="/about" element={<About />}></Route>
