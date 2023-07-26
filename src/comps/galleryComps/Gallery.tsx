@@ -31,7 +31,7 @@ const Gallery = (props: GalleryProps) => {
   const [storyBooksList, setStoryBooksList] = useState<StoryBookInfoType[]>([]);
   const [draftStoryBooksList, setDraftStoryBooksList] = useState<StoryBookInfoType[]>([]);
   const [count, setCount] = useState(0);
-  const [showBooks, setShowBooks] = useState<Number>(2);
+  const [showBooks, setShowBooks] = useState<Number>(1);
 
   let userId = "bc644717-5970-4e0b-88a7-35d5f0931be1";
 
