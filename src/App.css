@@ -93,12 +93,8 @@ button {
 
 .story_text {
   font-size: 1.4em;
-  height: 30vh;
-  margin-left: 10px;
-  margin-right: 10px;
   text-align: left;
   overflow: auto;
-
 }
 
 .create__option-button {
@@ -106,7 +102,23 @@ button {
   max-width: 70vw;
   margin: 5px auto;
   font-size: 1.2em;
+}
 
+.create__option-button--0 {
+  animation: fade-in 1s;
+}
+
+.create__option-button--1 {
+  animation: fade-in 2s;
+}
+
+.create__option-button--2 {
+  animation: fade-in 3s;
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 .create__option-button:hover {
@@ -216,6 +228,7 @@ button {
   .Typewriter {
     margin-left: 50px;
     min-width: 300px;
+    min-height: 350px;;
   }
   
 }

@@ -141,7 +141,7 @@ export default function StoryPage(props: StoryPageProps) {
                     {(currentPage?.options || []).map((option, index) => (
                       <li key={`option${index}`}>
                         <button
-                          className="create__option-button"
+                          className={`create__option-button create__option-button--${index}`}
                           onClick={handleOptionClick(index)}
                         >
                           {option}
