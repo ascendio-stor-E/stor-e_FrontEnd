@@ -49,6 +49,9 @@ button {
 }
 
 /* CREATE */
+.create {
+  position: relative;
+}
 
 .create__image,
 .review__image {
