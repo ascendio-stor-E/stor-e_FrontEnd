@@ -342,6 +342,53 @@ button {
   padding: 0 15px;
 }
 
+/* MODALS */
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+  border: 2px solid #333;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.modal-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.modal-body {
+  font-size: 18px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: center;
+}
+
+.modal-footer button {
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #00a9cc;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.modal-footer button:hover {
+  background-color: #008ba3;
+}
+
 /* Tablet View */
 
 @media only screen and (min-width: 480px) {
