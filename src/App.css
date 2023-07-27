@@ -66,12 +66,14 @@ button {
   position: relative;
 }
 
+
 .create__image,
 .review__image {
   height: 350px;
   margin-top: 40px;
   border-radius: 15px;
 }
+
 
 .create__name-input {
   margin: 5px auto 10px auto;
