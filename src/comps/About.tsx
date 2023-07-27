@@ -22,13 +22,18 @@ const About = () => {
           </p>
         </section>
         <section>
+          <h1 className="about__title">What's Next</h1>
+          <div className="about__divider"></div>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas alias rerum cum hic possimus amet impedit iure voluptatum repellat labore.</p>
+        </section>
+        <section>
           <h1 className="about__title">Meet The Team</h1>
           <div className="about__divider"></div>
           <div className="about__members">
             <div className="about__member">
               <img className="about__image" width={200} height={200} src={AysePhoto} />
               <div className="about__description">
-                <h1 className="about_name">Ayse Akir</h1>
+                <h1 className="about_name">Ayse Aker Tütüncü</h1>
                 <h2>Developer</h2>
                 <p>
                   Ayse graduated from software engineering and carried out her professional carrier as a business analyst and technical product manager. She worked with banks and fintech companies, improving her skills in understanding client's needs, creating a scope of work in agreement with the
@@ -72,11 +77,6 @@ const About = () => {
               </div>
             </div>
           </div>
-        </section>
-        <section>
-          <h1 className="about__title">What's Next</h1>
-          <div className="about__divider"></div>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas alias rerum cum hic possimus amet impedit iure voluptatum repellat labore.</p>
         </section>
       </section>
     </>
