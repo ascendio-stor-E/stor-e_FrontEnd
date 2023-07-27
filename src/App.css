@@ -59,11 +59,14 @@ button {
 .home__create-button {
   font-weight: 800;
   font-size: 1.7em;
+  background-color: #0db6d8;
+  color: #fff;
+  border: 3px solid #0db6d8;
 }
 
 .home__create-button:hover {
-  opacity: 0.9;
-  border: 1px solid grey;
+  background-color: whitesmoke;
+  color: #0db6d8;
 }
 
 /* CREATE */
@@ -125,6 +128,7 @@ button {
   margin: 5px auto;
   font-size: 2em;
   background-color: #0db6d8;
+  border: 2px solid #0db6d8;
   color: white;
 }
 
@@ -152,7 +156,6 @@ button {
 .create__option-button:hover {
   margin: 5px auto;
   background-color: whitesmoke;
-  border: 2px solid #0db6d8;
   color: #0db6d8;
 }
 
@@ -296,7 +299,13 @@ button {
   margin: 20px auto 60px;
 }
 
+.accordion-button {
+  font-size: 1.7rem !important;
+}
 
+.about, p {
+  font-size: 1.2em;
+}
 
 .about__members {
   display: flex;
@@ -404,7 +413,6 @@ button {
 
 .about__description p {
   color: #000;
-  text-align: justify;
   padding: 0 15px;
   overflow: auto;
   padding-bottom: 45px;
