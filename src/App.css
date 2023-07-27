@@ -297,7 +297,7 @@ button {
 .about__description {
   background-color: #fff;
   width: 350px;
-  height: 450px;
+  max-height: 450px;
   border-radius: 15px;
   display: flex;
   justify-content: center;
@@ -320,6 +320,7 @@ button {
 
 .about_name {
   font-size: 2em;
+  margin-top: 100px;
 }
 
 .about__social-media {
@@ -366,7 +367,10 @@ button {
   color: #000;
   text-align: justify;
   padding: 0 15px;
+  overflow: auto;
+  padding-bottom: 45px;
 }
+
 
 /* MODALS */
 

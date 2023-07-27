@@ -1,14 +1,15 @@
-import axios from "axios";
-import Loading from "./Loading";
-import NameInputModal from "./modals/NameInputModal";
-import { StoryStartResponse } from "../types/StoryStartResponse";
-import { useNavigate } from "react-router-dom";
-import { StoryBook } from "../types/StoryBook";
-import { useState } from "react";
-import { errorAlert } from "../common/helpers/errorHandler";
-import { errorMessages } from "../common/constants/constants";
-import logo from "./../assets/Store-E_Logo_V2.png";
-import { stopNarration } from "../common/helpers/VoiceNarrator";
+import axios from 'axios';
+import Loading from './Loading';
+import NameInputModal from './modals/NameInputModal';
+import { StoryStartResponse } from '../types/StoryStartResponse';
+import { useNavigate } from 'react-router-dom';
+import { StoryBook } from '../types/StoryBook';
+import { useState } from 'react';
+import { errorAlert } from '../common/helpers/errorHandler';
+import { errorMessages } from '../common/constants/constants';
+import logo from './../assets/Store-E_Logo_V2.png';
+import { stopNarration } from '../common/helpers/VoiceNarrator';
+import Butterfly from './Butterfly';
 
 type HomeProps = {
   setCurrentStoryBook: (book: StoryBook) => void;
@@ -23,7 +24,7 @@ const Home = (props: HomeProps) => {
 
   stopNarration();
 
-  const getStarted = (event: { preventDefault: () => void; }) => {
+  const getStarted = (event: { preventDefault: () => void }) => {
     event.preventDefault();
     if (!props.characterName) {
       setShowModal(true);
@@ -33,31 +34,29 @@ const Home = (props: HomeProps) => {
     setIsLoading(true);
 
     axios
-      .post<StoryStartResponse>(
-        `${import.meta.env.VITE_BACKEND_URL}/api/story?characterName=${props.characterName}`
-      )
+      .post<StoryStartResponse>(`${import.meta.env.VITE_BACKEND_URL}/api/story?characterName=${props.characterName}`)
       .then((response) => {
         setIsLoading(false);
 
         const storyBook: StoryBook = {
           storyBookId: response.data.storyBookId,
           conversationId: response.data.conversationId,
-          coverImage: "",
+          coverImage: '',
           options: response.data.options,
           pages: [],
         };
 
-        props.setCurrentStoryBook(storyBook);        
+        props.setCurrentStoryBook(storyBook);
 
-        navigate("/create");
+        navigate('/create');
       })
       .catch((err) => {
-        errorAlert(errorMessages.serverError, "Cannot create initial story", err);
+        errorAlert(errorMessages.serverError, 'Cannot create initial story', err);
         setIsLoading(false);
       });
   };
 
-  const setCharacter = (event: { target: { value: string; }; }) => {
+  const setCharacter = (event: { target: { value: string } }) => {
     props.setCharacterName(event.target.value);
   };
 
@@ -67,35 +66,33 @@ const Home = (props: HomeProps) => {
 
   return (
     <>
+      <Butterfly />
       <section className="home">
         <img className="home__logo" src={logo} alt="Stor-E Logo" />
-        <h3 className="home__slogan"><strong>Create, Explore, Imagine...</strong></h3>
+        <h3 className="home__slogan">
+          <strong>Create, Explore, Imagine...</strong>
+        </h3>
         <br />
-      
       </section>
-      {isLoading ? <Loading /> : (
+      {isLoading ? (
+        <Loading />
+      ) : (
         <>
           <form>
-          <label>
-            Pick a name for your story's main character.
+            <label>
+              Pick a name for your story's main character.
+              <br />
+              What about your own name, or maybe your best friend's?
+              <br />
+              <input className="create__name-input" type="text" name="name" onChange={setCharacter} />
+            </label>
             <br />
-            What about your own name, or maybe your best friend's?
-            <br />
-            <input
-              className="create__name-input"
-              type="text"
-              name="name"
-              onChange={setCharacter}
-            />
-          </label>
-          <br />
-          <button className="home__create-button" onClick={getStarted}>
-            Get Started
-          </button>
-        </form>
+            <button className="home__create-button" onClick={getStarted}>
+              Get Started
+            </button>
+          </form>
         </>
-      )
-      }
+      )}
 
       <NameInputModal show={showModal} onClose={handleModalClose} />
     </>
