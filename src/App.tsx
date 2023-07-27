@@ -20,7 +20,7 @@ export const useNarratorContext = () => useContext(GlobalNarratorContext)
 function App() {
   const [currentStoryBook, setCurrentStoryBook] = useState<StoryBook>();
   const [characterName, setCharacterName] = useState<string>("");
-  const [mute, setMute] = useState(false);
+  const [mute, setMute] = useState(true);
 
   return (
     <>
