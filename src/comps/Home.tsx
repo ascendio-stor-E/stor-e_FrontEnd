@@ -69,6 +69,7 @@ const Home = (props: HomeProps) => {
     <>
       <section className="home">
         <img className="home__logo" src={logo} alt="Stor-E Logo" />
+        <h3 className="home__slogan"><strong>Create, Explore, Imagine...</strong></h3>
         <br />
       
       </section>
