@@ -7,7 +7,7 @@ import { StoryBook } from '../types/StoryBook';
 import { useState } from 'react';
 import { errorAlert } from '../common/helpers/errorHandler';
 import { errorMessages } from '../common/constants/constants';
-import logo from './../assets/Store-E_Logo_V2.png';
+import logoAnimated from './../assets/Stor-E_animated.gif';
 import { stopNarration } from '../common/helpers/VoiceNarrator';
 import Butterfly from './Butterfly';
 
@@ -68,7 +68,7 @@ const Home = (props: HomeProps) => {
     <>
       <Butterfly />
       <section className="home">
-        <img className="home__logo" src={logo} alt="Stor-E Logo" />
+        <img className="home__logo" src={logoAnimated} alt="Stor-E Logo" />
         <h3 className="home__slogan">
           <strong>Create, Explore, Imagine...</strong>
         </h3>
