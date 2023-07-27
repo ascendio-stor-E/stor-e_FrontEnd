@@ -101,6 +101,7 @@
 
 .nav-item .nav-link {
   color: black;
+  font-size: x-large;
 }
 
 .nav-item .nav-link:hover {
@@ -127,6 +128,22 @@
   margin-bottom: 20px;
   margin-top: 20px;
 }
+
+.nav {
+  width: 68%;
+  margin-left: 16%;
+  margin-right: 12%;
+}
+
+.col {
+  padding-bottom: 10px;
+  width: 100%;
+}
+
+.progress-label {
+  font-size: 19px;
+}
+
 
 /* tablet */
 @media only screen and (min-width: 480px) {

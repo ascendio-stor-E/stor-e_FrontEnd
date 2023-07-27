@@ -118,7 +118,7 @@ const StoryBookCard = (props: StoryBookCardProps) => {
           <h4 className={`card-title ${mouseOver && "card-title-mouseover"}`}>{props.storyBook.title || 'Untitled'}</h4>
         
           {props.storyBook.status == 'DRAFT' && 
-          <ProgressBar variant='info' striped now={(props.storyBook.numberOfPages/5)*100} label={`${props.storyBook.numberOfPages} of 5`} />
+           <ProgressBar variant='info' striped now={(props.storyBook.numberOfPages/5)*100} label= {<span className='progress-label'>{`${props.storyBook.numberOfPages} of 5`}</span> } />
           }
 
           <div className="card-body card-body_buttons">

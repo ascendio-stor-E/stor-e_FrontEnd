@@ -81,17 +81,17 @@ const Gallery = (props: GalleryProps) => {
 
     <li className="nav-item">
         <a className={`nav-link ${showBooks == 2 && "active"}`} onClick={() => onTabClicked(2)}>
-          Favourites         
+          <strong>Favourites</strong>       
         </a>
       </li>
       <li className="nav-item">
         <a className={`nav-link ${showBooks == 1 && "active"}`} onClick={() => onTabClicked(1)}>
-          Story Books          
+        <strong>Story Books</strong>         
         </a>
       </li>
       <li className="nav-item">
         <a className={`nav-link ${showBooks == 0 && "active"}`} onClick={() => onTabClicked(0)}>
-          Drafts
+        <strong>Drafts</strong>
         </a>
       </li>
 
