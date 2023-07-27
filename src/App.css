@@ -296,6 +296,8 @@ button {
   margin: 20px auto 60px;
 }
 
+
+
 .about__members {
   display: flex;
   justify-content: center;
@@ -609,5 +611,18 @@ button {
 
   .storypage_label {
     font-size: 1.7em;
+  }
+
+  .about {
+    max-width: 70vw; /* Set the content to occupy 70% of the viewport width */
+    margin: 0 auto;
+  }
+
+  .about__member {
+    max-width: 30%;
+  }
+
+  .about__description {
+    width: 100%;
   }
 }
