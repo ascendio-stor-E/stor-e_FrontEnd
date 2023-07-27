@@ -8,6 +8,7 @@ import { StoryPageData } from '../types/StoryPageData';
 import { errorAlert } from '../common/helpers/errorHandler';
 import { errorMessages } from '../common/constants/constants';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { stopNarration } from '../common/helpers/VoiceNarrator';
 
 const Review = () => {
   const { storyBookId } = useParams<{ storyBookId: string }>();
@@ -18,6 +19,8 @@ const Review = () => {
   const [searchParams, _] = useSearchParams();
 
   const source = searchParams.get('source');
+
+  stopNarration();
 
   useEffect(() => {
     const getData = () => {

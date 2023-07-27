@@ -9,6 +9,9 @@ import { errorAlert } from '../../common/helpers/errorHandler';
 import { errorMessages } from '../../common/constants/constants';
 import { StoryBook } from '../../types/StoryBook';
 import { stopNarration } from '../../common/helpers/VoiceNarrator';
+import bugPng from '../../assets/bug.png';
+import './gallery.css'
+
 
 export type StoryBookInfoType = {
   id: string;
@@ -28,7 +31,7 @@ const Gallery = (props: GalleryProps) => {
   const [storyBooksList, setStoryBooksList] = useState<StoryBookInfoType[]>([]);
   const [draftStoryBooksList, setDraftStoryBooksList] = useState<StoryBookInfoType[]>([]);
   const [count, setCount] = useState(0);
-  const [showBooks, setShowBooks] = useState<Number>(2);
+  const [showBooks, setShowBooks] = useState<Number>(1);
 
   let userId = "bc644717-5970-4e0b-88a7-35d5f0931be1";
 
@@ -73,21 +76,22 @@ const Gallery = (props: GalleryProps) => {
 
   return (
     <section className="gallery">
-    <ul className="nav nav-tabs">
+      <img src={bugPng} className='bug' />
+    <ul className="nav nav-pills nav-fill ul">
 
     <li className="nav-item">
         <a className={`nav-link ${showBooks == 2 && "active"}`} onClick={() => onTabClicked(2)}>
-          My Favourite Story Books         
+          <strong>Favourites</strong>       
         </a>
       </li>
       <li className="nav-item">
         <a className={`nav-link ${showBooks == 1 && "active"}`} onClick={() => onTabClicked(1)}>
-          All Story Books          
+        <strong>Story Books</strong>         
         </a>
       </li>
       <li className="nav-item">
         <a className={`nav-link ${showBooks == 0 && "active"}`} onClick={() => onTabClicked(0)}>
-          Drafts
+        <strong>Drafts</strong>
         </a>
       </li>
 

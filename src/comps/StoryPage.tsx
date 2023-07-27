@@ -13,6 +13,8 @@ import { errorAlert } from '../common/helpers/errorHandler';
 import { errorMessages } from '../common/constants/constants';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import narrateStory from '../common/helpers/VoiceNarrator';
+import NarratorButton from "../common/comps/PlayPauseNarratorButton/NarratorButton";
+import { useNarratorContext } from "../App";
 
 type StoryPageProps = {
   currentStoryBook: StoryBook | undefined;
@@ -23,6 +25,7 @@ export default function StoryPage(props: StoryPageProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [storyImage, setStoryImage] = useState<string>(painting);
   const [showModal, setShowModal] = useState(false);
+  const {mute} = useNarratorContext();
   const navigate = useNavigate();
 
   const newPageNumber: number = Number(pageNumber) + 1;
@@ -102,9 +105,15 @@ export default function StoryPage(props: StoryPageProps) {
       );
   };
 
+  const onUnMute = () => {
+    if(currentPage) {
+      narrateStory(currentPage?.story);
+    }
+  }
+
   useEffect(() => { 
     getStoryImage(15, 2000);
-    if(currentPage) {
+    if(currentPage && !mute) {
       narrateStory(currentPage?.story);
     }
   }, [currentPage]);
@@ -114,6 +123,7 @@ export default function StoryPage(props: StoryPageProps) {
   return (
     <>
       <section className="create">
+        <NarratorButton onUnMute={onUnMute} />
         <div className="image__story">
           <img className="create__image" src={storyImage} alt="Stor-E Image " />
 
