@@ -1,4 +1,4 @@
-import storeLogo from '../assets/Store-E_Logo_V2.png';
+import storeLogo from '../assets/Logo.png';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
