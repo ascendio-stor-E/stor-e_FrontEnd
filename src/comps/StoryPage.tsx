@@ -130,7 +130,7 @@ export default function StoryPage(props: StoryPageProps) {
           <Typewriter
             options={{
               strings: currentPage?.story,
-              wrapperClassName: "_",
+              wrapperClassName: "story_text",
               autoStart: true,
               loop: false,
               delay: 50,
@@ -144,7 +144,7 @@ export default function StoryPage(props: StoryPageProps) {
           <>
             {currentPage && currentPage.options?.length !== 0 ? (
               <>
-                <label>Please select one of the following options:</label>
+                <label className="storypage_label">Please select one of the following options:</label>
                 <br></br>
                 <form>
                   <ul className="create__options-list">

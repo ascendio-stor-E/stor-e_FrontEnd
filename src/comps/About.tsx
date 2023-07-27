@@ -1,4 +1,5 @@
 import logo from './../assets/Store-E_Logo_V2.png';
+import Accordion from 'react-bootstrap/Accordion';
 import AysePhoto from '../assets/Ayse.png';
 import RobbiePhoto from '../assets/Robbie.png';
 import VijaniPhoto from '../assets/Vijani.png';
@@ -13,18 +14,48 @@ const About = () => {
       <img className="home__logo" src={logo} alt="Stor-E Logo" />
       <section className="about">
         <section>
-          <h1 className="about__title">Our Stor-E</h1>
-          <div className="about__divider"></div>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem ex repellendus iste, nostrum quaerat ducimus id hic deleniti dolorum impedit non tempora, nemo aliquid odit ipsum aut quae molestias ipsam alias modi maxime illum asperiores totam! Totam sed cum, non, tenetur
-            necessitatibus perspiciatis beatae quas ad distinctio veniam sit. Repudiandae officiis minus accusamus corporis magnam repellat optio amet dolor soluta nisi sunt maiores officia odit, sit numquam consequuntur, quam repellendus nostrum, aspernatur laudantium tempora voluptate quidem.
-            Eaque sequi maiores, nesciunt ipsam quisquam optio aspernatur quam, voluptatibus repellendus voluptates quo ratione voluptatum. A facilis natus fuga facere qui illum perspiciatis dolore.
-          </p>
-        </section>
-        <section>
-          <h1 className="about__title">What's Next</h1>
-          <div className="about__divider"></div>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas alias rerum cum hic possimus amet impedit iure voluptatum repellat labore.</p>
+          <section>
+            <h1 className="about__title">Our Stor-E</h1>
+            <div className="about__divider"></div>
+            <p>
+              Welcome to Star-E. An Ai powered children’s story book generation app, where we integrate OpenAI's ChatGPT & Dall-E to generate unique stories full of wonder and adventure. <br />
+              You can put yourself right in the middle of the fantasy and be the hero of your own imagination.
+            </p>
+          </section>
+
+          <section>
+            <h1 className="about__title">What's Next</h1>
+            <div className="about__divider"></div>
+            <p>The team at Stor-E also have active imaginations, and plan to introduce some exciting features in the future, such as:</p>
+            <div className="about_accordian">
+              <Accordion>
+                <Accordion.Item eventKey="0">
+                  <Accordion.Header>User Login</Accordion.Header>
+                  <Accordion.Body>Save your favourite adventures, continue with your favourite characters, and revisit the most epic tales.</Accordion.Body>
+                </Accordion.Item>
+                <Accordion.Item eventKey="1">
+                  <Accordion.Header>Companion</Accordion.Header>
+                  <Accordion.Body>Include your friends or make new ones! The companions feature will allow you to share you favourite adventures with your own memorable characters.</Accordion.Body>
+                </Accordion.Item>
+                <Accordion.Item eventKey="2">
+                  <Accordion.Header>Background Audio</Accordion.Header>
+                  <Accordion.Body>Immerse yourself further with setting specific music and sound effects.</Accordion.Body>
+                </Accordion.Item>
+                <Accordion.Item eventKey="3">
+                  <Accordion.Header>Companion</Accordion.Header>
+                  <Accordion.Body>Include your friends or make new ones! The companions feature will allow you to share you favourite adventures with your own memorable characters.</Accordion.Body>
+                </Accordion.Item>
+                <Accordion.Item eventKey="4">
+                  <Accordion.Header>Share to socials</Accordion.Header>
+                  <Accordion.Body>Share you adventure with friends and family.</Accordion.Body>
+                </Accordion.Item>
+                <Accordion.Item eventKey="5">
+                  <Accordion.Header>Print your Star-E</Accordion.Header>
+                  <Accordion.Body>Order your own copy of you Stor-E, printed beautifully for you to enjoy again.</Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
+            </div>
+          </section>
         </section>
         <section>
           <h1 className="about__title">Meet The Team</h1>
