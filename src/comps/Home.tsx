@@ -78,11 +78,13 @@ const Home = (props: HomeProps) => {
         <Loading />
       ) : (
         <>
-          <form>
+          <form className="home__form">
             <label>
-              Pick a name for your story's main character.
-              <br />
-              What about your own name, or maybe your best friend's?
+              <strong>
+                Pick a name for your story's main character.
+                <br />
+                What about your own name, or maybe your best friend's?
+              </strong>
               <br />
               <input className="create__name-input" type="text" name="name" onChange={setCharacter} />
             </label>

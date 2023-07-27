@@ -144,7 +144,7 @@ export default function StoryPage(props: StoryPageProps) {
           <>
             {currentPage && currentPage.options?.length !== 0 ? (
               <>
-                <label>Please select one of the following options:</label>
+                <label className="storypage_label">Please select one of the following options:</label>
                 <br></br>
                 <form>
                   <ul className="create__options-list">

@@ -21,9 +21,9 @@ const StorENavbar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/" className="main-nav-item">HOME</Nav.Link>
-            <Nav.Link href="/gallery" className="main-nav-item">MY STORIES</Nav.Link>
-            <Nav.Link href="/about" className="main-nav-item">ABOUT</Nav.Link>
+            <Nav.Link href="/" className="main-nav-item"><strong>HOME   </strong></Nav.Link>
+            <Nav.Link href="/gallery" className="main-nav-item"><strong>MY STORIES</strong></Nav.Link>
+            <Nav.Link href="/about" className="main-nav-item"><strong>ABOUT</strong></Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
