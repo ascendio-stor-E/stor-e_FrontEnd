@@ -89,6 +89,10 @@
   background: linear-gradient(to bottom, #ff9eb5 0%, #feb7d3 80%);
 }
 
+.btn-danger {
+  background-color: rgb(229, 95, 95) !important;
+}
+
 .bg-info {
   width: 20%;
   font-weight: bolder;

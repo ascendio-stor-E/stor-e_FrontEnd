@@ -13,6 +13,7 @@ import { OverlayTrigger } from 'react-bootstrap';
 import { errorAlert } from '../../common/helpers/errorHandler';
 import { errorMessages } from '../../common/constants/constants';
 import { StoryBook } from '../../types/StoryBook';
+import DeleteItemModal from '../modals/DeleteItemModal';
 
 type StoryBookCardProps = {
   storyBook: StoryBookInfoType;
@@ -24,6 +25,7 @@ type StoryBookCardProps = {
 const StoryBookCard = (props: StoryBookCardProps) => {
   const [mouseOver, setMouseOver] = useState(false); 
   const [isFavClicked, setIsFavClicked] = useState(props.storyBook.status === 'FAVOURITE'); 
+  const [deleteShowModal, setDeleteShowModal] = useState(false);
   const navigate = useNavigate();
 
   const onMouseEnter = () => {
@@ -73,6 +75,10 @@ const StoryBookCard = (props: StoryBookCardProps) => {
       .catch(err => errorAlert(errorMessages.serverError, `Cannot load draft ${props.storyBook.id}` , err));
     
   }
+
+  const handleModalClose = () => {
+    setDeleteShowModal(false);
+  };
 
   const addFavouriteTooltip = (props:any) => (
     <Tooltip {...props}>Add to favourite</Tooltip>
@@ -147,7 +153,7 @@ const StoryBookCard = (props: StoryBookCardProps) => {
                 }
 
               <OverlayTrigger placement='bottom' overlay={deleteStorybookTooltip}>
-              <button className="card-btn card-btn-delete" onClick={() => handleDeleteStoryBook(props.storyBook.id)}>
+              <button className="card-btn card-btn-delete" onClick={() => setDeleteShowModal(true)}>
                 <i className='bi-trash-fill'></i>
               </button>
               </OverlayTrigger>
@@ -155,6 +161,7 @@ const StoryBookCard = (props: StoryBookCardProps) => {
           </div>
         </div>
       </div> 
+      <DeleteItemModal show={deleteShowModal} onClose={handleModalClose} onDelete={() => handleDeleteStoryBook(props.storyBook.id)} />
     </div>
   );
 };
