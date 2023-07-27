@@ -5,7 +5,6 @@
   font-family: 'Cormorant Garamond', serif;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 1rem;
   text-align: center;
   background-color: whitesmoke;
 }
@@ -19,7 +18,7 @@ body {
 p,
 label,
 button {
-  font-size: 1.3em;
+  font-size: 1.5em;
   margin: 8px;
 }
 
@@ -27,6 +26,20 @@ button {
 .navbar__item {
   font-size: 1.4em;
   padding: 10px 15px;
+}
+
+.bg-nav-color {
+  background-color:  white;
+}
+
+.navbar-nav-right {
+  flex-direction: row-reverse;
+  margin-right: 20px;
+}
+
+.main-nav-item {
+  font-size: larger !important;
+  color: black !important;
 }
 
 /* HOME */
@@ -49,6 +62,9 @@ button {
 }
 
 /* CREATE */
+.create {
+  position: relative;
+}
 
 .create__image,
 .review__image {
@@ -88,16 +104,19 @@ button {
 }
 
 .story_text {
-  font-size: 1.4em;
+  font-size: 1.7em;
   text-align: left;
   overflow: auto;
+  line-height: normal;
 }
 
 .create__option-button {
   min-width: 70vw;
   max-width: 70vw;
   margin: 5px auto;
-  font-size: 1.2em;
+  font-size: 1.7em;
+  background-color: #0DCAF0;
+  color: white;
 }
 
 .create__option-button--0 {
@@ -508,7 +527,7 @@ button {
   }
 
   .Typewriter {
-    min-width: 400px;
+    min-width: 550px;
     height: 50vh;
     font-size: 1.3em;
   }

@@ -1,4 +1,4 @@
-const narrateStory = (story: string) =>  {
+const narrateStory = (story: string) =>  {    
     const synth = window.speechSynthesis;
     synth.cancel();
 

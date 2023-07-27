@@ -60,7 +60,6 @@
 
 .card-btn {
   display: box;
-  position: relative;
   width: 50px;
   height: 50px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
@@ -88,6 +87,10 @@
 
 .card-btn-delete {
   background: linear-gradient(to bottom, #ff9eb5 0%, #feb7d3 80%);
+}
+
+.btn-danger {
+  background-color: rgb(229, 95, 95) !important;
 }
 
 .bg-info {
@@ -122,6 +125,7 @@
   width: 20px;
   height: 20px;
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 /* tablet */
