@@ -42,15 +42,11 @@ const About = () => {
                   <Accordion.Body>Immerse yourself further with setting specific music and sound effects.</Accordion.Body>
                 </Accordion.Item>
                 <Accordion.Item eventKey="3">
-                  <Accordion.Header>Companion</Accordion.Header>
-                  <Accordion.Body>Include your friends or make new ones! The companions feature will allow you to share you favourite adventures with your own memorable characters.</Accordion.Body>
-                </Accordion.Item>
-                <Accordion.Item eventKey="4">
                   <Accordion.Header>Share to socials</Accordion.Header>
                   <Accordion.Body>Share you adventure with friends and family.</Accordion.Body>
                 </Accordion.Item>
-                <Accordion.Item eventKey="5">
-                  <Accordion.Header>Print your Star-E</Accordion.Header>
+                <Accordion.Item eventKey="4">
+                  <Accordion.Header>Print your Stor-E</Accordion.Header>
                   <Accordion.Body>Order your own copy of you Stor-E, printed beautifully for you to enjoy again.</Accordion.Body>
                 </Accordion.Item>
               </Accordion>
