@@ -10,7 +10,7 @@ import { errorAlert } from '../common/helpers/errorHandler';
 import { errorMessages } from '../common/constants/constants';
 import OptionSelectModal from './modals/OptionSelectModal';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
-import storELogo from '../assets/Store-E_Logo_V2.png';
+import logoAnimated from '../assets/Stor-E_animated.gif';
 import narrateStory from '../common/helpers/VoiceNarrator';
 import NarratorButton from "../common/comps/PlayPauseNarratorButton/NarratorButton";
 import { useNarratorContext } from "../App";
@@ -117,7 +117,7 @@ const Create = (props: CreateProps) => {
     <>
       <section className="create">
         <NarratorButton onUnMute={onUnMute} />
-        <img className="create__image" src={storELogo} alt="Stor-E Logo" />
+        <img className="create__image" src={logoAnimated} alt="Stor-E Logo" />
         <p className="create__intro-text">{ welcomeMessage }</p>
 
         {isLoading ? (

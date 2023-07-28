@@ -1,4 +1,4 @@
-import logo from './../assets/Store-E_Logo_V2.png';
+import logoAnimated from './../assets/Stor-E_animated.gif';
 import Accordion from 'react-bootstrap/Accordion';
 import AysePhoto from '../assets/Ayse.png';
 import RobbiePhoto from '../assets/Robbie.png';
@@ -11,14 +11,14 @@ const About = () => {
   return (
     <>
       <Butterfly />
-      <img className="home__logo" src={logo} alt="Stor-E Logo" />
+      <img className="home__logo" src={logoAnimated} alt="Stor-E Logo" />
       <section className="about">
         <section>
           <section>
             <h1 className="about__title">Our Stor-E</h1>
             <div className="about__divider"></div>
             <p>
-              Welcome to Star-E. An Ai powered children’s story book generation app, where we integrate OpenAI's ChatGPT & Dall-E to generate unique stories full of wonder and adventure. <br />
+              Welcome to Star-E. An AI-powered children’s story book creation app, where we integrate OpenAI's ChatGPT & Dall-E to generate unique stories full of wonder and adventure. <br />
               You can put yourself right in the middle of the fantasy and be the hero of your own imagination.
             </p>
           </section>
